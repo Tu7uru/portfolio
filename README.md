@@ -82,5 +82,17 @@ sub-path. The Open Graph image and canonical URL are absolute
 
 ## Licence
 
-Code and content: TODO (to be decided). Fonts: SIL Open Font License 1.1, see
-`docs/fonts/OFL-*.txt`.
+The repository has two licences, one for the code and one for the content.
+
+- **Code: MIT** (see [LICENSE](LICENSE)). This covers `src/`, `tools/`,
+  `tests/` and `package.json`. You may reuse the page engine, the build script
+  and the QA suite, including the 1-bit label drawings in `src/js/`.
+- **Content: all rights reserved.** This covers `content/` (the CV text and
+  project descriptions), `docs/resume.pdf`, `docs/og.png` and
+  `docs/apple-touch-180.png`. Copyright 2026 Haralambos Varsamis; please do
+  not copy or republish them.
+- **Fonts: SIL Open Font License 1.1**, unchanged. VT323, Caveat and IBM Plex
+  Sans keep their own licences, see `docs/fonts/OFL-*.txt`.
+
+`docs/index.html` is generated from both: its code parts are MIT, the text it
+carries from `content/` stays all rights reserved.
