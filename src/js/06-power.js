@@ -80,9 +80,13 @@ function powerOn(opts) {
     return;
   }
   S.warming = true;
+  /* 2026-10-21: a power-off while the font gate is still pending must cancel
+     this power-on; every powerOff() bumps the generation */
+  var gen = (S.powerGen = (S.powerGen || 0) + 1);
   /* v7 G1 (item 3): wait for the self-hosted fonts before the boot types —
 capped at 1.5 s so a missing file can never hold the boot open-ended */
   fontsGate().then(function () {
+    if (gen !== S.powerGen) return;
     AU.thock();
     runWarm();
     /* K-B timeline (was 1000/1320/1450): the 520 ms CSS warm, the BIOS
@@ -133,6 +137,7 @@ function startBios(opts) {
 }
 function powerOff() {
   if (S.offing) return;
+  S.powerGen = (S.powerGen || 0) + 1; /* cancels a power-on still waiting for its fonts */
   if (S.phase === "off") {
     if (!S.warming) return; /* already off */
     /* J: off during the WARM-UP — kill the warm chain, no collapse (the
@@ -147,6 +152,10 @@ function powerOff() {
     return;
   }
   S.offing = true;
+  /* 2026-10-21: bootReset() below also kills powerOn's 700 ms "warming done"
+     timer; switched off 520–700 ms after power-on, S.warming stayed true and
+     every later power-on was ignored */
+  S.warming = false;
   document.body.classList.add(
     "poff-hide"
   ); /* I4: hide the views at collapse start — no re-show frame after */
@@ -192,7 +201,7 @@ so the .on strip at finish() is invisible — no brightness jump */
   bootTimers.push(setTimeout(finish, 920));
 }
 function skipBoot() {
-  if (S.phase !== "boot") return;
+  if (S.phase !== "boot" || S.offing) return; /* never skip into (and cancel) the off-collapse */
   bootReset();
   S.typing = false;
   setBiosText(fullBiosText());

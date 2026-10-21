@@ -6233,6 +6233,70 @@ async function phaseIFixes() {
       d || "archive hidden from collapse start, 0 visible frames"
     );
   }
+  /* i06 — (2026-10-21) power toggling can never strand the set: (a) Space on the
+     focused knob during the boot, then Space again during the off-collapse;
+     (b) a mouse power-off 650 ms after power-on (inside the warm-up window).
+     Afterwards LED, glass and phase must agree, and one more press must work. */
+  {
+    let ok = true,
+      d = "";
+    const browser = await chromium.launch();
+    const st = (p) =>
+      p.evaluate(() => ({
+        off: document.body.classList.contains("phase-off"),
+        hidden: document.body.classList.contains("poff-hide"),
+        led: document.getElementById("powerBtn").classList.contains("on"),
+        glass: document.getElementById("glass").classList.contains("on")
+      }));
+    const agree = (s) => (s.off ? !s.led && !s.glass : s.led && s.glass && !s.hidden);
+    try {
+      for (const [name, steps] of [
+        [
+          "space-during-collapse",
+          async (p) => {
+            await p.click("#powerBtn");
+            await p.waitForTimeout(1500);
+            await p.keyboard.press(" ");
+            await p.waitForTimeout(250);
+            await p.keyboard.press(" ");
+          }
+        ],
+        [
+          "off-inside-warmup",
+          async (p) => {
+            await p.click("#powerBtn");
+            await p.waitForTimeout(650);
+            await p.click("#powerBtn");
+          }
+        ]
+      ]) {
+        const { ctx, page } = await freshPage(browser, 1440, 900, "");
+        await page.waitForTimeout(700);
+        await steps(page);
+        await page.waitForTimeout(2500);
+        const a = await st(page);
+        await page.click("#powerBtn");
+        await page.waitForTimeout(2500);
+        const b = await st(page);
+        if (!agree(a) || !agree(b) || a.off === b.off) {
+          ok = false;
+          d += name + ":" + JSON.stringify({ a, b }) + " ";
+        } else d += name + ":ok ";
+        await ctx.close();
+      }
+    } catch (e) {
+      ok = false;
+      d += String(e).slice(0, 100);
+    } finally {
+      await browser.close();
+    }
+    record(
+      D,
+      "i06 power: no stuck state (Space during collapse, off inside warm-up), next press works",
+      ok,
+      d
+    );
+  }
 }
 
 /* ---------------- PHASE J: power robustness ---------------- */

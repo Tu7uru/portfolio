@@ -6,6 +6,17 @@ All notable changes to this site are listed here. The format follows
 sections or features, PATCH for content updates and fixes. Each release is an
 annotated git tag `vX.Y.Z`; the visitor-facing label shows `V<MAJOR>.<MINOR>`.
 
+## [1.0.1] - 2026-10-21
+
+### Fixed
+- Power could get stuck: switching on and off with Space, or a second Space during the
+  power-off animation, left the green LED on over a dark screen that no longer reacted.
+  Keys are now ignored while the set powers down, Space/Enter on the focused power button
+  toggles only once, and switching off during the warm-up no longer blocks the next power-on.
+
+### Added
+- QA check i06 for these power sequences.
+
 ## [1.0.0] - 2026-10-21
 
 First public release of ARCHIVE.SYS.
@@ -19,4 +30,5 @@ First public release of ARCHIVE.SYS.
 - No-JavaScript fallback listing the whole archive.
 - Build pipeline (`src/` + `content/` -> `docs/index.html`), Playwright QA suite, Prettier formatting.
 
+[1.0.1]: https://github.com/Tu7uru/portfolio/releases/tag/v1.0.1
 [1.0.0]: https://github.com/Tu7uru/portfolio/releases/tag/v1.0.0

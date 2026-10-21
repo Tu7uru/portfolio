@@ -1,5 +1,15 @@
 /* ============================== KEYBOARD ============================== */
 document.addEventListener("keydown", function (e) {
+  /* 2026-10-21: during the power-off collapse every key is ignored. Before,
+     a key in the boot phase ran skipBoot(), whose bootReset() also killed the
+     collapse's finish timer: the set stayed "on" (green LED) with a dark
+     screen and no input worked any more. */
+  if (S.offing) return;
+  /* Space/Enter on the focused power knob: the knob's own click handler is the
+     ONE place that toggles power (else keydown powers on and the keyup click
+     toggles again) */
+  if ((e.key === " " || e.key === "Enter") && document.activeElement === document.getElementById("powerBtn"))
+    return;
   // power-on on any key
   if (S.phase === "off") {
     if (e.metaKey || e.ctrlKey || e.altKey) return;
