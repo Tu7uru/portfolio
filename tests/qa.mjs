@@ -4521,8 +4521,9 @@ async function phaseMfixes() {
     return`;
 
   /* m01 — detail hierarchy on the DEL-OITTE record (1440 + 390):
-     title→meta→summary→NUMBERS→SCOPE→NOTES→STACK footer, meta-duplicate
-     bullets gone, summary at 1.25× body, footer reachable by scroll */
+     title→meta→summary→bullets (one list in data order: the NUMBERS/SCOPE
+     grouping was removed on 2026-10-08)→STACK footer, meta-duplicate
+     bullets gone, summary at ~1.1× body, footer reachable by scroll */
   {
     let ok = true, d = '';
     const browser = await chromium.launch();
@@ -4567,25 +4568,16 @@ async function phaseMfixes() {
         var order = ['dt-title', 'dt-meta', 'dt-sum'];
         var i = 0;
         while (i < m.kids.length && order[i]) { if (m.kids[i] !== order[i]) { ok = false; d += tag + ' kid[' + i + ']=' + m.kids[i] + ' want ' + order[i] + '; '; } i++; }
-        if (m.secs.indexOf('NUMBERS') < 0 || m.secs.indexOf('SCOPE') < 0) { ok = false; d += tag + ' secs ' + m.secs + '; '; }
+        /* 2026-10-08: no NUMBERS/SCOPE heads; the bullets follow the data order */
+        if (m.secs.indexOf('NUMBERS') >= 0 || m.secs.indexOf('SCOPE') >= 0) { ok = false; d += tag + ' grouping heads back: ' + m.secs + '; '; }
         /* v7 N6: ~1.1× body desktop, ~1.08× on the phone stage */
         var wantMult = tag === '390' ? 1.08 : 1.1;
         if (Math.abs(m.sumPx - m.bodyPx * wantMult) > 0.6) { ok = false; d += tag + ' sum ' + m.sumPx + ' vs body ' + m.bodyPx + '×' + wantMult + '; '; }
-        /* v7 N5: Onboarded/Mentored/Led → SCOPE; "Owned" is back on the digit
-           rule (its 7 implementations / 3 concurrent are measured results) */
-        var inG = function (frag, want) {
-          var k = null;
-          for (var kk in m.groups) if (kk.indexOf(frag) === 0) { k = kk; break; }
-          if (k == null || m.groups[k] !== want) { ok = false; d += tag + ' group: "' + frag + '…" = ' + (k == null ? 'absent' : m.groups[k]) + ' want ' + want + '; '; }
-        };
-        inG('Onboarded 4 engineer', 'SCOPE');
-        inG('Owned end-to-end work', 'NUMBERS');
-        inG('Extended sales, warehous', 'SCOPE');
-        inG('Cut X++ query and calc', 'NUMBERS');
-        inG('4 go-lives across 3', 'NUMBERS');
-        inG('30+ Docentric and SSRS', 'NUMBERS');
-        inG('Replaced third-party', 'NUMBERS');
-        inG('Quotation printing', 'NUMBERS');
+        var lineKeys = Object.keys(m.groups);
+        var firstLine = m.kids.indexOf('dt-line');
+        if (lineKeys.length < 8) { ok = false; d += tag + ' only ' + lineKeys.length + ' bullets; '; }
+        if (!lineKeys.length || lineKeys[0].indexOf('Owned end-to-end') !== 0) { ok = false; d += tag + ' first bullet ' + (lineKeys[0] || 'absent') + '; '; }
+        if (firstLine !== 3) { ok = false; d += tag + ' bullets start at kid ' + firstLine + '; '; }
         if (m.dupLine) { ok = false; d += tag + ' meta-dup bullet still rendered; '; }
         if (!m.stack || !m.stackUpper) { ok = false; d += tag + ' stack ' + m.stack + '; '; }
         if (!m.links) { ok = false; d += tag + ' no link row; '; }
@@ -4594,7 +4586,7 @@ async function phaseMfixes() {
       }
     } catch (e) { ok = false; d += 'err ' + String(e).slice(0, 100); }
     finally { await browser.close(); }
-    record(D, 'm01 detail hierarchy: title→meta→summary→NUMBERS→SCOPE→STACK, dup bullets gone, people→SCOPE', ok, d || 'order + summary 1.1×/1.08× + 6/3 split + footer reachable at 1440 and 390');
+    record(D, 'm01 detail hierarchy: title→meta→summary→bullets (data order)→STACK, dup bullets gone', ok, d || 'order + summary 1.1×/1.08× + one bullet list + footer reachable at 1440 and 390');
   }
 
   /* m02 — records with ≤3 rendered bullets get no NUMBERS/SCOPE heads (army,
@@ -4971,8 +4963,9 @@ async function phaseNfixes() {
     record('390x844', 'n04 no dangling "·" at line ends (meta + stack, phone)', ok, d);
   }
 
-  /* n05 — (N5) "Stack:" bullets hidden, "Owned…" back in NUMBERS, near-duplicate
-     summary bullets dropped (Themis, ARCHIVE.SYS) */
+  /* n05 — (N5) "Stack:" bullets hidden, Deloitte bullets as one list in data
+     order ("Owned…" first; the NUMBERS/SCOPE grouping was removed on
+     2026-10-08), near-duplicate summary bullets dropped (Themis, ARCHIVE.SYS) */
   {
     let ok = true, d = '';
     try {
@@ -4997,11 +4990,12 @@ async function phaseNfixes() {
       if (/^Stack:/.test(t) || /Stack: C#,/.test(t)) { ok = false; d += 'intermedia Stack: bullet still shown; '; }
       await page.evaluate(() => document.getElementById('dtClose').click());
       await page.waitForTimeout(450);
-      /* Deloitte: "Owned…" under NUMBERS */
+      /* Deloitte: no grouping heads, "Owned…" is the first bullet */
       await openDet('WORK', 'deloitte');
       let g = await page.evaluate(() => { var grp = {}, cur = ''; [].forEach.call(document.getElementById('dtBody').children, function (k) { if (k.className === 'dt-sec') cur = k.textContent; else if (k.className === 'dt-line') grp[k.textContent.slice(0, 24)] = cur; }); return grp; });
-      var okKey = Object.keys(g).find(k => k.indexOf('Owned end-to-end') === 0);
-      if (!okKey || g[okKey] !== 'NUMBERS') { ok = false; d += 'deloitte Owned… = ' + (okKey ? g[okKey] : 'absent') + '; '; }
+      var gk = Object.keys(g);
+      if (!gk.length || gk[0].indexOf('Owned end-to-end') !== 0) { ok = false; d += 'deloitte first bullet = ' + (gk[0] || 'absent') + '; '; }
+      if (gk.some(k => g[k] !== '')) { ok = false; d += 'deloitte bullets under a section head; '; }
       await page.evaluate(() => document.getElementById('dtClose').click());
       await page.waitForTimeout(450);
       /* Themis: the summary-restating bullet is gone */
@@ -5016,10 +5010,10 @@ async function phaseNfixes() {
       var dup1 = (t.match(/a working archive behind a working screen/gi) || []).length;
       if (dup1 > 1) { ok = false; d += 'archivesys summary line appears ' + dup1 + '×; '; }
       if (!/self-contained HTML page/.test(t)) { ok = false; d += 'archivesys technical bullet missing; '; }
-      if (ok) d = 'Stack: hidden, Owned→NUMBERS, Themis + ARCHIVE.SYS near-dups dropped';
+      if (ok) d = 'Stack: hidden, Deloitte one list (Owned… first), Themis + ARCHIVE.SYS near-dups dropped';
       await ctx.close(); await browser.close();
     } catch (e) { ok = false; d = 'err ' + String(e).slice(0, 120); }
-    record(D, 'n05 grouping: Stack: hidden, Owned→NUMBERS, summary near-dups dropped', ok, d);
+    record(D, 'n05 detail lines: Stack: hidden, one list in data order, summary near-dups dropped', ok, d);
   }
 
   /* n06 — (N6) desktop: the summary is ~1.1× body and clearly below the title
