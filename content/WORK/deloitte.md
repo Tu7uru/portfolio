@@ -12,7 +12,7 @@ Dynamics 365 F&O (X++) development on multi-million-euro ERP implementations for
 - Extended sales, warehousing, pricing, tax, workflow, and finance modules (AP/AR, ledger journals, bank statement imports) using X++ Chain of Command extensions; built security roles, privileges, and XDS policies.
 - Contributed development, bug fixes, and tester support through 5 go-lives across 4 implementations, including one solution that rolled out live in 2 countries separately.
 - Replaced third-party payment subscriptions in 3 countries for a pan-European medical diagnostics group with in-house QR/barcode generation, encoding payloads to each bank's specifications (LZMA/7z) with automated ISO-compliant SFTP exports, eliminating the recurring subscription fees.
-- Optimised X++ queries and calculations by ~35% on average through targeted caching; in the largest case, cached quotation totals cut a 270-line sales-agreement print from 30 minutes to under 1 minute.
+- Optimised X++ queries and calculations by ≈35% on average through targeted caching; in the largest case, cached quotation totals cut a 270-line sales-agreement print from 30 minutes to under 1 minute.
 - Delivered 30+ Docentric and SSRS reports (10+ new, 20+ core-logic extensions), including QR-referenced payment reports and batch-run payment reminders.
 - Built DMF data entities and Excel add-in imports/exports that migrated legacy data into redesigned table structures and automatically created the related child records during import.
 - Automated recurring processes such as one-click packing-slip posting for return orders, reducing minutes of manual steps to seconds, and introduced warehouse barcode scanning to eliminate manual data entry.

@@ -631,7 +631,7 @@ async function runViewport(vp) {
     await dclick(page, '#arcBody .plain-row[data-cat="WORK"]');
     await page.waitForFunction(() => document.querySelectorAll('#arcBody .plain-row').length === 3, { timeout: 3000 });
     n = await plainNames();
-    if (!n.includes('Deloitte') || !n.includes('Intermedia') || !n.includes('Hellenic Army')) plainFails.push(`WORK=${JSON.stringify(n)}`);
+    if (!n.includes('Deloitte') || !n.includes('INTERMEDIA') || !n.includes('Hellenic Army')) plainFails.push(`WORK=${JSON.stringify(n)}`);
     await page.keyboard.press('Backspace'); await backTo(page, null);
     await dclick(page, '#arcBody .plain-row[data-cat="PROJECTS"]');
     await page.waitForFunction(() => (document.querySelector('#crumb .here') || {}).textContent === 'PROJECTS', { timeout: 3000 });
@@ -5009,7 +5009,7 @@ async function phaseNfixes() {
       t = await page.evaluate(() => document.getElementById('dtBody').textContent);
       var dup1 = (t.match(/a working archive behind a working screen/gi) || []).length;
       if (dup1 > 1) { ok = false; d += 'archivesys summary line appears ' + dup1 + '×; '; }
-      if (!/Single-file HTML/.test(t)) { ok = false; d += 'archivesys technical bullet missing; '; }
+      if (!/self-contained HTML page/.test(t)) { ok = false; d += 'archivesys technical bullet missing; '; }
       if (ok) d = 'Stack: hidden, Owned→NUMBERS, Themis + ARCHIVE.SYS near-dups dropped';
       await ctx.close(); await browser.close();
     } catch (e) { ok = false; d = 'err ' + String(e).slice(0, 120); }
@@ -5145,17 +5145,17 @@ async function phaseNfixes() {
       const a = await page.evaluate(() => document.getElementById('dubClock').textContent);
       if (!/· \d{2}:\d{2}$/.test(a)) { ok = false; d += 'a: clock "' + a + '"; '; }
       /* (c) no "~30" anywhere on the screen; ≈ present in the detail */
-      const c1 = await page.evaluate(() => document.body.textContent.indexOf('~30'));
-      if (c1 >= 0) { ok = false; d += 'c: ~30 still on screen; '; }
+      const c1 = await page.evaluate(() => document.body.textContent.search(/~3[05]/));
+      if (c1 >= 0) { ok = false; d += 'c: "~30" or "~35" on screen (VT323 draws ~ like *); '; }
       await page.waitForFunction(() => document.querySelector('[data-item="deloitte"] .lic'), null, { timeout: 8000 });
       await page.waitForTimeout(800);
       await page.evaluate(() => document.querySelector('[data-item="deloitte"] .lic').click());
       await page.waitForTimeout(400);
       await page.evaluate(() => { var vm = document.querySelector('.card-more'); if (vm) vm.click(); });
       await page.waitForFunction(() => document.getElementById('detailView').classList.contains('live'), null, { timeout: 4000 });
-      const c2 = await page.evaluate(() => ({ approx: document.getElementById('dtBody').textContent.indexOf('\u224830') >= 0,
+      const c2 = await page.evaluate(() => ({ approx: /\u2248\d/.test(document.getElementById('dtBody').textContent),
                                                caps: getComputedStyle(document.querySelector('.dt-meta')).textTransform }));
-      if (!c2.approx) { ok = false; d += 'c: no ≈30 in detail; '; }
+      if (!c2.approx) { ok = false; d += 'c: no ≈<digit> in detail; '; }
       if (c2.caps !== 'uppercase') { ok = false; d += 'b: meta ' + c2.caps + '; '; }
       /* (d) resize → the fit check re-runs: status line must not wrap while the
          clock is shown */
