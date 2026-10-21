@@ -2,7 +2,7 @@
 title: Hellenic Army
 label: H. ARMY
 period: DEC 2022 — MAR 2023
-role: Software Developer (Military Service) · Xanthi, Greece
+role: Software Developer · Military Service
 tags: MS Access, VBA, RBAC
 plain: Software Developer (Military Service) · MS Access, VBA · Dec 2022 — Mar 2023
 order: 30

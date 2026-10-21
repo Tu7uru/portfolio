@@ -2,7 +2,7 @@
 title: University of Crete
 label: BSC C.S.
 period: SEP 2016 — SEP 2022
-role: BSc Computer Science · Heraklion, Greece
+role: BSc Computer Science
 tags: Computer Science, Information Retrieval
 plain: BSc Computer Science, University of Crete · Sep 2016 — Sep 2022
 order: 10

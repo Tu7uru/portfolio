@@ -1,8 +1,8 @@
 ---
 title: INTERMEDIA
 period: JUL 2021 — AUG 2023
-role: Software Engineer · Heraklion, Greece
-tags: C#, .NET, SQL Server, EF Core, PowerShell
+role: Software Engineer
+tags: C#, .NET, SQL Server, EF Core
 plain: Software Engineer · C#, .NET, SQL Server · Jul 2021 — Aug 2023
 order: 20
 ---

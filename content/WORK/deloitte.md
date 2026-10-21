@@ -1,8 +1,8 @@
 ---
 title: Deloitte
 period: OCT 2023 — PRESENT
-role: Software Engineer, Dynamics 365 F&O · Remote, Greece
-tags: X++, Dynamics 365 F&O, SSRS, Docentric, Azure DevOps
+role: Software Engineer · D365 F&O (X++)
+tags: X++, Dynamics 365 F&O, SSRS, Docentric
 plain: Software Engineer, Dynamics 365 F&O · Oct 2023 — present
 order: 10
 ---

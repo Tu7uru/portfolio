@@ -1,6 +1,6 @@
 ---
 title: Fundamentals of Deep Learning
-label: DEEP LEARNING
+label: NVIDIA DL
 period: JUN 2022
 role: NVIDIA
 tags: NVIDIA, Deep Learning, Certification

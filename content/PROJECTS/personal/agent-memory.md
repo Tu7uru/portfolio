@@ -1,6 +1,6 @@
 ---
 title: Agent memory platform
-label: AGENT-MEMORY
+label: AI-MEMORY
 period: PERSONAL PROJECT
 tags: SQLite, Full-Text Search, MCP
 plain: Agent memory platform · SQLite full-text search, MCP
