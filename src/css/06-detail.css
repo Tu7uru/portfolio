@@ -1,0 +1,31 @@
+/* ============================== DETAIL VIEW (inside the glass) ============================== */
+/* v7 M1: flex column — without it .dt-scroll's flex:1 never constrained */
+#detailView{z-index:30;display:flex;flex-direction:column;background:radial-gradient(90% 90% at 50% 40%, var(--phos-bg-1) 0%, var(--phos-bg-2) 62%, var(--phos-bg-3) 100%)}
+.glass.amber #detailView{background:radial-gradient(90% 90% at 50% 40%, #2b1f0c 0%, #170f05 62%, #0a0603 100%)}
+.dt-scroll{flex:1;overflow-y:auto;overscroll-behavior:contain}
+/* v7 N8: "more below" hint — a bottom fade that shows ONLY while content
+remains under the fold; toggled from a passive, rAF-throttled scroll
+listener (no layout thrash) */
+.dt-fade{position:sticky;bottom:0;height:52px;margin-top:-52px;pointer-events:none;opacity:0;transition:opacity .25s ease;
+background:linear-gradient(180deg,rgba(2,9,5,0) 0%,var(--phos-bg-3) 90%)}
+.glass.amber .dt-fade{background:linear-gradient(180deg,rgba(10,6,3,0) 0%,#0a0603 90%)}
+.dt-scroll.morescroll .dt-fade{opacity:1}
+.dt-body{
+padding:16px 20px 24px;max-width:1100px; /* v6 E (#8): 22 px body, wider column */
+font-family:var(--f-phos);font-size:22px;line-height:1.4;
+color:var(--phos);text-shadow:0 0 7px rgba(91,232,135,.4);
+}
+.dt-title{font-size:1.35em;color:var(--phos-hi);text-shadow:0 0 10px rgba(157,255,192,.5)}
+.dt-meta{margin-top:2px;font-size:.85em;color:var(--phos-sec);letter-spacing:1px;text-transform:uppercase} /* v7 N9b: caps, like the card */
+/* v7 N6: the title must clearly outrank the summary — ~1.1 em, one shade
+dimmer than the title's hi-green (the M 1.25×/hi-green left them near-equal) */
+.dt-sum{margin-top:10px;font-size:1.1em;line-height:1.25;color:var(--phos);text-shadow:0 0 8px rgba(157,255,192,.3)}
+/* M-review: 1.25× took 5 lines on the phone — ~1.08× on the phone stage */
+body.st-phone .dt-sum{font-size:1.08em}
+.dt-sec{margin-top:18px;margin-bottom:4px;font-size:.78em;letter-spacing:3px;color:var(--phos-sec)}
+.dt-line{margin-top:10px;padding-left:16px;position:relative}
+.dt-line::before{content:"▸";position:absolute;left:0;color:var(--phos-sec)}
+.dt-links{margin-top:20px;padding-top:12px;border-top:1px dotted var(--phos-sec);display:flex;gap:18px;align-items:baseline;flex-wrap:wrap}
+.dt-stack{font-size:.8em;letter-spacing:2px;color:var(--phos-sec);line-height:1.6}
+.dt-linkrow{display:inline-flex;gap:18px;margin-left:auto}
+.dt-linkrow a{font-size:1.05em;min-height:40px;display:inline-flex;align-items:center;padding:0 2px}

@@ -1,0 +1,144 @@
+/* ================= item 8 — floppy shell design (owner-approved) ============= */
+/* colour-coded shells, muted */
+.obj[data-cat="ABOUT.ME"]{--shell-1:rgba(148,154,150,.50);--shell-2:rgba(86,92,88,.62);--stripe:#9aa39e}
+.obj[data-cat="WORK"]{--shell-1:#2b3554;--shell-2:#1c2440;--stripe:#4d5f8f}
+.obj[data-cat="EDUCATION"]{--shell-1:#6d4d1f;--shell-2:#4a3414;--stripe:#a97a33}
+.obj[data-cat="PROJECTS"]{--shell-1:rgba(142,172,72,.42);--shell-2:rgba(92,120,46,.55);--stripe:#9cb45c}
+.obj[data-cat="CONTACT"]{--shell-1:#5d2c4c;--shell-2:#411f39;--stripe:#8f4a74}
+.tray[data-color="ABOUT.ME"] .obj{--shell-1:rgba(148,154,150,.50);--shell-2:rgba(86,92,88,.62);--stripe:#9aa39e}
+.tray[data-color="WORK"] .obj{--shell-1:#2b3554;--shell-2:#1c2440;--stripe:#4d5f8f}
+.tray[data-color="EDUCATION"] .obj{--shell-1:#6d4d1f;--shell-2:#4a3414;--stripe:#a97a33}
+.tray[data-color="PROJECTS"] .obj{--shell-1:rgba(142,172,72,.42);--shell-2:rgba(92,120,46,.55);--stripe:#9cb45c}
+.tray[data-color="CONTACT"] .obj{--shell-1:#5d2c4c;--shell-2:#411f39;--stripe:#8f4a74}
+.skin-floppy .obj{
+/* v7 G3 (item 14): 3% static grain — ONE small tiled data-URI PNG
+(fonts/grain.png, 3.8 KB, alpha baked in), never a live filter */
+background:url("fonts/grain.png"),linear-gradient(145deg,var(--shell-1,var(--plastic-1)),var(--shell-2,var(--plastic-2)));
+overflow:hidden;
+}
+/* label: thin colour stripe at the top + tiny mono meta row */
+.f-label{
+background:
+linear-gradient(180deg,var(--stripe,#8b8570) 0 4px,transparent 4px),
+linear-gradient(180deg,var(--label-1),var(--label-2));
+}
+.f-sub{
+position:absolute;bottom:3px;left:4px;right:4px;text-align:center;
+font-family:var(--f-phos);font-size:12px;letter-spacing:.5px;color:#7d7256;
+white-space:nowrap;overflow:hidden;
+}
+/* shutter slides open on hover/focus, springs closed on blur */
+.f-shutter{transition:transform .4s ease}
+@media (prefers-reduced-motion: no-preference){
+.f-shutter{transition:transform .42s cubic-bezier(.34,1.56,.64,1)}
+.obj:hover .f-shutter,.obj:focus-visible .f-shutter{transform:translateX(-50%) translateY(-62%)}
+}
+/* specular light sweep on hover */
+.f-sweep{position:absolute;inset:0;pointer-events:none;opacity:0;
+background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.16) 50%,transparent 62%)}
+@media (prefers-reduced-motion: no-preference){
+.obj:hover .f-sweep{opacity:1;animation:fSweep .8s ease .05s}
+@keyframes fSweep{from{transform:translateX(-110%)}to{transform:translateX(110%)}}
+}
+/* v7 G3 (item 14): the two REAL corner windows of a 3.5" disk, at the
+BOTTOM corners (the old mid-right square is gone). Left = HD indicator,
+right = write-protect tab (closed = private, open = public repo). */
+.f-hd{position:absolute;left:6px;bottom:5px;width:11px;height:11px;border-radius:2px;
+background:#181b20;box-shadow:inset 0 1px 2px rgba(0,0,0,.85), 0 0 0 1px rgba(255,255,255,.14);pointer-events:none}
+.f-hd::after{content:"";position:absolute;inset:2px 2px 3px;border-radius:1px;background:rgba(255,255,255,.16)}
+.f-wp{position:absolute;right:6px;bottom:5px;width:11px;height:11px;border-radius:2px;
+background:#181b20;box-shadow:inset 0 1px 2px rgba(0,0,0,.85), 0 0 0 1px rgba(255,255,255,.14);pointer-events:none}
+.f-wp.open::after{content:"";position:absolute;inset:2px 2px 3px;border-radius:1px;background:#c6cabf}
+/* v7 L1: the ghost's own tray chrome is stripped — the afterglow is the
+   disks, not a second tray box. (The K f-hd/f-wp hide is gone: the ghost
+   disks now have real size, so the micro-windows sit inside the disk as
+   they do live and never linger in the shelf gap.) */
+.view-ghost>.tray,.view-ghost>.rack,.view-ghost>.cabinet{background:none;border:0;box-shadow:none;min-height:0}
+/* K: hidden for the eject flight — opacity (instant: .obj only
+   transitions transform) — pointer-events stay ON, the disk is still
+   the tap/click/Enter target and reveals the moment the fly ends */
+.obj.ejecting{opacity:0}
+/* disc + hub, visible through the translucent shell (PROJECTS / ACADEMIC) */
+.f-disc{display:none}
+.sp-disc .f-disc{display:block;position:absolute;left:50%;top:33%;width:54%;aspect-ratio:1;
+transform:translate(-50%,-50%);border-radius:50%;
+background:radial-gradient(circle at 38% 34%,#3c4148 0 18%,#23272d 48%,#15181d 100%);
+box-shadow:inset 0 0 0 2px rgba(255,255,255,.06), inset 0 3px 8px rgba(0,0,0,.6)}
+.sp-disc .f-disc::after{content:"";position:absolute;left:50%;top:50%;width:36%;height:36%;
+transform:translate(-50%,-50%);background:linear-gradient(145deg,#d9d5c8,#b2ae9f);border-radius:2px;
+box-shadow:inset 0 1px 0 rgba(255,255,255,.7), inset 0 -2px 3px rgba(0,0,0,.35)}
+.sp-disc .f-disc::before{content:"";position:absolute;left:50%;top:5%;width:3px;height:13%;
+transform:translateX(-50%);background:rgba(255,255,255,.28);border-radius:2px}
+@media (prefers-reduced-motion: no-preference){
+.obj:hover .sp-disc .f-disc,.obj:focus-visible .sp-disc .f-disc{animation:fSpin 7s linear infinite}
+@keyframes fSpin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+}
+/* per-disk stickers (max one special per disk) */
+.f-stk{position:absolute;right:6px;top:27%;width:24px;height:18px;border-radius:2px;
+transform:rotate(6deg);box-shadow:0 1px 3px rgba(0,0,0,.55);display:none;pointer-events:none}
+.sp-doodle .f-stk{display:block;background:#f2ead6;border:1px solid #cfc4a4}
+.sp-doodle .f-stk::after{content:"\2733";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+font-size:12px;color:#3a3f3a;line-height:1}
+.sp-wip .f-stk{display:block;background:#efe6c8;border:1px solid #c9b87e;transform:rotate(-7deg);
+font-family:var(--f-hand);font-weight:700;font-size:10px;letter-spacing:1px;color:#5a4a22;text-align:center}
+.sp-wip .f-stk::before{content:"WIP";display:block;line-height:16px}
+.sp-holo .f-stk{display:block;opacity:.92;border:1px solid rgba(255,255,255,.5);
+background:linear-gradient(115deg,#f7c8d8 0%,#cde9f7 25%,#d8f7cf 50%,#f7eec9 75%,#e3c8f7 100%)}
+/* PLAIN-mode legend removed in v6 E (#12): the WP-tab legend is meaningless
+in plain mode — the plain list has no disks. */
+/* the flying disk clone (3.5" disk) */
+.disk-fly-holder{pointer-events:none}
+/* K: opaque plate behind the fly clone. Some shells are genuinely
+   semi-transparent (ABOUT.ME/PROJECTS, alpha .50/.42) — a live disk reads
+   solid because it composites over the dark screen, but a clone crossing a
+   live cell would let that cell show through. A solid plate in the screen
+   colour (behind the shell, same 5px corner) makes the clone fully opaque
+   in flight. It never sits over the real screen outside the disk footprint. */
+.disk-fly-holder::before{content:"";position:absolute;inset:0;border-radius:5px;background:rgb(14,17,13);pointer-events:none}
+.disk-fly{border-radius:5px}
+.dots{display:flex;align-items:center;gap:3px;flex:none}
+.dots i{width:3px;height:3px;border-radius:50%;background:rgba(60,48,24,.55)}
+.badge{
+/* v7 G1 (item 11): bezel print 12 px, 3 px tracking, single emboss */
+font-family:var(--f-phos);font-size:12px;letter-spacing:3px;color:#6d5f45;
+text-shadow:0 1px 0 rgba(255,255,255,.45);
+white-space:nowrap;opacity:.95;
+}
+.badge b{color:#544326;font-weight:normal}
+.bottom-r{
+/* reviewer: shrink to fit 2 tabs + green dot + power, ~16px padding, right-aligned */
+flex:0 0 auto;margin-left:auto;display:flex;align-items:center;justify-content:center;gap:10px;
+padding:6px 10px;border-radius:3px; /* v6 E (O5): slimmer recess */
+background:rgba(60,48,24,.22);
+box-shadow:inset 0 1px 3px rgba(0,0,0,.35), 0 1px 0 rgba(255,255,255,.4);
+}
+.bottom-r .tab{
+width:18px;height:13px;border-radius:2px;flex:none;
+background:linear-gradient(180deg,#e3d8c0,#b3a486);
+box-shadow:inset 0 1px 0 rgba(255,255,255,.55), 0 1px 2px rgba(0,0,0,.4);
+}
+#powerBtn{
+position:relative;touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+width:32px;height:32px;border-radius:50%;cursor:pointer;flex:none;
+display:flex;align-items:center;justify-content:center;
+background:radial-gradient(circle at 35% 30%, #e3d8c0, #ad9b7a 72%);
+border:1px solid #7c6a4b;color:#5d4c30;font-size:13px;line-height:1;
+box-shadow:0 1px 3px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.6);
+}
+#powerBtn svg{filter:drop-shadow(0 1px 0 rgba(255,252,240,.55))} /* engraved glyph */
+/* J: the visible knob is small (32/40 px) — the hit area is not:
+   an invisible pseudo-element grows it to 36 px desktop / 44 px phone */
+#powerBtn::before{content:"";position:absolute;inset:calc(var(--pw-hit,2px) * -1);pointer-events:auto}
+#powerBtn:hover{color:#2c4a35;border-color:#5d7a60}
+#powerBtn.on{ /* lit: soft phosphor glow on the beige button */
+color:#256b45;border-color:#66815f;
+box-shadow:0 0 10px rgba(102,242,154,.55), 0 1px 3px rgba(0,0,0,.5),
+inset 0 1px 0 rgba(255,255,255,.6);
+}
+#powerBtn:active{transform:translateY(1px)}
+#powerBtn:focus-visible{outline:2px solid var(--phos);outline-offset:3px}
+.led{
+width:10px;height:10px;border-radius:50%;background:var(--led-off);
+box-shadow:inset 0 1px 1px rgba(0,0,0,.8);
+}
+.led.on{background:var(--led-on);box-shadow:0 0 9px rgba(102,242,154,.8)}

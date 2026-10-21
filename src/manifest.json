@@ -1,0 +1,38 @@
+{
+ "css": [
+  "css/00-base.css",
+  "css/01-stage.css",
+  "css/02-monitor.css",
+  "css/03-crt.css",
+  "css/04-objects.css",
+  "css/05-card.css",
+  "css/06-detail.css",
+  "css/07-bezel.css",
+  "css/08-floppy.css",
+  "css/09-phone.css"
+ ],
+ "js": [
+  "js/00-prelude.js",
+  "js/01-data.js",
+  "js/02-schema.js",
+  "js/03-state.js",
+  "js/04-dom.js",
+  "js/05-audio.js",
+  "js/06-power.js",
+  "js/07-render.js",
+  "js/08-figures.js",
+  "js/09-movable.js",
+  "js/10-nav.js",
+  "js/11-placard.js",
+  "js/12-detail.js",
+  "js/13-clicks.js",
+  "js/14-keyboard.js",
+  "js/15-dos.js",
+  "js/16-controls.js",
+  "js/17-knob.js",
+  "js/18-power-wiring.js",
+  "js/19-hash.js",
+  "js/20-stage.js",
+  "js/21-boot.js"
+ ]
+}

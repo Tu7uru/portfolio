@@ -1,0 +1,16 @@
+{
+  "name": "portfolio",
+  "private": true,
+  "description": "ARCHIVE.SYS: Haralambos Varsamis's portfolio, a static site served by GitHub Pages from docs/",
+  "type": "module",
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "watch": "node tools/build.mjs --watch",
+    "check": "node tools/build.mjs --check",
+    "serve": "node tools/serve.mjs",
+    "qa": "node tests/qa.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.49.1"
+  }
+}

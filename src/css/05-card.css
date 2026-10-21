@@ -1,0 +1,89 @@
+/* ============================== PLACARD (description card) ============================== */
+.card{
+position:absolute;z-index:40;width:min(340px, calc(100% - 16px));
+background:var(--card-bg);
+border:1px solid var(--card-edge);border-radius:8px;
+box-shadow:0 14px 34px rgba(0,0,0,.6), 0 0 0 4px rgba(6,14,9,.55);
+padding:7px 12px 6px;
+font-family:var(--f-sans);color:var(--card-ink);
+/* P8: fixed compact layout, NO scroll — header, one tags row, 2-line
+clamped desc, footer pinned at the bottom; worst case ~180px so it
+fits above (191px) / below (209px) the middle row */
+display:flex;flex-direction:column;min-height:150px;
+}
+.card[hidden]{display:none}
+.card::after{
+content:"";position:absolute;width:12px;height:12px;background:var(--card-bg);
+border:1px solid var(--card-edge);
+transform:translateX(-50%) rotate(45deg);
+left:var(--px,50%);bottom:-7px;
+}
+/* F1: bottom sheet — a card must never cover a disk; pinned to the glass
+bottom (above the status bar), full glass width, no pointer arrow */
+.card.sheet::after{display:none}
+.card.below::after{bottom:auto;top:-7px}
+.card.mode-left::after{left:auto;right:-7px;bottom:auto;top:var(--py,50%)}
+.card.mode-right::after{left:-7px;bottom:auto;top:var(--py,50%)}
+.card-t{font-family:var(--f-phos);font-size:28px;font-weight:400;line-height:1.02;overflow-wrap:anywhere;padding-right:34px;
+display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+/* v7 G1 (item 7): long titles (>25 chars) step down to 24 px, still 2-line clamped */
+.card-t.long{font-size:24px}
+.card-p{
+margin-top:2px;font-family:var(--f-phos);font-size:20px;font-weight:400;line-height:1.12;letter-spacing:1px;color:#3f9a5f;
+text-transform:uppercase;
+/* F2: wrap to 2 lines before any ellipsis — never cut mid-word
+(the old nowrap+ellipsis cut "SOFTWARE ENG…") */
+display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+overflow:hidden;
+}
+/* v7 G1b nit: the meta wraps at SEGMENT boundaries — each chunk is one
+segment plus its trailing " ·", so a separator never starts a line (it
+stays at the end of line 1, or the chunk breaks as a whole) */
+.card-p .mps,.dt-meta .mps,.dt-stack .mps{display:inline-block;white-space:nowrap}
+.glass.amber .card-p{color:#c99243}
+/* v7 G1 (item 7): no synthetic weights on buttons and links */
+button,a{font-synthesis:none}
+/* reviewer (d): tags must never be cut mid-word — they WRAP to a 2nd line
+(each chip keeps its whole width; nothing ellipsizes or clips). */
+.card-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px;position:relative}
+.glass.amber .dt-meta,.glass.amber .dt-sec,.glass.amber .dt-stack{color:#d9b36a}
+.glass.amber .dt-line::before,.glass.amber .dt-links{border-color:#8a6a3a}
+.glass.amber .dt-line::before{color:#8a6a3a}
+.card-tags span{
+flex:none;font-size:13px;font-weight:500;letter-spacing:.4px;white-space:nowrap;
+color:var(--card-dim);border:1px solid var(--card-line);border-radius:3px;
+padding:0 7px;
+}
+.card-d{margin-top:4px;font-size:14.5px;line-height:1.28;color:#c8d6cc;
+display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-l{
+display:inline-block;margin-top:8px;font-size:12.5px;font-weight:600;letter-spacing:.4px;
+color:var(--phos);text-decoration:none;border-bottom:1px solid var(--phos-dim);
+}
+.card-l:hover{color:var(--phos-hi);border-color:var(--phos-hi)}
+.card-l:focus-visible{outline:2px solid var(--phos);outline-offset:2px}
+.card-l.dim{color:var(--card-dim);border-color:var(--card-line);cursor:default}
+.card-x{
+position:absolute;top:6px;right:6px;width:26px;height:26px;
+background:transparent;border:0;color:var(--card-dim);font-size:15px;cursor:pointer;
+border-radius:4px;line-height:1;
+}
+.card-x:hover{color:var(--card-ink);background:rgba(255,255,255,.06)}
+.card-x:focus-visible{outline:2px solid var(--phos);outline-offset:1px}
+/* card footer: VIEW MORE bottom-left; on the right OPEN RESUME + REPO side by
+side on ONE line (identical mono type), thin divider, no second line ever.
+P8: pinned at the bottom (margin-top:auto), never scrolled away */
+.card-actions{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto;padding-top:4px;flex-wrap:nowrap}
+.card-actions .card-more,.card-actions .card-l{
+font-family:var(--f-phos);font-size:15px;font-weight:600;letter-spacing:1px;line-height:1;
+min-height:26px;display:inline-flex;align-items:center;white-space:nowrap;
+}
+.card-actions .card-l{margin-top:0;padding:0 1px;text-decoration:none}
+.card-right{display:flex;align-items:center;gap:10px;flex:none}
+.card-sep{width:1px;height:14px;background:var(--card-line);flex:none}
+.card-more{
+color:var(--phos);background:rgba(91,232,135,.08);
+border:1px solid var(--phos-dim);border-radius:4px;padding:0 10px;cursor:pointer;
+}
+.card-more:hover{border-color:var(--phos);background:rgba(91,232,135,.16)}
+.card-more:focus-visible{outline:2px solid var(--phos);outline-offset:2px}

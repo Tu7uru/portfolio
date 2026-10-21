@@ -1,0 +1,8 @@
+node_modules/
+*.tmp
+*.log
+qa-shots/
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,39 @@
+/* Hallmark · pre-emit critique: P5 H5 E4 S5 R4 V5 */
+/* Hallmark · macrostructure: physical CRT monitor centred on a dark desk; archive = object shelf inside the glass · nav: in-screen breadcrumb · footer: bezel plate */
+:root{
+/* room + desk */
+--room-hi:#15181c; --room-lo:#0a0b0d;
+--desk-1:#241a12; --desk-2:#110c08;
+/* monitor shell */
+--bezel-1:#2a2d33; --bezel-2:#141519; --bezel-edge:#3a3e46;
+--plate-ink:#8b939e;
+--led-off:#2a1214; --led-on:#66f29a;
+/* glass / phosphor */
+--glass-off:#0c0e0d;
+--phos-bg-1:#0a2517; --phos-bg-2:#04130a; --phos-bg-3:#020905;
+--phos:#5be887; --phos-hi:#9dffc0; --phos-dim:#2c6b43; --phos-faint:#123722;
+--amber:#e8b45a;
+/* placard (description card) */
+--card-bg:#111814; --card-edge:#2c3b32; --card-ink:#e9f1ec; --card-dim:#9db3a5; --card-line:#22302a;
+/* object materials */
+--plastic-1:#34373d; --plastic-2:#1f2226;
+--shutter-1:#d9dee3; --shutter-2:#8d949b;
+--label-1:#f4ecd8; --label-2:#e5dcc2; --label-ink:#4c4433;
+--wood-1:#7a5530; --wood-2:#462f17; --wood-edge:#2b1c0c;
+--brass-1:#efd287; --brass-2:#a57a2b; --brass-ink:#3a2b0c;
+--cart-1:#2c2c33; --cart-2:#1a1a1f; --cartlabel-1:#ece5d1; --cartlabel-2:#ddd3ba;
+/* type */
+--f-phos:"VT323",monospace;
+--f-hand:"Caveat",cursive;
+--f-sans:"IBM Plex Sans",system-ui,sans-serif;
+--phos-sec:#6fd394;
+/* ONE disk size for every level (desktop stage), and the inserter slot from it */
+--disk:200px;--slot:192px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{
+font-family:var(--f-sans);
+color:var(--plate-ink);
+background:var(--room-lo);
+}

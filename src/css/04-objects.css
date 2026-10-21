@@ -1,0 +1,134 @@
+/* ============================== OBJECTS ============================== */
+.objs{position:relative;flex:1;display:flex;flex-direction:column}
+.obj-wrap{position:relative;display:flex;flex-direction:column;align-items:center}
+.obj{
+position:relative;display:block;border:0;padding:0;cursor:pointer;
+font-family:var(--f-phos);color:var(--phos);
+-webkit-tap-highlight-color:transparent;
+}
+/* v7 G1 (item 5): the focus ring FOLLOWS THE DISK SHAPE — a box-shadow with
+the floppy's own 7 px radius (the outline was a detached rectangle) */
+.obj:focus-visible{outline:none}
+/* v7 G1 (item 4): hover = a physical lift, no outline */
+@media (prefers-reduced-motion: no-preference){
+.obj{transition:transform .16s cubic-bezier(.2,.8,.2,1)}
+.skin-floppy .obj:hover{
+transform:translateY(-4px);
+box-shadow:0 14px 24px rgba(0,0,0,.55), 0 2px 3px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.09);
+}
+}
+.skin-floppy .obj:focus-visible{
+box-shadow:0 7px 16px rgba(0,0,0,.55), 0 0 0 2px var(--phos-bg-3), 0 0 0 4px var(--phos-hi),
+0 0 12px rgba(157,255,192,.45), inset 0 1px 0 rgba(255,255,255,.09);
+}
+.obj.opening{opacity:0;pointer-events:none}
+/* v7 G2 (item 9): phosphor persistence — the outgoing view's afterglow:
+the incoming view appears at once, the outgoing one fades 1→0 in 320 ms,
+pointer-events none (it never blocks input) */
+.view-ghost{position:absolute;pointer-events:none;z-index:0;will-change:opacity}
+/* v7 N1: the ghost is BELOW the live layer — the opaque live disks cover
+it, so the afterglow only shows in empty space (never "the same disk
+twice" over a real disk) */
+.view-ghost .obj-wrap{animation:none!important}
+.view-ghost .obj{transition:none!important}
+/* ---------- floppy ---------- */
+/* the tray is a fixed cell grid (desktop 5x3, phone 2x4) — disks sit on cells
+and can be moved (P3); positions are set by JS in stage px */
+.tray{
+padding:0;border-radius:10px;
+background:
+repeating-linear-gradient(45deg, rgba(255,255,255,.015) 0 2px, transparent 2px 4px),
+linear-gradient(160deg,#141812,#0d100c);
+box-shadow:inset 0 2px 10px rgba(0,0,0,.7), inset 0 -1px 0 rgba(255,255,255,.05), 0 6px 18px rgba(0,0,0,.35);
+border:1px solid #1d2318;
+flex:1;min-height:0;position:relative;
+}
+.obj-wrap{
+position:absolute;width:var(--disk);height:var(--disk);
+display:block;touch-action:none;
+}
+@media (prefers-reduced-motion: no-preference){
+.obj-wrap{transition:left .26s cubic-bezier(.3,.7,.3,1.1), top .26s cubic-bezier(.3,.7,.3,1.1)}
+}
+.obj-wrap.dragging{transition:none;z-index:20}
+.obj-wrap.dragging .obj{box-shadow:0 18px 32px rgba(0,0,0,.7), 0 0 0 2px rgba(157,255,192,.4)}
+/* ONE disk size for every level (root and children alike) — set by --disk */
+.skin-floppy .obj{width:var(--disk);height:var(--disk)}
+.floppy{
+background:linear-gradient(145deg,var(--plastic-1),var(--plastic-2));
+border-radius:7px;
+box-shadow:0 7px 16px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.09);
+}
+.floppy::before{ /* corner notch */
+content:"";position:absolute;top:0;right:0;width:0;height:0;
+border-top:14px solid var(--desk-2);border-left:14px solid transparent;
+border-radius:0 7px 0 0;filter:brightness(.6);
+}
+.f-shutter{
+position:absolute;top:6px;left:50%;transform:translateX(-50%);
+width:56%;height:28%;border-radius:2px 2px 4px 4px;
+/* v7 G3 (item 14): brushed metal — static fine horizontal brush lines */
+background:
+repeating-linear-gradient(180deg, rgba(255,255,255,.10) 0 1px, rgba(0,0,0,.10) 1px 2px, transparent 2px 3px),
+linear-gradient(180deg,var(--shutter-1),var(--shutter-2));
+box-shadow:inset 0 1px 0 rgba(255,255,255,.6), inset 0 -1px 2px rgba(0,0,0,.25);
+}
+.f-shutter::after{
+content:"";position:absolute;bottom:3px;left:50%;transform:translateX(-50%);
+width:36%;height:52%;background:var(--plastic-2);border-radius:1px;
+}
+.f-label{
+position:absolute;top:38%;left:8%;right:8%;bottom:7%;
+background:linear-gradient(180deg,var(--label-1),var(--label-2));
+border-radius:2px;color:var(--label-ink);
+display:flex;align-items:center;justify-content:center;
+/* v7 G3 (item 14): the label sits in a RECESSED well */
+box-shadow:inset 0 2px 5px rgba(0,0,0,.38), inset 0 -1px 2px rgba(255,255,255,.18), inset 0 0 0 1px rgba(120,105,70,.35);
+/* v7 G1 (owner): the label tilt is off — -1.2° → 0° */
+overflow:hidden;
+}
+.f-label::after{ /* ruled lines */
+content:"";position:absolute;inset:0;
+background:repeating-linear-gradient(180deg, transparent 0 12px, rgba(96,84,58,.22) 12px 13px);
+pointer-events:none;
+}
+.f-name{
+font-family:var(--f-hand);font-weight:600;line-height:1.04;
+font-size:20px;letter-spacing:0;text-align:center;padding:1px 3px; /* v6 F3: fitLabels stops the ink >=2 px inside the content box, so 3+2 = >=4 px clear to the label edge */
+width:100%;max-width:100%;overflow:hidden;
+white-space:nowrap;display:block; /* v6 E (#2): NEVER wraps — fitLabels() shrinks instead */
+}
+/* 1-bit label: big scene box + title (P6) */
+.lic{flex:none;width:64px;height:64px;display:inline-flex;color:var(--label-ink)}
+.lic svg{display:block;width:100%;height:100%;overflow:visible}
+/* review #11: the 1.25× overshoot is motion — only for users who want it */
+@media (prefers-reduced-motion: no-preference){
+.lic{transition:transform .28s cubic-bezier(.2,.9,.3,1.4)}
+.obj:hover .lic,.obj:focus-visible .lic{transform:scale(1.25)}
+}
+.f-txt{min-width:0;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
+.f-sub{
+position:absolute;bottom:3px;left:0;right:0;text-align:center;
+font-size:11px;letter-spacing:2px;color:#7d7256;
+}
+.obj-item .f-sub{display:none}
+/* ---------- plain list (v7 G1 item 6: phosphor type, dotted leaders) ---------- */
+.plain{width:70%;max-width:880px;margin:0 auto;flex:1;display:flex;flex-direction:column;gap:6px;justify-content:center}
+.plain h3{
+font-family:var(--f-sans);font-weight:600;font-size:22px;letter-spacing:3px;
+color:var(--phos-dim);margin:14px 0 10px;text-transform:uppercase;
+}
+.plain-row{
+font-family:var(--f-phos);font-size:32px;color:var(--phos-hi);
+background:transparent;border:1px solid transparent;border-left:2px solid var(--phos-faint);
+padding:8px 16px;cursor:pointer;text-align:left;display:flex;gap:12px;align-items:baseline;
+min-height:64px;width:100%;
+}
+.plain-row:hover{background:rgba(91,232,135,.07);border-left-color:var(--phos);outline:2px solid var(--phos-hi);outline-offset:2px}
+.plain-row:focus-visible{outline:2px solid var(--phos-hi);outline-offset:2px}
+.plain-row .pr-name{font-weight:normal}
+.plain-row .pr-leader{flex:1;border-bottom:1px dotted rgba(91,232,135,.35);height:1px;align-self:center;transform:translateY(-0.1em);min-width:12px}
+.plain-row .pr-meta{color:#3f9a5f;font-size:22px;margin-left:auto;text-align:right;letter-spacing:1px}
+.plain-row .pr-arrow{color:var(--phos-dim)}
+.glass.amber .plain-row .pr-meta{color:#c99243}
+.glass.amber .plain-row .pr-leader{border-bottom-color:rgba(242,178,74,.35)}
