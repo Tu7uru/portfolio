@@ -1,0 +1,7 @@
+# Normalise text to LF; keep binaries untouched.
+* text=auto eol=lf
+*.pdf binary
+*.png binary
+*.woff2 binary
+# Generated page: collapsed in GitHub diffs, left out of language stats.
+docs/index.html linguist-generated=true

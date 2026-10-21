@@ -1,8 +1,19 @@
 {
   "name": "portfolio",
+  "version": "1.0.0",
   "private": true,
   "description": "ARCHIVE.SYS: Haralambos Varsamis's portfolio, a static site served by GitHub Pages from docs/",
+  "homepage": "https://tu7uru.github.io/portfolio/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Tu7uru/portfolio.git"
+  },
+  "author": "Haralambos Varsamis",
+  "license": "SEE LICENSE IN LICENSE",
   "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "build": "node tools/build.mjs",
     "watch": "node tools/build.mjs --watch",

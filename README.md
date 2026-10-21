@@ -80,6 +80,17 @@ sub-path. The Open Graph image and canonical URL are absolute
 (`https://tu7uru.github.io/portfolio/`); change them in
 `src/index.template.html` if the address changes.
 
+## Versions and releases
+
+Versions follow [Semantic Versioning](https://semver.org/) and are recorded in
+[CHANGELOG.md](CHANGELOG.md) and in `package.json`. Each release is an annotated tag:
+
+```
+# update CHANGELOG.md and the "version" in package.json, commit, then:
+git tag -a vX.Y.Z -m "ARCHIVE.SYS vX.Y.Z"
+git push origin main --follow-tags
+```
+
 ## Code style
 
 Sources are formatted with Prettier (config in `.prettierrc.json`): `npm run format`, or
