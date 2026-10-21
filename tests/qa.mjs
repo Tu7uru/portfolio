@@ -3104,7 +3104,7 @@ async function g3Fixes() {
       /* item 2 = inline SVG data URI (WORK blue, #2b3554), per BRIEF-v7 */
       ok = m.icon.indexOf('data:image/svg+xml')===0 && m.icon.indexOf('%232b3554')>=0
         && m.atc==='apple-touch-180.png' && m.desc.length>40
-        && m.ogT&&m.ogD&&m.ogI==='og.png'&&m.ogW==='1200'&&m.ogH==='630'
+        && m.ogT&&m.ogD&&/(^|\/)og\.png$/.test(m.ogI)&&m.ogW==='1200'&&m.ogH==='630'
         && at.w===180&&at.h===180&&og.w===1200&&og.h===630&&og.b<=150*1024;
       d='icon='+m.icon.slice(0,40)+'… atc='+at.w+'x'+at.h+' og='+og.w+'x'+og.h+'('+og.b+'B)';
     } catch(e){ ok=false; d=String(e).slice(0,160); }
