@@ -1,8 +1,38 @@
-@font-face{font-family:"VT323";font-style:normal;font-weight:400;font-display:block;src:url("fonts/vt323.woff2") format("woff2")}
-@font-face{font-family:"Caveat";font-style:normal;font-weight:600;font-display:block;src:url("fonts/caveat-600.woff2") format("woff2")}
+@font-face {
+  font-family: "VT323";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("fonts/vt323.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Caveat";
+  font-style: normal;
+  font-weight: 600;
+  font-display: block;
+  src: url("fonts/caveat-600.woff2") format("woff2");
+}
 /* v7 G1b (R2): one variable wght 400-600 file = the exact latin file v6 loads
 from Google (partially instantiated 400-600, full latin, no subsetting -
 subsetted Plex renders ~4% narrower in Chrome). One file, three faces. */
-@font-face{font-family:"IBM Plex Sans";font-style:normal;font-weight:400;font-display:block;src:url("fonts/plex-var.woff2") format("woff2")}
-@font-face{font-family:"IBM Plex Sans";font-style:normal;font-weight:500;font-display:block;src:url("fonts/plex-var.woff2") format("woff2")}
-@font-face{font-family:"IBM Plex Sans";font-style:normal;font-weight:600;font-display:block;src:url("fonts/plex-var.woff2") format("woff2")}
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("fonts/plex-var.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: block;
+  src: url("fonts/plex-var.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-display: block;
+  src: url("fonts/plex-var.woff2") format("woff2");
+}

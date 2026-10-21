@@ -80,6 +80,15 @@ sub-path. The Open Graph image and canonical URL are absolute
 (`https://tu7uru.github.io/portfolio/`); change them in
 `src/index.template.html` if the address changes.
 
+## Code style
+
+Sources are formatted with Prettier (config in `.prettierrc.json`): `npm run format`, or
+`npm run format:check` to verify. The two files that open and close the page's single
+wrapper function (`src/js/00-prelude.js`, `src/js/21-boot.js`) do not parse on their own,
+so they are listed in `.prettierignore` and formatted by hand in the same style. The build
+removes source indentation from the shipped `docs/index.html`, so readable sources cost
+nothing in page size.
+
 ## Licence
 
 The repository has two licences, one for the code and one for the content.

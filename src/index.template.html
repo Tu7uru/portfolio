@@ -1,144 +1,298 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>HARALAMBOS VARSAMIS [TU7URU] · ARCHIVE.SYS</title>
-<!-- v7 G3 (item 2): favicon (inline SVG, a 3.5" in WORK blue), apple-touch 180,
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HARALAMBOS VARSAMIS [TU7URU] · ARCHIVE.SYS</title>
+    <!-- v7 G3 (item 2): favicon (inline SVG, a 3.5" in WORK blue), apple-touch 180,
 description + Open Graph (og.png = local 1200x630 still of the powered-on root) -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20x='1'%20y='1'%20width='30'%20height='30'%20rx='3.5'%20fill='%232b3554'/%3E%3Crect%20x='9'%20y='2'%20width='14'%20height='10'%20rx='1'%20fill='%239aa3b8'/%3E%3Crect%20x='13'%20y='4'%20width='6'%20height='6'%20fill='%2310131a'/%3E%3Crect%20x='6'%20y='14'%20width='20'%20height='14'%20rx='1'%20fill='%23e8e2cf'/%3E%3Cline%20x1='8'%20y1='19'%20x2='24'%20y2='19'%20stroke='%23b8ae8f'%20stroke-width='1.2'/%3E%3Cline%20x1='8'%20y1='23'%20x2='24'%20y2='23'%20stroke='%23b8ae8f'%20stroke-width='1.2'/%3E%3C/svg%3E">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-180.png">
-<meta name="description" content="HARALAMBOS VARSAMIS · software engineer: Microsoft Dynamics 365 F&O (X++), C#, .NET, SQL Server. A working archive behind a working screen: ARCHIVE.SYS [TU7URU].">
-<link rel="canonical" href="https://tu7uru.github.io/portfolio/">
-<meta property="og:title" content="HARALAMBOS VARSAMIS [TU7URU] · ARCHIVE.SYS">
-<meta property="og:description" content="Software engineer: Dynamics 365 F&O (X++), C#, .NET, SQL Server. A working archive behind a working screen.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://tu7uru.github.io/portfolio/">
-<meta property="og:image" content="https://tu7uru.github.io/portfolio/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<!-- v7 G1: self-hosted subset woff2 (51,348 B total); font-display:block + the boot font gate keep the 1.5 s cap -->
-<style id="arc-fonts">
-@@FONTS@@
-</style>
-<style>
-@@CSS@@
-</style>
-</head>
-<body class="phase-off">
-<!-- v7 G3 (item 12): no JavaScript — the screen stays dark, but the whole
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20x='1'%20y='1'%20width='30'%20height='30'%20rx='3.5'%20fill='%232b3554'/%3E%3Crect%20x='9'%20y='2'%20width='14'%20height='10'%20rx='1'%20fill='%239aa3b8'/%3E%3Crect%20x='13'%20y='4'%20width='6'%20height='6'%20fill='%2310131a'/%3E%3Crect%20x='6'%20y='14'%20width='20'%20height='14'%20rx='1'%20fill='%23e8e2cf'/%3E%3Cline%20x1='8'%20y1='19'%20x2='24'%20y2='19'%20stroke='%23b8ae8f'%20stroke-width='1.2'/%3E%3Cline%20x1='8'%20y1='23'%20x2='24'%20y2='23'%20stroke='%23b8ae8f'%20stroke-width='1.2'/%3E%3C/svg%3E"
+    />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-180.png" />
+    <meta
+      name="description"
+      content="HARALAMBOS VARSAMIS · software engineer: Microsoft Dynamics 365 F&O (X++), C#, .NET, SQL Server. A working archive behind a working screen: ARCHIVE.SYS [TU7URU]."
+    />
+    <link rel="canonical" href="https://tu7uru.github.io/portfolio/" />
+    <meta property="og:title" content="HARALAMBOS VARSAMIS [TU7URU] · ARCHIVE.SYS" />
+    <meta
+      property="og:description"
+      content="Software engineer: Dynamics 365 F&O (X++), C#, .NET, SQL Server. A working archive behind a working screen."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tu7uru.github.io/portfolio/" />
+    <meta property="og:image" content="https://tu7uru.github.io/portfolio/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <!-- v7 G1: self-hosted subset woff2 (51,348 B total); font-display:block + the boot font gate keep the 1.5 s cap -->
+    <style id="arc-fonts">
+      @@FONTS@@
+    </style>
+    <style>
+      @@CSS@@
+    </style>
+  </head>
+  <body class="phase-off">
+    <!-- v7 G3 (item 12): no JavaScript — the screen stays dark, but the whole
 shelf is here as a plain list with its routes and the CV. -->
-<noscript>
-<!-- v7 G3 item 12 + review #9: no JS — the shelf inline (the iframe's #open links were dead); real links: GitHub / LinkedIn / cv.pdf -->
-<style>
-.ns-cover{position:fixed;inset:0;z-index:999;overflow:auto;background:#0a0f0b;color:#b9dcc0;font-family:ui-monospace,Consolas,monospace}
-.ns-cover .ns-wrap{max-width:780px;margin:40px auto 64px;padding:0 22px;line-height:1.5}
-.ns-wrap h1{font-size:19px;letter-spacing:2px;color:#e4f4e6;margin:0 0 4px}
-.ns-wrap .ns-note{font-size:13px;color:#7fa58b;margin:0 0 26px}
-.ns-wrap h2{font-size:13px;letter-spacing:3px;color:#5f9a72;margin:26px 0 6px;text-transform:uppercase}
-.ns-wrap ul{list-style:none;margin:0;padding:0}
-.ns-wrap li{margin:2px 0}.ns-wrap li ul{padding-left:22px;margin:2px 0}
-.ns-wrap a{color:#9fe8b4;text-decoration:none}.ns-wrap a:hover{text-decoration:underline}
-.ns-wrap .ns-dir{color:#6d9a7c}
-.ns-wrap .ns-cv{margin-top:34px;font-size:14px}.ns-wrap .ns-cv a{color:#f2c98a}
-</style>
-<div class="ns-cover">
-<div class="ns-wrap">
-<h1>HARALAMBOS VARSAMIS [TU7URU] · ARCHIVE.SYS</h1>
-<p class="ns-note">This archive is a JavaScript application — without it the screen stays dark. Here is the whole shelf as a plain list.</p>
-<!--@NOSCRIPT-START: generated from content/-->
-<!-- filled at build time from content/ -->
-<!--@NOSCRIPT-END-->
-<p class="ns-cv"><a href="cv.pdf">cv.pdf — OPEN CV ↗</a></p>
-</div>
-</div>
-</noscript>
-<div id="desk">
-<div id="stage">
-<div class="monitor" id="monitor">
-<div class="crt-case">
-<div class="crt-face">
-<div class="crt-bezel">
-<div class="glass" id="glass">
-<div id="powerHint" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><path d="M6.3 6.3a8 8 0 1 0 11.4 0" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>POWER</div>
-<div id="warm" aria-hidden="true"><div class="dot"></div><div class="flash"></div><div class="line"></div><div class="raster"></div></div>
-<div id="offfade" aria-hidden="true"></div>
-<div id="poff" aria-hidden="true"></div>
-<div class="crt">
-<div id="bootView" class="crtview" aria-live="polite">
-<pre id="bios" aria-label="BIOS startup"></pre>
-</div>
-<div id="arcView" class="crtview" role="main">
-<div class="arc-top">
-<nav class="crumb" id="crumb" aria-label="archive path"></nav>
-<div class="arc-ctl">
-<button class="ctl" id="ejectBtn" title="back (Esc / Backspace)"><span class="arr">◂</span> EJECT</button>
-<button class="ctl" id="arrangeBtn" title="reset this folder's disk arrangement">ARRANGE</button>
-<button class="ctl" id="plainBtn" aria-pressed="false" title="plain text list">PLAIN</button>
-<button class="ctl" id="sndBtn" aria-pressed="false" title="sound on/off">SND OFF</button>
-<button class="ctl dos-btn" id="dosBtn" title="Command prompt (/)" aria-label="Command prompt (/)" aria-controls="dos" aria-expanded="false">_&gt;</button>
-</div>
-</div>
-<div class="arc-scroll">
-<div class="arc-body" id="arcBody"></div>
-</div>
-<!-- v7 G3 (item 15): the typed shell — desktop only. A flex child
+    <noscript>
+      <!-- v7 G3 item 12 + review #9: no JS — the shelf inline (the iframe's #open links were dead); real links: GitHub / LinkedIn / cv.pdf -->
+      <style>
+        .ns-cover {
+          position: fixed;
+          inset: 0;
+          z-index: 999;
+          overflow: auto;
+          background: #0a0f0b;
+          color: #b9dcc0;
+          font-family: ui-monospace, Consolas, monospace;
+        }
+        .ns-cover .ns-wrap {
+          max-width: 780px;
+          margin: 40px auto 64px;
+          padding: 0 22px;
+          line-height: 1.5;
+        }
+        .ns-wrap h1 {
+          font-size: 19px;
+          letter-spacing: 2px;
+          color: #e4f4e6;
+          margin: 0 0 4px;
+        }
+        .ns-wrap .ns-note {
+          font-size: 13px;
+          color: #7fa58b;
+          margin: 0 0 26px;
+        }
+        .ns-wrap h2 {
+          font-size: 13px;
+          letter-spacing: 3px;
+          color: #5f9a72;
+          margin: 26px 0 6px;
+          text-transform: uppercase;
+        }
+        .ns-wrap ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        }
+        .ns-wrap li {
+          margin: 2px 0;
+        }
+        .ns-wrap li ul {
+          padding-left: 22px;
+          margin: 2px 0;
+        }
+        .ns-wrap a {
+          color: #9fe8b4;
+          text-decoration: none;
+        }
+        .ns-wrap a:hover {
+          text-decoration: underline;
+        }
+        .ns-wrap .ns-dir {
+          color: #6d9a7c;
+        }
+        .ns-wrap .ns-cv {
+          margin-top: 34px;
+          font-size: 14px;
+        }
+        .ns-wrap .ns-cv a {
+          color: #f2c98a;
+        }
+      </style>
+      <div class="ns-cover">
+        <div class="ns-wrap">
+          <h1>HARALAMBOS VARSAMIS [TU7URU] · ARCHIVE.SYS</h1>
+          <p class="ns-note"
+            >This archive is a JavaScript application — without it the screen stays dark. Here is the whole
+            shelf as a plain list.</p
+          >
+          <!--@NOSCRIPT-START: generated from content/-->
+          <!-- filled at build time from content/ -->
+          <!--@NOSCRIPT-END-->
+          <p class="ns-cv"><a href="cv.pdf">cv.pdf — OPEN CV ↗</a></p>
+        </div>
+      </div>
+    </noscript>
+    <div id="desk">
+      <div id="stage">
+        <div class="monitor" id="monitor">
+          <div class="crt-case">
+            <div class="crt-face">
+              <div class="crt-bezel">
+                <div class="glass" id="glass">
+                  <div id="powerHint" aria-hidden="true"
+                    ><svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M12 3v8"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.6"
+                        stroke-linecap="round"
+                      />
+                      <path
+                        d="M6.3 6.3a8 8 0 1 0 11.4 0"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.6"
+                        stroke-linecap="round"
+                      /></svg
+                    >POWER</div
+                  >
+                  <div id="warm" aria-hidden="true"
+                    ><div class="dot"></div><div class="flash"></div><div class="line"></div
+                    ><div class="raster"></div
+                  ></div>
+                  <div id="offfade" aria-hidden="true"></div>
+                  <div id="poff" aria-hidden="true"></div>
+                  <div class="crt">
+                    <div id="bootView" class="crtview" aria-live="polite">
+                      <pre id="bios" aria-label="BIOS startup"></pre>
+                    </div>
+                    <div id="arcView" class="crtview" role="main">
+                      <div class="arc-top">
+                        <nav class="crumb" id="crumb" aria-label="archive path"></nav>
+                        <div class="arc-ctl">
+                          <button class="ctl" id="ejectBtn" title="back (Esc / Backspace)"
+                            ><span class="arr">◂</span> EJECT</button
+                          >
+                          <button class="ctl" id="arrangeBtn" title="reset this folder's disk arrangement"
+                            >ARRANGE</button
+                          >
+                          <button class="ctl" id="plainBtn" aria-pressed="false" title="plain text list"
+                            >PLAIN</button
+                          >
+                          <button class="ctl" id="sndBtn" aria-pressed="false" title="sound on/off"
+                            >SND OFF</button
+                          >
+                          <button
+                            class="ctl dos-btn"
+                            id="dosBtn"
+                            title="Command prompt (/)"
+                            aria-label="Command prompt (/)"
+                            aria-controls="dos"
+                            aria-expanded="false"
+                            >_&gt;</button
+                          >
+                        </div>
+                      </div>
+                      <div class="arc-scroll">
+                        <div class="arc-body" id="arcBody"></div>
+                      </div>
+                      <!-- v7 G3 (item 15): the typed shell — desktop only. A flex child
 between the shelf and the status bar: opaque, full glass width,
 content-sized, capped so it never covers a disk row. -->
-<div id="dos" class="dos" hidden>
-<div class="dos-scroll"><div class="dos-out" id="dosOut" role="log" aria-live="polite"></div>
-<div class="dos-line" role="textbox" aria-label="Command prompt" tabindex="-1"><span class="dos-ps" id="dosPs">C:\TU7URU</span><span class="dos-gt">&gt;&nbsp;</span><span class="dos-txt" id="dosTxt"></span><span class="dos-cur">_</span></div>
-</div>
-</div>
-<div class="arc-status">
-<span id="statLeft" role="status"></span>
-<span class="status-right"><span class="hint">← → FOCUS · ENTER OPEN · ESC BACK</span><span id="dubClock" aria-hidden="true"></span></span>
-</div>
-</div>
-<div id="detailView" class="crtview" role="dialog" aria-label="detail view">
-<div class="arc-top">
-<nav class="crumb" id="dtPath" aria-label="detail path"></nav>
-<button class="ctl" id="dtClose" title="back (Esc / Backspace)" tabindex="-1">✕ CLOSE</button>
-</div>
-<div class="dt-scroll"><div class="dt-body" id="dtBody"></div><div class="dt-fade" aria-hidden="true"></div></div>
-</div>
-<div id="biosLogo" aria-hidden="true"></div>
-</div>
-</div>
-</div>
-<div class="crt-strip">
-<div class="ds-in ds-in-m" aria-hidden="true"><span class="ds-slot"><i class="ds-lip" aria-hidden="true"></i></span><span class="ds-led"></span></div>
-<button id="phosKnob" class="strip-knob phos-knob" title="P39 green / P3 amber" aria-label="phosphor: P39 green" tabindex="-1">P39</button>
-<span class="strip-slats" aria-hidden="true"></span>
-<span class="strip-switch" aria-hidden="true"><span></span></span>
-<span class="strip-led" aria-hidden="true"></span>
-</div>
-</div>
-<div class="crt-bottom">
-<div class="ds-in" aria-hidden="true"><span class="ds-slot"><i class="ds-lip" aria-hidden="true"></i></span><span class="ds-led"></span></div>
-<span class="vents" aria-hidden="true"></span>
-<span class="badge"><b>HV</b> TU7URU-84 · MONOCHROME DISPLAY</span>
-<span class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-<span class="strip-m" aria-hidden="true">
-<button type="button" class="strip-knob phos-knob" title="P39 green / P3 amber" aria-label="phosphor: P39 green" tabindex="-1">P39</button>
-<span class="strip-switch"><span></span></span>
-</span>
-<span class="bottom-r">
-<span class="tab" aria-hidden="true"></span>
-<span class="tab" aria-hidden="true"></span>
-<span class="led" id="led"></span>
-<button id="powerBtn" aria-label="power on/off" title="power (click only — not in Tab order)" tabindex="-1"><svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M12 3v8" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/><path d="M6.3 6.3a8 8 0 1 0 11.4 0" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/></svg></button>
-</span>
-</div>
-</div>
-<div class="crt-neck" aria-hidden="true"></div>
-<div class="spill" aria-hidden="true"></div>
-</div>
-<p class="caption" id="caption"><b>HARALAMBOS VARSAMIS</b> · PRESS POWER OR ANY KEY</p>
-</div><!-- /stage -->
-</div>
-<script>
-@@JS@@
-</script>
-</body>
+                      <div id="dos" class="dos" hidden>
+                        <div class="dos-scroll"
+                          ><div class="dos-out" id="dosOut" role="log" aria-live="polite"></div>
+                          <div class="dos-line" role="textbox" aria-label="Command prompt" tabindex="-1"
+                            ><span class="dos-ps" id="dosPs">C:\TU7URU</span
+                            ><span class="dos-gt">&gt;&nbsp;</span><span class="dos-txt" id="dosTxt"></span
+                            ><span class="dos-cur">_</span></div
+                          >
+                        </div>
+                      </div>
+                      <div class="arc-status">
+                        <span id="statLeft" role="status"></span>
+                        <span class="status-right"
+                          ><span class="hint">← → FOCUS · ENTER OPEN · ESC BACK</span
+                          ><span id="dubClock" aria-hidden="true"></span
+                        ></span>
+                      </div>
+                    </div>
+                    <div id="detailView" class="crtview" role="dialog" aria-label="detail view">
+                      <div class="arc-top">
+                        <nav class="crumb" id="dtPath" aria-label="detail path"></nav>
+                        <button class="ctl" id="dtClose" title="back (Esc / Backspace)" tabindex="-1"
+                          >✕ CLOSE</button
+                        >
+                      </div>
+                      <div class="dt-scroll"
+                        ><div class="dt-body" id="dtBody"></div><div class="dt-fade" aria-hidden="true"></div
+                      ></div>
+                    </div>
+                    <div id="biosLogo" aria-hidden="true"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="crt-strip">
+                <div class="ds-in ds-in-m" aria-hidden="true"
+                  ><span class="ds-slot"><i class="ds-lip" aria-hidden="true"></i></span
+                  ><span class="ds-led"></span
+                ></div>
+                <button
+                  id="phosKnob"
+                  class="strip-knob phos-knob"
+                  title="P39 green / P3 amber"
+                  aria-label="phosphor: P39 green"
+                  tabindex="-1"
+                  >P39</button
+                >
+                <span class="strip-slats" aria-hidden="true"></span>
+                <span class="strip-switch" aria-hidden="true"><span></span></span>
+                <span class="strip-led" aria-hidden="true"></span>
+              </div>
+            </div>
+            <div class="crt-bottom">
+              <div class="ds-in" aria-hidden="true"
+                ><span class="ds-slot"><i class="ds-lip" aria-hidden="true"></i></span
+                ><span class="ds-led"></span
+              ></div>
+              <span class="vents" aria-hidden="true"></span>
+              <span class="badge"><b>HV</b> TU7URU-84 · MONOCHROME DISPLAY</span>
+              <span class="dots" aria-hidden="true"
+                ><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i
+              ></span>
+              <span class="strip-m" aria-hidden="true">
+                <button
+                  type="button"
+                  class="strip-knob phos-knob"
+                  title="P39 green / P3 amber"
+                  aria-label="phosphor: P39 green"
+                  tabindex="-1"
+                  >P39</button
+                >
+                <span class="strip-switch"><span></span></span>
+              </span>
+              <span class="bottom-r">
+                <span class="tab" aria-hidden="true"></span>
+                <span class="tab" aria-hidden="true"></span>
+                <span class="led" id="led"></span>
+                <button
+                  id="powerBtn"
+                  aria-label="power on/off"
+                  title="power (click only — not in Tab order)"
+                  tabindex="-1"
+                  ><svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true">
+                    <path
+                      d="M12 3v8"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.8"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M6.3 6.3a8 8 0 1 0 11.4 0"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.8"
+                      stroke-linecap="round"
+                    /></svg
+                ></button>
+              </span>
+            </div>
+          </div>
+          <div class="crt-neck" aria-hidden="true"></div>
+          <div class="spill" aria-hidden="true"></div>
+        </div>
+        <p class="caption" id="caption"><b>HARALAMBOS VARSAMIS</b> · PRESS POWER OR ANY KEY</p> </div
+      ><!-- /stage -->
+    </div>
+    <script>
+      @@JS@@
+    </script>
+  </body>
 </html>

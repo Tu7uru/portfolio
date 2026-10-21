@@ -8,9 +8,12 @@
     "watch": "node tools/build.mjs --watch",
     "check": "node tools/build.mjs --check",
     "serve": "node tools/serve.mjs",
-    "qa": "node tests/qa.mjs"
+    "qa": "node tests/qa.mjs",
+    "format": "prettier --write \"src/**/*.{js,css}\" \"tools/*.mjs\" \"tests/*.mjs\"",
+    "format:check": "prettier --check \"src/**/*.{js,css}\" \"tools/*.mjs\" \"tests/*.mjs\""
   },
   "devDependencies": {
-    "playwright": "1.49.1"
+    "playwright": "1.49.1",
+    "prettier": "3.3.3"
   }
 }

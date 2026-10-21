@@ -1,0 +1,6 @@
+# Generated output: the build strips indentation on purpose.
+docs/
+# These two files open and close the page's single wrapper function, so neither parses alone.
+# Format them by wrapping: see README "Code style".
+src/js/00-prelude.js
+src/js/21-boot.js

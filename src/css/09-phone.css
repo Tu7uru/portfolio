@@ -1,58 +1,211 @@
 /* ============================== PHONE (fixed portrait stage 430x900) ============== */
 /* chosen by JS (innerWidth<600 AND portrait) as body.st-phone — no media
 queries drive layout, so the composition stays a fixed stage either way. */
-body.st-phone{--disk:128px;--slot:120px}
-body.st-phone #stage{width:430px;height:900px;gap:10px}
-body.st-phone .crt-case{border-radius:10px;padding:6px 6px 5px}
-body.st-phone .crt-case::before{inset:3px;border-radius:6px}
-body.st-phone .crt-face{gap:5px;padding:5px;border-radius:8px}
-body.st-phone .crt-bezel{padding:6px;border-radius:6px}
+body.st-phone {
+  --disk: 128px;
+  --slot: 120px;
+}
+body.st-phone #stage {
+  width: 430px;
+  height: 900px;
+  gap: 10px;
+}
+body.st-phone .crt-case {
+  border-radius: 10px;
+  padding: 6px 6px 5px;
+}
+body.st-phone .crt-case::before {
+  inset: 3px;
+  border-radius: 6px;
+}
+body.st-phone .crt-face {
+  gap: 5px;
+  padding: 5px;
+  border-radius: 8px;
+}
+body.st-phone .crt-bezel {
+  padding: 6px;
+  border-radius: 6px;
+}
 /* phone: no right strip — the P39 knob + slider move into the bottom strip
 and their width goes to the glass */
-body.st-phone .crt-strip{display:none}
-body.st-phone .glass{width:396px;height:700px;border-radius:8px / 12px}
-body.st-phone .crt-neck{height:20px;width:54%;clip-path:polygon(18% 0,82% 0,100% 100%,0 100%)}
-body.st-phone .crt-bottom{margin:4px 1px 0;padding:5px 10px;gap:10px}
-body.st-phone .crt-bottom .vents,body.st-phone .crt-bottom .badge,
-body.st-phone .crt-bottom .dots{display:none}
+body.st-phone .crt-strip {
+  display: none;
+}
+body.st-phone .glass {
+  width: 396px;
+  height: 700px;
+  border-radius: 8px / 12px;
+}
+body.st-phone .crt-neck {
+  height: 20px;
+  width: 54%;
+  clip-path: polygon(18% 0, 82% 0, 100% 100%, 0 100%);
+}
+body.st-phone .crt-bottom {
+  margin: 4px 1px 0;
+  padding: 5px 10px;
+  gap: 10px;
+}
+body.st-phone .crt-bottom .vents,
+body.st-phone .crt-bottom .badge,
+body.st-phone .crt-bottom .dots {
+  display: none;
+}
 /* phone: the disk slot lives in the bottom strip, left side (v4 position) */
-body.st-phone .strip-m{display:flex;align-items:center;gap:8px;margin-left:auto}
-body.st-phone .strip-m .strip-knob{width:24px;height:24px}
-body.st-phone .strip-m .strip-switch{width:12px;height:26px;margin-top:0}
+body.st-phone .strip-m {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+body.st-phone .strip-m .strip-knob {
+  width: 24px;
+  height: 24px;
+}
+body.st-phone .strip-m .strip-switch {
+  width: 12px;
+  height: 26px;
+  margin-top: 0;
+}
 /* disks: 2 cols on the phone cell grid, one constant size (128 px stage) */
-body.st-phone .skin-floppy .obj,body.st-phone .skin-floppy .obj-item{width:var(--disk);height:var(--disk)}
-body.st-phone .caption{font-size:13px;letter-spacing:1.6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:2px 8px 6px}
-body.st-phone .arc-top{padding:8px 10px 6px;flex-wrap:wrap;gap:6px}
-body.st-phone .arc-top .crumb{flex-basis:100%;font-size:18px}
-body.st-phone .arc-ctl{width:100%;justify-content:flex-end}
-body.st-phone .ctl{font-size:14px;min-height:30px;padding:0 8px 1px}
-body.st-phone .lic{width:30px;height:30px}
+body.st-phone .skin-floppy .obj,
+body.st-phone .skin-floppy .obj-item {
+  width: var(--disk);
+  height: var(--disk);
+}
+body.st-phone .caption {
+  font-size: 13px;
+  letter-spacing: 1.6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 2px 8px 6px;
+}
+body.st-phone .arc-top {
+  padding: 8px 10px 6px;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+body.st-phone .arc-top .crumb {
+  flex-basis: 100%;
+  font-size: 18px;
+}
+body.st-phone .arc-ctl {
+  width: 100%;
+  justify-content: flex-end;
+}
+body.st-phone .ctl {
+  font-size: 14px;
+  min-height: 30px;
+  padding: 0 8px 1px;
+}
+body.st-phone .lic {
+  width: 30px;
+  height: 30px;
+}
 /* review #5: the HD/WP windows used to overlap the label's corners 6×6 px
    on the phone — smaller, tucked into the free corners */
-body.st-phone .f-hd{left:3px;bottom:2px;width:7px;height:7px}
-body.st-phone .f-wp{right:3px;bottom:2px;width:7px;height:7px}
+body.st-phone .f-hd {
+  left: 3px;
+  bottom: 2px;
+  width: 7px;
+  height: 7px;
+}
+body.st-phone .f-wp {
+  right: 3px;
+  bottom: 2px;
+  width: 7px;
+  height: 7px;
+}
 /* #11: one line, always — the hint is dropped on phone so the bar never
 wraps to 2 lines and the glass height doesn't jump between views */
-body.st-phone .dt-linkrow a{min-height:44px}
-.status-right{display:flex;align-items:baseline;gap:14px;margin-left:auto;flex:none}
-#dubClock{font-size:.92em;letter-spacing:2px;white-space:nowrap}
-body.st-phone .arc-status{font-size:13px;padding:6px 10px 7px;flex-wrap:nowrap;gap:8px;overflow:hidden}
-body.st-phone .arc-status .hint{display:none}
-body.st-phone #dubClock{font-size:.95em;letter-spacing:1px}
-body.st-phone #bootView{padding:14px}
-body.st-phone #bios{font-size:16px}
-body.st-phone .card{width:min(300px, calc(100% - 16px))}
-body.st-phone .f-name{font-size:14px}
-body.st-phone .f-sub{font-size:9px;line-height:1.2;bottom:2px}
+body.st-phone .dt-linkrow a {
+  min-height: 44px;
+}
+.status-right {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-left: auto;
+  flex: none;
+}
+#dubClock {
+  font-size: 0.92em;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+body.st-phone .arc-status {
+  font-size: 13px;
+  padding: 6px 10px 7px;
+  flex-wrap: nowrap;
+  gap: 8px;
+  overflow: hidden;
+}
+body.st-phone .arc-status .hint {
+  display: none;
+}
+body.st-phone #dubClock {
+  font-size: 0.95em;
+  letter-spacing: 1px;
+}
+body.st-phone #bootView {
+  padding: 14px;
+}
+body.st-phone #bios {
+  font-size: 16px;
+}
+body.st-phone .card {
+  width: min(300px, calc(100% - 16px));
+}
+body.st-phone .f-name {
+  font-size: 14px;
+}
+body.st-phone .f-sub {
+  font-size: 9px;
+  line-height: 1.2;
+  bottom: 2px;
+}
 /* #3: reserve the meta line's space so the (stacked) name never overlaps it */
-body.st-phone .f-label{flex-direction:column;gap:1px;padding-top:2px;padding-bottom:16px}
-body.st-phone .f-txt{align-items:center;align-self:stretch}
+body.st-phone .f-label {
+  flex-direction: column;
+  gap: 1px;
+  padding-top: 2px;
+  padding-bottom: 16px;
+}
+body.st-phone .f-txt {
+  align-items: center;
+  align-self: stretch;
+}
 /* #12: the plain list uses the full phone width (74% left the right quarter empty) */
-body.st-phone .plain{padding:0 4px;width:100%}
-body.st-phone .plain h3{font-size:17px;letter-spacing:2px;margin:10px 0 8px}
-body.st-phone .plain-row{font-size:20px;min-height:42px;padding:8px 10px;gap:10px}
-body.st-phone .plain-row .pr-meta{font-size:16px}
+body.st-phone .plain {
+  padding: 0 4px;
+  width: 100%;
+}
+body.st-phone .plain h3 {
+  font-size: 17px;
+  letter-spacing: 2px;
+  margin: 10px 0 8px;
+}
+body.st-phone .plain-row {
+  font-size: 20px;
+  min-height: 42px;
+  padding: 8px 10px;
+  gap: 10px;
+}
+body.st-phone .plain-row .pr-meta {
+  font-size: 16px;
+}
 /* #13: phone bottom-right recess — smaller tabs, ~40px power button */
-body.st-phone .bottom-r{gap:8px;padding:8px 10px}
-body.st-phone .bottom-r .tab{width:12px;height:9px}
-body.st-phone #powerBtn{width:40px;height:40px}
+body.st-phone .bottom-r {
+  gap: 8px;
+  padding: 8px 10px;
+}
+body.st-phone .bottom-r .tab {
+  width: 12px;
+  height: 9px;
+}
+body.st-phone #powerBtn {
+  width: 40px;
+  height: 40px;
+}

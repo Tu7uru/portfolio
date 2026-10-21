@@ -1,287 +1,607 @@
 /* ============================== MONITOR ============================== */
-.monitor{position:relative;pointer-events:auto}
+.monitor {
+  position: relative;
+  pointer-events: auto;
+}
 /* -- REF A: worn beige CRT case, stepped face, recessed glass -- */
-.crt-case{
-position:relative;
-border-radius:22px;
-padding:20px 20px 17px; /* v6 E (O5): band 1 of 4 — mid-way between v5 (14/12) and wide v6 (26/22) */
-background:
-radial-gradient(150% 100% at 15% -14%, rgba(255,252,240,.6) 0%, rgba(255,252,240,0) 42%),
-radial-gradient(70% 55% at 90% 110%, rgba(82,62,35,.32) 0%, rgba(82,62,35,0) 62%),
-radial-gradient(34% 26% at 68% 100%, rgba(82,62,35,.20) 0%, rgba(82,62,35,0) 70%),
-radial-gradient(22% 18% at 30% 104%, rgba(82,62,35,.16) 0%, rgba(82,62,35,0) 70%),
-linear-gradient(170deg, #e7decd 0%, #d5c9af 52%, #b5a587 100%);
-box-shadow:
-0 38px 78px rgba(0,0,0,.72),
-0 10px 22px rgba(0,0,0,.5),
-inset 3px 3px 0 rgba(255,255,255,.6),      /* bevel light: top/left */
-inset -4px -5px 14px rgba(70,54,28,.5);   /* shade: bottom/right */
+.crt-case {
+  position: relative;
+  border-radius: 22px;
+  padding: 20px 20px 17px; /* v6 E (O5): band 1 of 4 — mid-way between v5 (14/12) and wide v6 (26/22) */
+  background: radial-gradient(150% 100% at 15% -14%, rgba(255, 252, 240, 0.6) 0%, rgba(255, 252, 240, 0) 42%),
+    radial-gradient(70% 55% at 90% 110%, rgba(82, 62, 35, 0.32) 0%, rgba(82, 62, 35, 0) 62%),
+    radial-gradient(34% 26% at 68% 100%, rgba(82, 62, 35, 0.2) 0%, rgba(82, 62, 35, 0) 70%),
+    radial-gradient(22% 18% at 30% 104%, rgba(82, 62, 35, 0.16) 0%, rgba(82, 62, 35, 0) 70%),
+    linear-gradient(170deg, #e7decd 0%, #d5c9af 52%, #b5a587 100%);
+  box-shadow:
+    0 38px 78px rgba(0, 0, 0, 0.72),
+    0 10px 22px rgba(0, 0, 0, 0.5),
+    inset 3px 3px 0 rgba(255, 255, 255, 0.6),
+    /* bevel light: top/left */ inset -4px -5px 14px rgba(70, 54, 28, 0.5); /* shade: bottom/right */
 }
-.crt-case::before{ /* moulding seam */
-content:"";position:absolute;inset:12px;border-radius:15px;pointer-events:none;
-border:1px solid rgba(96,76,46,.35);
-box-shadow:inset 0 1px 0 rgba(255,255,255,.35);
+.crt-case::before {
+  /* moulding seam */
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border-radius: 15px;
+  pointer-events: none;
+  border: 1px solid rgba(96, 76, 46, 0.35);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
-.crt-face{
-display:flex;gap:16px;width:fit-content;
-border-radius:14px;padding:14px; /* v6 E (O5): band 2 — mid-way between v5 (10) and v6 (18) */
-/* v6 E (#14): band 2 darkened ~7% so it reads distinctly against band 1 */
-background:linear-gradient(176deg,#c9bea7 0%, #b2a588 100%);
-box-shadow:
-0 0 0 1px rgba(70,54,28,.32),        /* thin dark groove between bezel step and case */
-inset 2px 2px 0 rgba(255,255,255,.45),/* bevel light: top/left */
-inset -2px -3px 6px rgba(58,44,20,.42),/* shade: bottom/right */
-0 1px 0 rgba(255,255,255,.3);
+.crt-face {
+  display: flex;
+  gap: 16px;
+  width: fit-content;
+  border-radius: 14px;
+  padding: 14px; /* v6 E (O5): band 2 — mid-way between v5 (10) and v6 (18) */
+  /* v6 E (#14): band 2 darkened ~7% so it reads distinctly against band 1 */
+  background: linear-gradient(176deg, #c9bea7 0%, #b2a588 100%);
+  box-shadow:
+    0 0 0 1px rgba(70, 54, 28, 0.32),
+    /* thin dark groove between bezel step and case */ inset 2px 2px 0 rgba(255, 255, 255, 0.45),
+    /* bevel light: top/left */ inset -2px -3px 6px rgba(58, 44, 20, 0.42),
+    /* shade: bottom/right */ 0 1px 0 rgba(255, 255, 255, 0.3);
 }
-.crt-bezel{ /* band 3 — recessed bezel holding the glass, +60% */
-flex:none;width:auto;min-width:0;position:relative;
-border-radius:12px;padding:16px; /* v6 E (O5): band 3 — mid-way between v5 (11) and v6 (20) */
-background:linear-gradient(180deg,#cfc2a6 0%, #b7a988 100%);
-box-shadow:
-0 0 0 1px rgba(70,54,28,.3),          /* groove between case face and bezel */
-inset 0 4px 11px rgba(60,48,24,.5),   /* recess: dark on top */
-inset 0 -1px 0 rgba(255,255,255,.4),  /* light on bottom of recess */
-0 1px 0 rgba(255,255,255,.3);
+.crt-bezel {
+  /* band 3 — recessed bezel holding the glass, +60% */
+  flex: none;
+  width: auto;
+  min-width: 0;
+  position: relative;
+  border-radius: 12px;
+  padding: 16px; /* v6 E (O5): band 3 — mid-way between v5 (11) and v6 (20) */
+  background: linear-gradient(180deg, #cfc2a6 0%, #b7a988 100%);
+  box-shadow:
+    0 0 0 1px rgba(70, 54, 28, 0.3),
+    /* groove between case face and bezel */ inset 0 4px 11px rgba(60, 48, 24, 0.5),
+    /* recess: dark on top */ inset 0 -1px 0 rgba(255, 255, 255, 0.4),
+    /* light on bottom of recess */ 0 1px 0 rgba(255, 255, 255, 0.3);
 }
-.crt-bezel::after{ /* band 4 — inner lip ring hugging the glass */
-content:"";position:absolute;inset:4px;border-radius:8px;pointer-events:none;
-border:1px solid rgba(96,76,46,.45);
-box-shadow:inset 0 3px 7px rgba(60,48,24,.42), inset 0 -1px 0 rgba(255,255,255,.35);
+.crt-bezel::after {
+  /* band 4 — inner lip ring hugging the glass */
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 8px;
+  pointer-events: none;
+  border: 1px solid rgba(96, 76, 46, 0.45);
+  box-shadow:
+    inset 0 3px 7px rgba(60, 48, 24, 0.42),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.35);
 }
-.crt-strip{
-width:72px;border-radius:10px;position:relative; /* right column, consistent with the bottom strip */
-display:flex;flex-direction:column;align-items:center;gap:12px;
-padding:16px 0;
-background:linear-gradient(180deg,#d5caae 0%, #b1a381 100%);
-box-shadow:
-inset 0 2px 6px rgba(55,42,18,.5),
-inset 0 -2px 5px rgba(55,42,18,.45),
-0 1px 0 rgba(255,255,255,.3);
+.crt-strip {
+  width: 72px;
+  border-radius: 10px;
+  position: relative; /* right column, consistent with the bottom strip */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0;
+  background: linear-gradient(180deg, #d5caae 0%, #b1a381 100%);
+  box-shadow:
+    inset 0 2px 6px rgba(55, 42, 18, 0.5),
+    inset 0 -2px 5px rgba(55, 42, 18, 0.45),
+    0 1px 0 rgba(255, 255, 255, 0.3);
 }
-.strip-slats{
-flex:1;width:24px;min-height:120px;border-radius:3px; /* v4 look (owner): continuous vent, knob→slider */
-/* v6 E (#14): whole-px slat pitch (2+5=7) — 6.5 px staggered the slats at non-integer zoom */
-background:repeating-linear-gradient(0deg, rgba(60,48,24,.38) 0 2px, rgba(60,48,24,0) 2px 7px);
-box-shadow:inset 0 1px 3px rgba(0,0,0,.35), inset 0 -1px 0 rgba(255,255,255,.3);
+.strip-slats {
+  flex: 1;
+  width: 24px;
+  min-height: 120px;
+  border-radius: 3px; /* v4 look (owner): continuous vent, knob→slider */
+  /* v6 E (#14): whole-px slat pitch (2+5=7) — 6.5 px staggered the slats at non-integer zoom */
+  background: repeating-linear-gradient(0deg, rgba(60, 48, 24, 0.38) 0 2px, rgba(60, 48, 24, 0) 2px 7px);
+  box-shadow:
+    inset 0 1px 3px rgba(0, 0, 0, 0.35),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.3);
 }
-.strip-switch{
-width:24px;height:48px;border-radius:3px;flex:none;margin-top:auto;
-background:#39322a;
-box-shadow:inset 0 2px 4px rgba(0,0,0,.65), 0 1px 0 rgba(255,255,255,.35);
-display:flex;align-items:center;justify-content:center;
+.strip-switch {
+  width: 24px;
+  height: 48px;
+  border-radius: 3px;
+  flex: none;
+  margin-top: auto;
+  background: #39322a;
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.65),
+    0 1px 0 rgba(255, 255, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.strip-switch span{
-width:26px;height:11px;border-radius:2px;
-background:linear-gradient(180deg,#e0d5bd,#b3a486);
-box-shadow:0 1px 2px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.5);
+.strip-switch span {
+  width: 26px;
+  height: 11px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #e0d5bd, #b3a486);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
-.strip-led{width:7px;height:7px;border-radius:1px;flex:none;background:#241a10;
-box-shadow:inset 0 1px 1px rgba(0,0,0,.6);}
+.strip-led {
+  width: 7px;
+  height: 7px;
+  border-radius: 1px;
+  flex: none;
+  background: #241a10;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.6);
+}
 /* phone: P39 knob + slider live in the bottom strip (hidden on desktop) */
-.strip-m{display:none}
-.strip-knob{
-width:min(32px,80%);height:min(32px,80%);border-radius:50%;cursor:pointer;flex:none;
-font-family:var(--f-phos);font-size:11px;letter-spacing:.5px;color:#5d4c30;
-background:radial-gradient(circle at 35% 30%, #e6dcc4, #b7a685 70%);
-border:1px solid #7c6a4b;
-box-shadow:0 2px 4px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.6);
-text-shadow:0 1px 0 rgba(255,255,255,.5);
+.strip-m {
+  display: none;
 }
-.strip-knob:active{transform:translateY(1px)}
-.strip-knob:focus-visible{outline:2px solid var(--phos);outline-offset:3px}
-.strip-knob.amber{color:#6b4a1e}
-.glass{
-position:relative;
-border-radius:14px / 20px;
-/* v7 G1 (item 1): off glass is a darker, desaturated blue; the glint is
+.strip-knob {
+  width: min(32px, 80%);
+  height: min(32px, 80%);
+  border-radius: 50%;
+  cursor: pointer;
+  flex: none;
+  font-family: var(--f-phos);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: #5d4c30;
+  background: radial-gradient(circle at 35% 30%, #e6dcc4, #b7a685 70%);
+  border: 1px solid #7c6a4b;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.strip-knob:active {
+  transform: translateY(1px);
+}
+.strip-knob:focus-visible {
+  outline: 2px solid var(--phos);
+  outline-offset: 3px;
+}
+.strip-knob.amber {
+  color: #6b4a1e;
+}
+.glass {
+  position: relative;
+  border-radius: 14px / 20px;
+  /* v7 G1 (item 1): off glass is a darker, desaturated blue; the glint is
 dimmed to .12. Power-on only ADDS light (.on swaps the whole stack),
 and #warm is transparent, so there is no black dip. Three swatches via
 #off&shade=1|2|3 (1 = the default blue, 2 = graphite grey-green,
 3 = lighter slate). */
---offg-1:#3b525c; --offg-2:#2b3f48; --offg-3:#16242b;
-background:
-radial-gradient(120% 85% at 50% 0%, rgba(200,220,235,.12) 0%, rgba(200,220,235,0) 42%),
-radial-gradient(130% 115% at 50% 40%, var(--offg-1) 0%, var(--offg-2) 55%, var(--offg-3) 100%);
-overflow:hidden;
-box-shadow:
-inset 0 0 0 3px rgba(4,8,10,.92),
-inset 0 12px 34px rgba(0,0,0,.88),
-inset 0 -16px 38px rgba(0,0,0,.75),
-inset 0 0 34px rgba(0,0,0,.4);
-/* fixed glass inside the fixed stage — the same usable area at every viewport.
+  --offg-1: #3b525c;
+  --offg-2: #2b3f48;
+  --offg-3: #16242b;
+  background: radial-gradient(120% 85% at 50% 0%, rgba(200, 220, 235, 0.12) 0%, rgba(200, 220, 235, 0) 42%),
+    radial-gradient(130% 115% at 50% 40%, var(--offg-1) 0%, var(--offg-2) 55%, var(--offg-3) 100%);
+  overflow: hidden;
+  box-shadow:
+    inset 0 0 0 3px rgba(4, 8, 10, 0.92),
+    inset 0 12px 34px rgba(0, 0, 0, 0.88),
+    inset 0 -16px 38px rgba(0, 0, 0, 0.75),
+    inset 0 0 34px rgba(0, 0, 0, 0.4);
+  /* fixed glass inside the fixed stage — the same usable area at every viewport.
 v6 E (O3/O5): width mid-way between v5 (1100) and wide v6 (1440); a bit
 shorter so the monitor never touches the window edge */
-width:1270px;height:710px; /* O3: a few mm shorter than v5/v6's 740 */
+  width: 1270px;
+  height: 710px; /* O3: a few mm shorter than v5/v6's 740 */
 }
 /* v7 G1 (item 1): off-glass swatches 2 (graphite grey-green, unpowered-tube)
 and 3 (lighter slate) — selected by #off&shade=2|3 */
-#glass.offshade-2{--offg-1:#2f3634;--offg-2:#222826;--offg-3:#121615}
-#glass.offshade-3{--offg-1:#4a5f69;--offg-2:#34484f;--offg-3:#1c2a30}
+#glass.offshade-2 {
+  --offg-1: #2f3634;
+  --offg-2: #222826;
+  --offg-3: #121615;
+}
+#glass.offshade-3 {
+  --offg-1: #4a5f69;
+  --offg-2: #34484f;
+  --offg-3: #1c2a30;
+}
 /* the stand neck — dark trapezoid fading into the dark (bigger than v3) */
-.crt-neck{
-width:46%;height:56px;margin:3px auto 0; /* v6 E (O3): a few mm shorter monitor */
-background:linear-gradient(180deg,#5a5348 0%,#332e25 45%,#1b1815 72%,rgba(16,15,12,0) 100%);
-clip-path:polygon(14% 0,86% 0,100% 100%,0 100%);
+.crt-neck {
+  width: 46%;
+  height: 56px;
+  margin: 3px auto 0; /* v6 E (O3): a few mm shorter monitor */
+  background: linear-gradient(180deg, #5a5348 0%, #332e25 45%, #1b1815 72%, rgba(16, 15, 12, 0) 100%);
+  clip-path: polygon(14% 0, 86% 0, 100% 100%, 0 100%);
 }
 /* v7 G2 (item 10): light spill under the stand while the tube is on — a
 STATIC radial gradient; only its opacity animates (400 ms in after the
 raster, out on collapse). Amber in P3. */
-.monitor .spill{
-position:absolute;left:50%;top:100%;width:1040px;height:170px;
-transform:translateX(-50%);pointer-events:none;opacity:0;
-background:radial-gradient(42% 58% at 50% 0%, var(--spill-c,rgba(91,232,135,.10)), transparent 75%);
-/* review #6: fade the top edge — a hard full-width edge sat at y≈776.
+.monitor .spill {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 1040px;
+  height: 170px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(42% 58% at 50% 0%, var(--spill-c, rgba(91, 232, 135, 0.1)), transparent 75%);
+  /* review #6: fade the top edge — a hard full-width edge sat at y≈776.
    Static mask, no cost. */
--webkit-mask-image:linear-gradient(#0000,#000 14px);
-mask-image:linear-gradient(#0000,#000 14px);
+  -webkit-mask-image: linear-gradient(#0000, #000 14px);
+  mask-image: linear-gradient(#0000, #000 14px);
 }
 /* review #6: on the phone the spill stops short of the screen edges */
-body.st-phone .monitor .spill{left:18%;right:18%;width:auto;transform:none}
-.monitor.amber .spill{--spill-c:rgba(242,178,74,.10)}
-.glass.on{
-background:
-radial-gradient(130% 100% at 50% 0%, rgba(150,255,190,.05) 0%, rgba(150,255,190,0) 34%),
-radial-gradient(90% 90% at 50% 46%, var(--phos-bg-1) 0%, var(--phos-bg-2) 62%, var(--phos-bg-3) 100%);
-box-shadow:
-inset 0 0 0 3px rgba(2,10,5,.85),
-inset 0 10px 30px rgba(0,0,0,.85),
-inset 0 0 70px rgba(20,80,45,.35),
-0 0 52px rgba(90,230,140,.10);
+body.st-phone .monitor .spill {
+  left: 18%;
+  right: 18%;
+  width: auto;
+  transform: none;
+}
+.monitor.amber .spill {
+  --spill-c: rgba(242, 178, 74, 0.1);
+}
+.glass.on {
+  background: radial-gradient(130% 100% at 50% 0%, rgba(150, 255, 190, 0.05) 0%, rgba(150, 255, 190, 0) 34%),
+    radial-gradient(90% 90% at 50% 46%, var(--phos-bg-1) 0%, var(--phos-bg-2) 62%, var(--phos-bg-3) 100%);
+  box-shadow:
+    inset 0 0 0 3px rgba(2, 10, 5, 0.85),
+    inset 0 10px 30px rgba(0, 0, 0, 0.85),
+    inset 0 0 70px rgba(20, 80, 45, 0.35),
+    0 0 52px rgba(90, 230, 140, 0.1);
 }
 /* P3 amber phosphor (strip knob) */
-.glass.amber.on{
-background:
-radial-gradient(130% 100% at 50% 0%, rgba(255,200,120,.05) 0%, rgba(255,200,120,0) 34%),
-radial-gradient(90% 90% at 50% 46%, #2b1f0c 0%, #170f05 62%, #0a0603 100%);
+.glass.amber.on {
+  background: radial-gradient(130% 100% at 50% 0%, rgba(255, 200, 120, 0.05) 0%, rgba(255, 200, 120, 0) 34%),
+    radial-gradient(90% 90% at 50% 46%, #2b1f0c 0%, #170f05 62%, #0a0603 100%);
 }
-.glass.amber .crt{
---phos:#f2b24a; --phos-hi:#ffd98f; --phos-dim:#8a6428; --phos-faint:#3a2c12;
+.glass.amber .crt {
+  --phos: #f2b24a;
+  --phos-hi: #ffd98f;
+  --phos-dim: #8a6428;
+  --phos-faint: #3a2c12;
 }
-.glass.amber #bios{text-shadow:0 0 9px rgba(242,178,74,.55)}
-.glass.amber .cur{background:var(--phos);box-shadow:0 0 8px rgba(242,178,74,.8)}
-.glass.amber .plain-row:hover{background:rgba(242,178,74,.07)}
-.glass.amber .ctl[aria-pressed="true"]{color:#170f05}
+.glass.amber #bios {
+  text-shadow: 0 0 9px rgba(242, 178, 74, 0.55);
+}
+.glass.amber .cur {
+  background: var(--phos);
+  box-shadow: 0 0 8px rgba(242, 178, 74, 0.8);
+}
+.glass.amber .plain-row:hover {
+  background: rgba(242, 178, 74, 0.07);
+}
+.glass.amber .ctl[aria-pressed="true"] {
+  color: #170f05;
+}
 /* curved-glass glint, top-left */
-.glass::before{
-content:"";position:absolute;inset:0;z-index:9;pointer-events:none;border-radius:inherit;
-background:
-radial-gradient(58% 34% at 22% 8%, rgba(255,255,255,.075) 0%, rgba(255,255,255,0) 70%);
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(58% 34% at 22% 8%, rgba(255, 255, 255, 0.075) 0%, rgba(255, 255, 255, 0) 70%);
 }
 /* scanlines + aperture + vignette */
-.glass::after{
-content:"";position:absolute;inset:0;z-index:9;pointer-events:none;border-radius:inherit;
-background:
-repeating-linear-gradient(0deg, rgba(0,0,0,.22) 0 1px, transparent 1px 3px);
-box-shadow:inset 0 0 90px rgba(0,0,0,.55);
-opacity:.5;
+.glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  pointer-events: none;
+  border-radius: inherit;
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.22) 0 1px, transparent 1px 3px);
+  box-shadow: inset 0 0 90px rgba(0, 0, 0, 0.55);
+  opacity: 0.5;
 }
-.glass.on::after{opacity:.85}
-@media (prefers-reduced-motion: no-preference){
-.glass.on::after{animation:crtflick 4.2s linear infinite}
-@keyframes crtflick{0%,100%{opacity:.85}48%{opacity:.78}52%{opacity:.88}70%{opacity:.82}}
+.glass.on::after {
+  opacity: 0.85;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .glass.on::after {
+    animation: crtflick 4.2s linear infinite;
+  }
+  @keyframes crtflick {
+    0%,
+    100% {
+      opacity: 0.85;
+    }
+    48% {
+      opacity: 0.78;
+    }
+    52% {
+      opacity: 0.88;
+    }
+    70% {
+      opacity: 0.82;
+    }
+  }
 }
 /* warm-up: dot -> line -> full raster (rAF-driven, no strobing).
 v7 G1 (item 1): background transparent — the off glass shows through and
 power-on only ADDS light (no black dip) */
-#warm{position:absolute;inset:0;z-index:8;background:transparent;opacity:0;pointer-events:none}
-#warm .dot{
-position:absolute;left:50%;top:50%;width:28px;height:28px;margin:0;border-radius:50%;
-/* K-B: the glow is the gradient itself — a static pre-blurred radial, no
+#warm {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  background: transparent;
+  opacity: 0;
+  pointer-events: none;
+}
+#warm .dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 28px;
+  height: 28px;
+  margin: 0;
+  border-radius: 50%;
+  /* K-B: the glow is the gradient itself — a static pre-blurred radial, no
    live box-shadow/filter. One element plays all three stages
    (dot → line → raster) so the hand-offs never swap elements. */
-background:radial-gradient(circle,#ffffff 0%,#eafff0 24%,rgba(140,255,190,.9) 48%,rgba(91,232,135,0) 74%);
-transform:translate(-50%,-50%) scale(0);opacity:0;
+  background: radial-gradient(
+    circle,
+    #ffffff 0%,
+    #eafff0 24%,
+    rgba(140, 255, 190, 0.9) 48%,
+    rgba(91, 232, 135, 0) 74%
+  );
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
 }
 /* K-B: brightness overshoot for the line→raster stretch — a static white
    radial whose OPACITY does 0→.18→0 over 300 ms (not filter:brightness) */
-#warm .flash{
-position:absolute;inset:0;opacity:0;pointer-events:none;
-background:radial-gradient(120% 90% at 50% 50%, rgba(255,255,255,.9) 0%, rgba(210,255,225,.4) 55%, rgba(210,255,225,0) 100%);
+#warm .flash {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    120% 90% at 50% 50%,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(210, 255, 225, 0.4) 55%,
+    rgba(210, 255, 225, 0) 100%
+  );
 }
-.glass.amber #warm .dot{
-background:radial-gradient(circle,#ffffff 0%,#fff3d6 24%,rgba(255,190,90,.9) 48%,rgba(242,178,74,0) 74%);
+.glass.amber #warm .dot {
+  background: radial-gradient(
+    circle,
+    #ffffff 0%,
+    #fff3d6 24%,
+    rgba(255, 190, 90, 0.9) 48%,
+    rgba(242, 178, 74, 0) 74%
+  );
 }
-.glass.amber #warm .flash{background:radial-gradient(120% 90% at 50% 50%, rgba(255,250,240,.9) 0%, rgba(255,225,170,.4) 55%, rgba(255,225,170,0) 100%)}
-#warm .line{
-position:absolute;left:0;right:0;top:50%;height:4px;
-transform:translateY(-50%) scaleX(0);
-background:linear-gradient(90deg,rgba(170,255,205,0) 0%,#c9ffdc 28%,#ffffff 50%,#c9ffdc 72%,rgba(170,255,205,0) 100%);
-box-shadow:0 0 28px 8px rgba(150,255,190,.8);
-opacity:0;
+.glass.amber #warm .flash {
+  background: radial-gradient(
+    120% 90% at 50% 50%,
+    rgba(255, 250, 240, 0.9) 0%,
+    rgba(255, 225, 170, 0.4) 55%,
+    rgba(255, 225, 170, 0) 100%
+  );
 }
-.glass.amber #warm .line{
-background:linear-gradient(90deg,rgba(255,205,130,0) 0%,#ffe0a0 28%,#ffffff 50%,#ffe0a0 72%,rgba(255,205,130,0) 100%);
-box-shadow:0 0 28px 8px rgba(255,195,100,.8);
+#warm .line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 4px;
+  transform: translateY(-50%) scaleX(0);
+  background: linear-gradient(
+    90deg,
+    rgba(170, 255, 205, 0) 0%,
+    #c9ffdc 28%,
+    #ffffff 50%,
+    #c9ffdc 72%,
+    rgba(170, 255, 205, 0) 100%
+  );
+  box-shadow: 0 0 28px 8px rgba(150, 255, 190, 0.8);
+  opacity: 0;
 }
-#warm .raster{
-position:absolute;inset:0;transform:scaleY(.001);transform-origin:50% 50%;opacity:0;
-background:radial-gradient(95% 95% at 50% 46%, rgba(150,255,190,.18) 0%, rgba(150,255,190,.05) 65%, rgba(150,255,190,0));
+.glass.amber #warm .line {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 205, 130, 0) 0%,
+    #ffe0a0 28%,
+    #ffffff 50%,
+    #ffe0a0 72%,
+    rgba(255, 205, 130, 0) 100%
+  );
+  box-shadow: 0 0 28px 8px rgba(255, 195, 100, 0.8);
 }
-.glass.amber #warm .raster{background:radial-gradient(95% 95% at 50% 46%, rgba(255,195,100,.16) 0%, rgba(255,195,100,.05) 65%, rgba(255,195,100,0))}
-#warm.go{opacity:1}
-#warm.out{transition:opacity .16s ease;opacity:0}
-@media (prefers-reduced-motion: no-preference){
-/* K-B: the whole warm is ONE element, transform/opacity only, zero
+#warm .raster {
+  position: absolute;
+  inset: 0;
+  transform: scaleY(0.001);
+  transform-origin: 50% 50%;
+  opacity: 0;
+  background: radial-gradient(
+    95% 95% at 50% 46%,
+    rgba(150, 255, 190, 0.18) 0%,
+    rgba(150, 255, 190, 0.05) 65%,
+    rgba(150, 255, 190, 0)
+  );
+}
+.glass.amber #warm .raster {
+  background: radial-gradient(
+    95% 95% at 50% 46%,
+    rgba(255, 195, 100, 0.16) 0%,
+    rgba(255, 195, 100, 0.05) 65%,
+    rgba(255, 195, 100, 0)
+  );
+}
+#warm.go {
+  opacity: 1;
+}
+#warm.out {
+  transition: opacity 0.16s ease;
+  opacity: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  /* K-B: the whole warm is ONE element, transform/opacity only, zero
    per-frame JS.  dot 120 ms ease-out → line 180 ms
    cubic-bezier(.2,.8,.2,1) (the dot visibly stretches) → raster 220 ms
    ease-in-out (scaleY to fill, intensity dilutes as the light spreads).
    120+180+220 = 520 ms (was 1160). Reduced motion: powerOn skips it. */
-#warm.go .dot{animation:pw-warm 520ms linear both}
-@keyframes pw-warm{
-0%{transform:translate(-50%,-50%) scale(0);opacity:0;animation-timing-function:cubic-bezier(0,0,.58,1)}
-23.077%{transform:translate(-50%,-50%) scale(1);opacity:1;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
-57.692%{transform:translate(-50%,-50%) scale(90,1);opacity:1;animation-timing-function:cubic-bezier(.45,0,.55,1)}
-100%{transform:translate(-50%,-50%) scale(90,60);opacity:.22}
-}
-#warm.go .flash{animation:pw-flash 300ms ease-in-out 250ms both}
-@keyframes pw-flash{0%{opacity:0}50%{opacity:.18}100%{opacity:0}}
-/* v7 L — power-OFF mirrors the power-on on the SAME element: the lit
+  #warm.go .dot {
+    animation: pw-warm 520ms linear both;
+  }
+  @keyframes pw-warm {
+    0% {
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      animation-timing-function: cubic-bezier(0, 0, 0.58, 1);
+    }
+    23.077% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+      animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    57.692% {
+      transform: translate(-50%, -50%) scale(90, 1);
+      opacity: 1;
+      animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(90, 60);
+      opacity: 0.22;
+    }
+  }
+  #warm.go .flash {
+    animation: pw-flash 300ms ease-in-out 250ms both;
+  }
+  @keyframes pw-flash {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.18;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  /* v7 L — power-OFF mirrors the power-on on the SAME element: the lit
 raster squeezes vertically into the bright line (scaleY), the line shrinks
 horizontally to the dot (scaleX, same .dot), the dot fades as phosphor
 afterglow. Transform/opacity only (the old filter:brightness collapse is
 gone), 240+200+480 = 920 ms ≤ the old 1120 ms. */
-#warm.go.cool .dot{animation:pw-cool 920ms linear both}
-@keyframes pw-cool{
-0%{transform:translate(-50%,-50%) scale(90,60);opacity:.4;animation-timing-function:cubic-bezier(.45,0,.55,1)}
-26.087%{transform:translate(-50%,-50%) scale(90,1);opacity:1;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
-47.826%{transform:translate(-50%,-50%) scale(1,1);opacity:1;animation-timing-function:cubic-bezier(.4,0,.6,1)}
-100%{transform:translate(-50%,-50%) scale(.5);opacity:0}
-}
-/* the line is the brightest beat: a static white radial whose opacity
+  #warm.go.cool .dot {
+    animation: pw-cool 920ms linear both;
+  }
+  @keyframes pw-cool {
+    0% {
+      transform: translate(-50%, -50%) scale(90, 60);
+      opacity: 0.4;
+      animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+    }
+    26.087% {
+      transform: translate(-50%, -50%) scale(90, 1);
+      opacity: 1;
+      animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    47.826% {
+      transform: translate(-50%, -50%) scale(1, 1);
+      opacity: 1;
+      animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(0.5);
+      opacity: 0;
+    }
+  }
+  /* the line is the brightest beat: a static white radial whose opacity
 rises into the squeeze and dies with the line (no filter:brightness) */
-#warm.go.cool .flash{animation:pw-coolflash 460ms ease-in-out both}
-@keyframes pw-coolflash{0%{opacity:.16}26%{opacity:.26}62%{opacity:0}100%{opacity:0}}
+  #warm.go.cool .flash {
+    animation: pw-coolflash 460ms ease-in-out both;
+  }
+  @keyframes pw-coolflash {
+    0% {
+      opacity: 0.16;
+    }
+    26% {
+      opacity: 0.26;
+    }
+    62% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
 }
 /* small TU7URU signature, bottom-right of the boot screen (crisp cell grid) */
-#biosLogo{
-position:absolute;right:14px;bottom:10px;z-index:6;
-opacity:0;pointer-events:none;transition:opacity .4s ease;
+#biosLogo {
+  position: absolute;
+  right: 14px;
+  bottom: 10px;
+  z-index: 6;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
 }
-#biosLogo.show{opacity:.85}
-#biosLogo .bl-row{display:flex}
-#biosLogo i{width:3px;height:4px;background:transparent}
-#biosLogo i.f{background:var(--phos);box-shadow:0 0 5px rgba(91,232,135,.75)}
+#biosLogo.show {
+  opacity: 0.85;
+}
+#biosLogo .bl-row {
+  display: flex;
+}
+#biosLogo i {
+  width: 3px;
+  height: 4px;
+  background: transparent;
+}
+#biosLogo i.f {
+  background: var(--phos);
+  box-shadow: 0 0 5px rgba(91, 232, 135, 0.75);
+}
 /* off-state power hint on the dark glass */
-#powerHint{
-position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:7;
-display:flex;align-items:center;gap:10px;
-font-family:var(--f-phos);font-size:20px;letter-spacing:5px;
-/* v7 G1 (item 1): cool, desaturated hint on the new glass */
-color:rgba(222,236,242,.92);text-shadow:0 0 10px rgba(200,230,255,.35);
-pointer-events:none;opacity:0;
+#powerHint {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 7;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--f-phos);
+  font-size: 20px;
+  letter-spacing: 5px;
+  /* v7 G1 (item 1): cool, desaturated hint on the new glass */
+  color: rgba(222, 236, 242, 0.92);
+  text-shadow: 0 0 10px rgba(200, 230, 255, 0.35);
+  pointer-events: none;
+  opacity: 0;
 }
-#powerHint svg{width:1.15em;height:1.15em;flex:none}
+#powerHint svg {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+}
 /* power-off: the collapse lives on #warm (the pw-cool keyframes above) —
 this dot is the fallback afterglow position only */
-#poff{
-position:absolute;left:50%;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;
-background:radial-gradient(circle,#ffffff 0%,#d9ffe4 32%,rgba(120,255,170,.9) 55%,rgba(120,255,170,0) 76%);
-box-shadow:0 0 26px 11px rgba(140,255,190,.55);
-opacity:0;pointer-events:none;z-index:8;
+#poff {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #ffffff 0%,
+    #d9ffe4 32%,
+    rgba(120, 255, 170, 0.9) 55%,
+    rgba(120, 255, 170, 0) 76%
+  );
+  box-shadow: 0 0 26px 11px rgba(140, 255, 190, 0.55);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 8;
 }
-.glass.amber #poff{
-background:radial-gradient(circle,#ffffff 0%,#ffe9bd 32%,rgba(255,190,90,.9) 55%,rgba(255,190,90,0) 76%);
-box-shadow:0 0 26px 11px rgba(255,200,120,.55);
+.glass.amber #poff {
+  background: radial-gradient(
+    circle,
+    #ffffff 0%,
+    #ffe9bd 32%,
+    rgba(255, 190, 90, 0.9) 55%,
+    rgba(255, 190, 90, 0) 76%
+  );
+  box-shadow: 0 0 26px 11px rgba(255, 200, 120, 0.55);
 }
 /* v7 L: the collapse is now #warm (pw-cool) — the old crt-collapse /
 poff-dot keyframes (with their live filter:brightness) are gone. */
@@ -289,82 +609,134 @@ poff-dot keyframes (with their live filter:brightness) are gone. */
 EXACT off-glass background, so when .on is stripped at the end of the
 collapse the screen already shows the off colour: no brightness jump.
 Opacity only. */
-#offfade{
-position:absolute;inset:0;z-index:9;pointer-events:none;opacity:0;
-background:
-radial-gradient(120% 85% at 50% 0%, rgba(200,220,235,.12) 0%, rgba(200,220,235,0) 42%),
-radial-gradient(130% 115% at 50% 40%, var(--offg-1) 0%, var(--offg-2) 55%, var(--offg-3) 100%);
+#offfade {
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(120% 85% at 50% 0%, rgba(200, 220, 235, 0.12) 0%, rgba(200, 220, 235, 0) 42%),
+    radial-gradient(130% 115% at 50% 40%, var(--offg-1) 0%, var(--offg-2) 55%, var(--offg-3) 100%);
 }
 
-body.phase-off #powerHint{opacity:.7}
+body.phase-off #powerHint {
+  opacity: 0.7;
+}
 /* I3: the hint disappears the INSTANT power is pressed (any key or the
    button) — the 24-step loop stops, no fade ≥ 80 ms. setPhase clears it. */
-body.phase-off #powerHint.away{opacity:0;animation:none;transition:none}
-@media (prefers-reduced-motion: no-preference){
-/* v7 G1 (item 1): smooth retro fade — 24 held states per 2.4 s cycle
+body.phase-off #powerHint.away {
+  opacity: 0;
+  animation: none;
+  transition: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  /* v7 G1 (item 1): smooth retro fade — 24 held states per 2.4 s cycle
 (100 ms steps, steps(1,end) between explicit keyframes), a slow cosine
 0.50 → 0.90 → 0.50 with a cool glow ramp 8→18 px / alpha .35→.70.
 100% = 0% so the loop never jumps. Reduced motion: static at .4 above. */
-body.phase-off #powerHint{animation:hintsteps 2.4s steps(1,end) infinite}
-@keyframes hintsteps{
-0%{opacity:0.500;text-shadow:0 0 8.0px rgba(200,230,255,0.35)}
-4.167%{opacity:0.507;text-shadow:0 0 8.2px rgba(200,230,255,0.36)}
-8.333%{opacity:0.527;text-shadow:0 0 8.7px rgba(200,230,255,0.37)}
-12.500%{opacity:0.559;text-shadow:0 0 9.5px rgba(200,230,255,0.40)}
-16.667%{opacity:0.600;text-shadow:0 0 10.5px rgba(200,230,255,0.44)}
-20.833%{opacity:0.648;text-shadow:0 0 11.7px rgba(200,230,255,0.48)}
-25.000%{opacity:0.700;text-shadow:0 0 13.0px rgba(200,230,255,0.52)}
-29.167%{opacity:0.752;text-shadow:0 0 14.3px rgba(200,230,255,0.57)}
-33.333%{opacity:0.800;text-shadow:0 0 15.5px rgba(200,230,255,0.61)}
-37.500%{opacity:0.841;text-shadow:0 0 16.5px rgba(200,230,255,0.65)}
-41.667%{opacity:0.873;text-shadow:0 0 17.3px rgba(200,230,255,0.68)}
-45.833%{opacity:0.893;text-shadow:0 0 17.8px rgba(200,230,255,0.69)}
-50.000%{opacity:0.900;text-shadow:0 0 18.0px rgba(200,230,255,0.70)}
-54.167%{opacity:0.893;text-shadow:0 0 17.8px rgba(200,230,255,0.69)}
-58.333%{opacity:0.873;text-shadow:0 0 17.3px rgba(200,230,255,0.68)}
-62.500%{opacity:0.841;text-shadow:0 0 16.5px rgba(200,230,255,0.65)}
-66.667%{opacity:0.800;text-shadow:0 0 15.5px rgba(200,230,255,0.61)}
-70.833%{opacity:0.752;text-shadow:0 0 14.3px rgba(200,230,255,0.57)}
-75.000%{opacity:0.700;text-shadow:0 0 13.0px rgba(200,230,255,0.53)}
-79.167%{opacity:0.648;text-shadow:0 0 11.7px rgba(200,230,255,0.48)}
-83.333%{opacity:0.600;text-shadow:0 0 10.5px rgba(200,230,255,0.44)}
-87.500%{opacity:0.559;text-shadow:0 0 9.5px rgba(200,230,255,0.40)}
-91.667%{opacity:0.527;text-shadow:0 0 8.7px rgba(200,230,255,0.37)}
-95.833%{opacity:0.507;text-shadow:0 0 8.2px rgba(200,230,255,0.36)}
-100%{opacity:0.500;text-shadow:0 0 8.0px rgba(200,230,255,0.35)}
-}
-4.167%{opacity:0.309;text-shadow:0 0 8.2px rgba(150,255,190,0.36)}
-8.333%{opacity:0.337;text-shadow:0 0 8.7px rgba(150,255,190,0.37)}
-12.500%{opacity:0.381;text-shadow:0 0 9.5px rgba(150,255,190,0.40)}
-16.667%{opacity:0.438;text-shadow:0 0 10.5px rgba(150,255,190,0.44)}
-20.833%{opacity:0.504;text-shadow:0 0 11.7px rgba(150,255,190,0.48)}
-25.000%{opacity:0.575;text-shadow:0 0 13.0px rgba(150,255,190,0.52)}
-29.167%{opacity:0.646;text-shadow:0 0 14.3px rgba(150,255,190,0.57)}
-33.333%{opacity:0.712;text-shadow:0 0 15.5px rgba(150,255,190,0.61)}
-37.500%{opacity:0.769;text-shadow:0 0 16.5px rgba(150,255,190,0.65)}
-41.667%{opacity:0.813;text-shadow:0 0 17.3px rgba(150,255,190,0.68)}
-45.833%{opacity:0.841;text-shadow:0 0 17.8px rgba(150,255,190,0.69)}
-50.000%{opacity:0.850;text-shadow:0 0 18.0px rgba(150,255,190,0.70)}
-54.167%{opacity:0.841;text-shadow:0 0 17.8px rgba(150,255,190,0.69)}
-58.333%{opacity:0.813;text-shadow:0 0 17.3px rgba(150,255,190,0.68)}
-62.500%{opacity:0.769;text-shadow:0 0 16.5px rgba(150,255,190,0.65)}
-66.667%{opacity:0.713;text-shadow:0 0 15.5px rgba(150,255,190,0.61)}
-70.833%{opacity:0.646;text-shadow:0 0 14.3px rgba(150,255,190,0.57)}
-75.000%{opacity:0.575;text-shadow:0 0 13.0px rgba(150,255,190,0.53)}
-79.167%{opacity:0.504;text-shadow:0 0 11.7px rgba(150,255,190,0.48)}
-83.333%{opacity:0.438;text-shadow:0 0 10.5px rgba(150,255,190,0.44)}
-87.500%{opacity:0.381;text-shadow:0 0 9.5px rgba(150,255,190,0.40)}
-91.667%{opacity:0.337;text-shadow:0 0 8.7px rgba(150,255,190,0.37)}
-95.833%{opacity:0.309;text-shadow:0 0 8.2px rgba(150,255,190,0.36)}
-100%{opacity:0.300;text-shadow:0 0 8.0px rgba(150,255,190,0.35)}
-}
-}
-/* K-B: disks drop in staggered 40 ms apart — 220 ms each, 8 px rise,
-   no bounce (was 550 ms bouncy, 170 ms apart) */
-@media (prefers-reduced-motion: no-preference){
-.obj-wrap.drop-in{animation:dropin .22s ease-out both}
-@keyframes dropin{
-from{opacity:0;transform:translateY(8px)}
-to{opacity:1;transform:none}
-}
+  body.phase-off #powerHint {
+    animation: hintsteps 2.4s steps(1, end) infinite;
+  }
+  @keyframes hintsteps {
+    0% {
+      opacity: 0.5;
+      text-shadow: 0 0 8px rgba(200, 230, 255, 0.35);
+    }
+    4.167% {
+      opacity: 0.507;
+      text-shadow: 0 0 8.2px rgba(200, 230, 255, 0.36);
+    }
+    8.333% {
+      opacity: 0.527;
+      text-shadow: 0 0 8.7px rgba(200, 230, 255, 0.37);
+    }
+    12.500% {
+      opacity: 0.559;
+      text-shadow: 0 0 9.5px rgba(200, 230, 255, 0.4);
+    }
+    16.667% {
+      opacity: 0.6;
+      text-shadow: 0 0 10.5px rgba(200, 230, 255, 0.44);
+    }
+    20.833% {
+      opacity: 0.648;
+      text-shadow: 0 0 11.7px rgba(200, 230, 255, 0.48);
+    }
+    25.000% {
+      opacity: 0.7;
+      text-shadow: 0 0 13px rgba(200, 230, 255, 0.52);
+    }
+    29.167% {
+      opacity: 0.752;
+      text-shadow: 0 0 14.3px rgba(200, 230, 255, 0.57);
+    }
+    33.333% {
+      opacity: 0.8;
+      text-shadow: 0 0 15.5px rgba(200, 230, 255, 0.61);
+    }
+    37.500% {
+      opacity: 0.841;
+      text-shadow: 0 0 16.5px rgba(200, 230, 255, 0.65);
+    }
+    41.667% {
+      opacity: 0.873;
+      text-shadow: 0 0 17.3px rgba(200, 230, 255, 0.68);
+    }
+    45.833% {
+      opacity: 0.893;
+      text-shadow: 0 0 17.8px rgba(200, 230, 255, 0.69);
+    }
+    50.000% {
+      opacity: 0.9;
+      text-shadow: 0 0 18px rgba(200, 230, 255, 0.7);
+    }
+    54.167% {
+      opacity: 0.893;
+      text-shadow: 0 0 17.8px rgba(200, 230, 255, 0.69);
+    }
+    58.333% {
+      opacity: 0.873;
+      text-shadow: 0 0 17.3px rgba(200, 230, 255, 0.68);
+    }
+    62.500% {
+      opacity: 0.841;
+      text-shadow: 0 0 16.5px rgba(200, 230, 255, 0.65);
+    }
+    66.667% {
+      opacity: 0.8;
+      text-shadow: 0 0 15.5px rgba(200, 230, 255, 0.61);
+    }
+    70.833% {
+      opacity: 0.752;
+      text-shadow: 0 0 14.3px rgba(200, 230, 255, 0.57);
+    }
+    75.000% {
+      opacity: 0.7;
+      text-shadow: 0 0 13px rgba(200, 230, 255, 0.53);
+    }
+    79.167% {
+      opacity: 0.648;
+      text-shadow: 0 0 11.7px rgba(200, 230, 255, 0.48);
+    }
+    83.333% {
+      opacity: 0.6;
+      text-shadow: 0 0 10.5px rgba(200, 230, 255, 0.44);
+    }
+    87.500% {
+      opacity: 0.559;
+      text-shadow: 0 0 9.5px rgba(200, 230, 255, 0.4);
+    }
+    91.667% {
+      opacity: 0.527;
+      text-shadow: 0 0 8.7px rgba(200, 230, 255, 0.37);
+    }
+    95.833% {
+      opacity: 0.507;
+      text-shadow: 0 0 8.2px rgba(200, 230, 255, 0.36);
+    }
+    100% {
+      opacity: 0.5;
+      text-shadow: 0 0 8px rgba(200, 230, 255, 0.35);
+    }
+  }
 }
