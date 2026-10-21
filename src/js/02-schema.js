@@ -26,8 +26,8 @@ role:      { req:false, note:"merged into the card meta line with period" },
 tags:      { req:false, note:"strings; wrap to up to 2 rows on the card (nothing ellipsizes)" },
 desc:      { req:false, note:"card text; clamped to 2 lines (VIEW MORE shows all)" },
 detail:    { req:false, note:"lines[]; its presence enables VIEW MORE + detail view" },
-link:      { req:false, note:"URL or file; \"resume.pdf\" = the CV. This IS the repo URL for projects — there is no REPOS map" },
-linkLabel: { req:false, note:"contacts: \"OPEN\" -> \"OPEN ↗\". A linkLabel starting \"OPEN RESUME\" marks the item as the CV (resume-only card). Without linkLabel, linkText() falls back to \"REPO\" — so a contact WITHOUT linkLabel would wrongly read REPO ↗; always set \"OPEN\"" },
+link:      { req:false, note:"URL or file; \"cv.pdf\" = the CV. This IS the repo URL for projects — there is no REPOS map" },
+linkLabel: { req:false, note:"contacts: \"OPEN\" -> \"OPEN ↗\". A linkLabel starting \"OPEN CV\" marks the item as the CV (CV-only card). Without linkLabel, linkText() falls back to \"REPO\" — so a contact WITHOUT linkLabel would wrongly read REPO ↗; always set \"OPEN\"" },
 folder:    { req:false, note:"true (plus items[]) makes the item a subfolder" },
 items:     { req:false, note:"item[] when folder:true" },
 scene:     { req:false, note:"a licSVG id (see the SCENES set); default = parent kit" }
@@ -58,7 +58,7 @@ link:"https://github.com/Tu7uru/Example" },          // -> REPO ↗ on the card
 /* -- new contact link (under CONTACT) --
 linkLabel MUST be "OPEN" (rendered "OPEN ↗"): without it, linkText()
 falls back to "REPO" and the contact would read REPO ↗. A linkLabel
-starting "OPEN RESUME" (e.g. "OPEN RESUME ↗") marks the CV. --
+starting "OPEN CV" (e.g. "OPEN CV ↗") marks the CV. --
 { id:"example-link", label:"EXAMPLE", title:"Example", period:"PROFILE",
 tags:["Profile"], desc:"example.com/you",
 link:"https://example.com/you", linkLabel:"OPEN" },  // card: OPEN ↗ only

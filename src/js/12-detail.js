@@ -2,6 +2,8 @@
 function openDetail(id){
 var it=findItem(id);
 if(!it||!it.detail) return;
+/* 2026-10-21: VIEW MORE takes the glass — the DOS prompt steps aside (type / to bring it back) */
+if(typeof dosS!=="undefined"&&dosS.open) dosHide();
 S.detailId=id;
 S.cardId=null;
 if(cardEl) cardEl.hidden=true;
@@ -35,7 +37,7 @@ if(it.note)h+=_sec("NOTES")+'<div class="dt-note">'+it.note+'</div>';
 h+='<div class="dt-links">';
 if(it.tags&&it.tags.length) h+='<span class="dt-stack">'+it.tags.map(function(t,i){ return '<span class="mps">'+(i?"\u00b7\u00a0":"")+String(t).toUpperCase()+"</span>"; }).join(" ")+'</span>';
 h+='<span class="dt-linkrow">';
-h+='<a class="card-l" href="resume.pdf" target="_blank" rel="noopener">OPEN RESUME ↗</a>';
+h+='<a class="card-l" href="cv.pdf" target="_blank" rel="noopener">OPEN CV ↗</a>';
 if(it.link) h+='<a class="card-l" href="'+it.link+'" target="_blank" rel="noopener">'+linkText(it)+'</a>';
 h+='</span></div>';
 dtBody.innerHTML=h;

@@ -1,6 +1,6 @@
 /* ============================== DOS SHELL (v7 G3 item 15) ============================== */
 /* a typed prompt on the glass — desktop stage only. It navigates the SAME
-archive (S.path). v7 I (I2): PATH NAVIGATION ONLY — DIR, CD (name / .. / .. / \)
+archive (S.path). v7 I (I2): PATH NAVIGATION ONLY — DIR, LS, CD (name / .. / .. / \)
 and HELP; everything else says so, and TAB completes path names. */
 var dosS={open:false,buf:"",hist:[],hIdx:-1,errT:null};
 function dosItems(){
@@ -29,7 +29,8 @@ function dosClearInput(){ dosS.buf=""; dosS.hIdx=-1; var t=document.getElementBy
 /* I2: the help text — exactly the supported commands, one line each.
    HELP / --help / /? all print it. */
 function dosHelp(){
-return ["Available commands:","  DIR          list the current folder","  CD <name>    enter folder <name>","  CD ..        go up one level","  CD..         go up one level (no-space form)","  CD \\         go back to the root drive","  HELP         show this help (also: --help, /?)"];
+return ["Available commands:","  DIR          list the current folder",
+"  LS           list the items here, with their titles","  CD <name>    enter folder <name>","  CD ..        go up one level","  CD..         go up one level (no-space form)","  CD \\         go back to the root drive","  HELP         show this help (also: --help, /?)"];
 }
 function dosSetBuf(s){ dosS.buf=s; var t=document.getElementById("dosTxt"); if(t) t.textContent=s; }
 /* I2: TAB completes PATH NAMES from the current directory (case-insensitive
@@ -57,7 +58,7 @@ dosFit();
 return;
 }
 var t=buf.trim(), c0=t.toUpperCase();
-if(!t||c0==="DIR"){
+if(!t||c0==="DIR"||c0==="LS"){
 dosPrint([dosItems().map(function(it){ return it.label; }).join("  ")]);
 dosFit();
 }
@@ -84,6 +85,19 @@ lines.push((it.label.length<12?it.label+" ".repeat(12-it.label.length):it.label)
 });
 if(nd) lines.push((nd+" dir(s)").padStart(16));
 if(nf) lines.push((nf+" file(s)").padStart(16));
+dosPrint(lines);
+}
+else if(c==="LS"){
+/* 2026-10-21: LS (any case) — one line per item: name, then a folder's
+   item count or a file's title, so a visitor sees what is here at a glance */
+its=dosItems();
+if(!its.length) lines.push("(empty)");
+its.forEach(function(it){
+var isDir=!!(it.folder||it.items), name=it.label+(isDir?"\\":"");
+var main=(it.title&&it.title.toUpperCase()!==it.label.toUpperCase())?it.title:(it.role||it.title||"");
+var info=isDir?((it.items||[]).length+" item(s)"):[main,it.period].filter(Boolean).join(" · ");
+lines.push((name.length<14?name+" ".repeat(14-name.length):name+"  ")+info);
+});
 dosPrint(lines);
 }
 else if(c==="CD"){
@@ -194,6 +208,17 @@ document.getElementById("dosPs").textContent=dosPathStr();
 dosFit();
 document.querySelector("#dos .dos-line").focus();   /* review #4: the prompt takes focus */
 AU.blip(1200,0.03,0.05);
+}
+/* 2026-10-21: close without moving focus — used when a detail view opens */
+function dosHide(){
+if(!dosS.open) return;
+dosS.open=false;
+document.getElementById("dos").hidden=true;
+var dosBtn=document.getElementById("dosBtn");
+dosBtn.classList.remove("on");
+dosBtn.setAttribute("aria-expanded","false");
+dosClearInput();
+if(dosS.errT){ clearTimeout(dosS.errT); dosS.errT=null; }
 }
 function closeDos(){
 if(!dosS.open) return;

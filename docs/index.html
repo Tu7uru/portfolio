@@ -788,7 +788,7 @@ border-radius:4px;line-height:1;
 }
 .card-x:hover{color:var(--card-ink);background:rgba(255,255,255,.06)}
 .card-x:focus-visible{outline:2px solid var(--phos);outline-offset:1px}
-/* card footer: VIEW MORE bottom-left; on the right OPEN RESUME + REPO side by
+/* card footer: VIEW MORE bottom-left; on the right OPEN CV + REPO side by
 side on ONE line (identical mono type), thin divider, no second line ever.
 P8: pinned at the bottom (margin-top:auto), never scrolled away */
 .card-actions{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto;padding-top:4px;flex-wrap:nowrap}
@@ -1196,9 +1196,9 @@ body.st-phone #powerBtn{width:40px;height:40px}
 </head>
 <body class="phase-off">
 <!-- v7 G3 (item 12): no JavaScript — the screen stays dark, but the whole
-shelf is here as a plain list with its routes and the resume. -->
+shelf is here as a plain list with its routes and the CV. -->
 <noscript>
-<!-- v7 G3 item 12 + review #9: no JS — the shelf inline (the iframe's #open links were dead); real links: GitHub / LinkedIn / resume.pdf -->
+<!-- v7 G3 item 12 + review #9: no JS — the shelf inline (the iframe's #open links were dead); real links: GitHub / LinkedIn / cv.pdf -->
 <style>
 .ns-cover{position:fixed;inset:0;z-index:999;overflow:auto;background:#0a0f0b;color:#b9dcc0;font-family:ui-monospace,Consolas,monospace}
 .ns-cover .ns-wrap{max-width:780px;margin:40px auto 64px;padding:0 22px;line-height:1.5}
@@ -1209,7 +1209,7 @@ shelf is here as a plain list with its routes and the resume. -->
 .ns-wrap li{margin:2px 0}.ns-wrap li ul{padding-left:22px;margin:2px 0}
 .ns-wrap a{color:#9fe8b4;text-decoration:none}.ns-wrap a:hover{text-decoration:underline}
 .ns-wrap .ns-dir{color:#6d9a7c}
-.ns-wrap .ns-resume{margin-top:34px;font-size:14px}.ns-wrap .ns-resume a{color:#f2c98a}
+.ns-wrap .ns-cv{margin-top:34px;font-size:14px}.ns-wrap .ns-cv a{color:#f2c98a}
 </style>
 <div class="ns-cover">
 <div class="ns-wrap">
@@ -1245,9 +1245,9 @@ shelf is here as a plain list with its routes and the resume. -->
 <h2>Drive E · CONTACT</h2>
 <ul><li><a href="https://github.com/Tu7uru">GITHUB</a> — github.com/Tu7uru</li>
 <li><a href="https://www.linkedin.com/in/haralambos-varsamis">LINKEDIN</a> — linkedin.com/in/haralambos-varsamis</li>
-<li><a href="resume.pdf">CV</a> — Curriculum Vitae (PDF)</li></ul>
+<li><a href="cv.pdf">CV</a> — Curriculum Vitae (PDF)</li></ul>
 <!--@NOSCRIPT-END-->
-<p class="ns-resume"><a href="resume.pdf">resume.pdf — OPEN RESUME ↗</a></p>
+<p class="ns-cv"><a href="cv.pdf">cv.pdf — OPEN CV ↗</a></p>
 </div>
 </div>
 </noscript>
@@ -1365,7 +1365,7 @@ var DATA = {
 "CONTACT":{ drive:"E", items:[
 {"id":"github","label":"GITHUB","title":"GitHub","period":"CODE","tags":["Repositories"],"desc":"github.com/Tu7uru","link":"https://github.com/Tu7uru","linkLabel":"— open ↗"},
 {"id":"linkedin","label":"LINKEDIN","title":"LinkedIn","period":"PROFILE","tags":["Professional"],"desc":"linkedin.com/in/haralambos-varsamis","link":"https://www.linkedin.com/in/haralambos-varsamis","linkLabel":"— open ↗"},
-{"id":"cv","label":"CV","title":"Curriculum Vitae","period":"DOWNLOAD","tags":["CV","PDF"],"desc":"Full CV as a PDF.","link":"resume.pdf","linkLabel":"OPEN RESUME ↗"}
+{"id":"cv","label":"CV","title":"Curriculum Vitae","period":"DOWNLOAD","tags":["CV","PDF"],"desc":"Full CV as a PDF.","link":"cv.pdf","linkLabel":"OPEN CV ↗"}
 ]}
 };
 var CATS = ["ABOUT.ME","WORK","EDUCATION","PROJECTS","CONTACT"];
@@ -1398,8 +1398,8 @@ role:      { req:false, note:"merged into the card meta line with period" },
 tags:      { req:false, note:"strings; wrap to up to 2 rows on the card (nothing ellipsizes)" },
 desc:      { req:false, note:"card text; clamped to 2 lines (VIEW MORE shows all)" },
 detail:    { req:false, note:"lines[]; its presence enables VIEW MORE + detail view" },
-link:      { req:false, note:"URL or file; \"resume.pdf\" = the CV. This IS the repo URL for projects — there is no REPOS map" },
-linkLabel: { req:false, note:"contacts: \"OPEN\" -> \"OPEN ↗\". A linkLabel starting \"OPEN RESUME\" marks the item as the CV (resume-only card). Without linkLabel, linkText() falls back to \"REPO\" — so a contact WITHOUT linkLabel would wrongly read REPO ↗; always set \"OPEN\"" },
+link:      { req:false, note:"URL or file; \"cv.pdf\" = the CV. This IS the repo URL for projects — there is no REPOS map" },
+linkLabel: { req:false, note:"contacts: \"OPEN\" -> \"OPEN ↗\". A linkLabel starting \"OPEN CV\" marks the item as the CV (CV-only card). Without linkLabel, linkText() falls back to \"REPO\" — so a contact WITHOUT linkLabel would wrongly read REPO ↗; always set \"OPEN\"" },
 folder:    { req:false, note:"true (plus items[]) makes the item a subfolder" },
 items:     { req:false, note:"item[] when folder:true" },
 scene:     { req:false, note:"a licSVG id (see the SCENES set); default = parent kit" }
@@ -1430,7 +1430,7 @@ link:"https://github.com/Tu7uru/Example" },          // -> REPO ↗ on the card
 /* -- new contact link (under CONTACT) --
 linkLabel MUST be "OPEN" (rendered "OPEN ↗"): without it, linkText()
 falls back to "REPO" and the contact would read REPO ↗. A linkLabel
-starting "OPEN RESUME" (e.g. "OPEN RESUME ↗") marks the CV. --
+starting "OPEN CV" (e.g. "OPEN CV ↗") marks the CV. --
 { id:"example-link", label:"EXAMPLE", title:"Example", period:"PROFILE",
 tags:["Profile"], desc:"example.com/you",
 link:"https://example.com/you", linkLabel:"OPEN" },  // card: OPEN ↗ only
@@ -2978,22 +2978,22 @@ if(it.tags&&it.tags.length){
 h+='<div class="card-tags">'+it.tags.map(function(t){return "<span>"+t+"</span>";}).join("")+'</div>';
 }
 h+='<p class="card-d">'+it.desc+'</p>';
-var isResume = it.link && (it.link==="resume.pdf" || /^open resume/i.test(it.linkLabel||""));
+var isCV = it.link && (it.link==="cv.pdf" || /^open cv/i.test(it.linkLabel||""));
 /* v6 card button rules — derived from the item's data, not per item
 (documented in CONTENT-GUIDE.md):
 contact-style link item (its own link, no detail)  -> its link ONLY
-resume-only item (the CV)                          -> OPEN RESUME ONLY
+CV-only item (the CV)                          -> OPEN CV ONLY
 everything else (about / work / project)           -> VIEW MORE (if it
 has detail) +
-OPEN RESUME, plus
+OPEN CV, plus
 REPO/OPEN when the
-item has a non-resume link */
-var isContact = it.link && !isResume && !it.detail;
+item has a non-CV link */
+var isContact = it.link && !isCV && !it.detail;
 h+='<div class="card-actions">';
 h+= it.detail ? '<button class="card-more" type="button">VIEW MORE</button>' : '<span aria-hidden="true"></span>';
 h+='<span class="card-right">';
-if(!isContact) h+='<a class="card-l" href="resume.pdf" target="_blank" rel="noopener">OPEN RESUME ↗</a>';
-if(it.link && !isResume){
+if(!isContact) h+='<a class="card-l" href="cv.pdf" target="_blank" rel="noopener">OPEN CV ↗</a>';
+if(it.link && !isCV){
 if(!isContact) h+='<i class="card-sep" aria-hidden="true"></i>';
 h+='<a class="card-l" href="'+it.link+'" target="_blank" rel="noopener">'+linkText(it)+'</a>';
 }
@@ -3027,6 +3027,8 @@ cardEl.querySelector(".card-x").focus({preventScroll:true});
 function openDetail(id){
 var it=findItem(id);
 if(!it||!it.detail) return;
+/* 2026-10-21: VIEW MORE takes the glass — the DOS prompt steps aside (type / to bring it back) */
+if(typeof dosS!=="undefined"&&dosS.open) dosHide();
 S.detailId=id;
 S.cardId=null;
 if(cardEl) cardEl.hidden=true;
@@ -3060,7 +3062,7 @@ if(it.note)h+=_sec("NOTES")+'<div class="dt-note">'+it.note+'</div>';
 h+='<div class="dt-links">';
 if(it.tags&&it.tags.length) h+='<span class="dt-stack">'+it.tags.map(function(t,i){ return '<span class="mps">'+(i?"\u00b7\u00a0":"")+String(t).toUpperCase()+"</span>"; }).join(" ")+'</span>';
 h+='<span class="dt-linkrow">';
-h+='<a class="card-l" href="resume.pdf" target="_blank" rel="noopener">OPEN RESUME ↗</a>';
+h+='<a class="card-l" href="cv.pdf" target="_blank" rel="noopener">OPEN CV ↗</a>';
 if(it.link) h+='<a class="card-l" href="'+it.link+'" target="_blank" rel="noopener">'+linkText(it)+'</a>';
 h+='</span></div>';
 dtBody.innerHTML=h;
@@ -3398,7 +3400,7 @@ showCard(list[nxt].dataset.item);
 });
 /* ============================== DOS SHELL (v7 G3 item 15) ============================== */
 /* a typed prompt on the glass — desktop stage only. It navigates the SAME
-archive (S.path). v7 I (I2): PATH NAVIGATION ONLY — DIR, CD (name / .. / .. / \)
+archive (S.path). v7 I (I2): PATH NAVIGATION ONLY — DIR, LS, CD (name / .. / .. / \)
 and HELP; everything else says so, and TAB completes path names. */
 var dosS={open:false,buf:"",hist:[],hIdx:-1,errT:null};
 function dosItems(){
@@ -3427,7 +3429,8 @@ function dosClearInput(){ dosS.buf=""; dosS.hIdx=-1; var t=document.getElementBy
 /* I2: the help text — exactly the supported commands, one line each.
    HELP / --help / /? all print it. */
 function dosHelp(){
-return ["Available commands:","  DIR          list the current folder","  CD <name>    enter folder <name>","  CD ..        go up one level","  CD..         go up one level (no-space form)","  CD \\         go back to the root drive","  HELP         show this help (also: --help, /?)"];
+return ["Available commands:","  DIR          list the current folder",
+"  LS           list the items here, with their titles","  CD <name>    enter folder <name>","  CD ..        go up one level","  CD..         go up one level (no-space form)","  CD \\         go back to the root drive","  HELP         show this help (also: --help, /?)"];
 }
 function dosSetBuf(s){ dosS.buf=s; var t=document.getElementById("dosTxt"); if(t) t.textContent=s; }
 /* I2: TAB completes PATH NAMES from the current directory (case-insensitive
@@ -3455,7 +3458,7 @@ dosFit();
 return;
 }
 var t=buf.trim(), c0=t.toUpperCase();
-if(!t||c0==="DIR"){
+if(!t||c0==="DIR"||c0==="LS"){
 dosPrint([dosItems().map(function(it){ return it.label; }).join("  ")]);
 dosFit();
 }
@@ -3482,6 +3485,19 @@ lines.push((it.label.length<12?it.label+" ".repeat(12-it.label.length):it.label)
 });
 if(nd) lines.push((nd+" dir(s)").padStart(16));
 if(nf) lines.push((nf+" file(s)").padStart(16));
+dosPrint(lines);
+}
+else if(c==="LS"){
+/* 2026-10-21: LS (any case) — one line per item: name, then a folder's
+   item count or a file's title, so a visitor sees what is here at a glance */
+its=dosItems();
+if(!its.length) lines.push("(empty)");
+its.forEach(function(it){
+var isDir=!!(it.folder||it.items), name=it.label+(isDir?"\\":"");
+var main=(it.title&&it.title.toUpperCase()!==it.label.toUpperCase())?it.title:(it.role||it.title||"");
+var info=isDir?((it.items||[]).length+" item(s)"):[main,it.period].filter(Boolean).join(" · ");
+lines.push((name.length<14?name+" ".repeat(14-name.length):name+"  ")+info);
+});
 dosPrint(lines);
 }
 else if(c==="CD"){
@@ -3592,6 +3608,17 @@ document.getElementById("dosPs").textContent=dosPathStr();
 dosFit();
 document.querySelector("#dos .dos-line").focus();   /* review #4: the prompt takes focus */
 AU.blip(1200,0.03,0.05);
+}
+/* 2026-10-21: close without moving focus — used when a detail view opens */
+function dosHide(){
+if(!dosS.open) return;
+dosS.open=false;
+document.getElementById("dos").hidden=true;
+var dosBtn=document.getElementById("dosBtn");
+dosBtn.classList.remove("on");
+dosBtn.setAttribute("aria-expanded","false");
+dosClearInput();
+if(dosS.errT){ clearTimeout(dosS.errT); dosS.errT=null; }
 }
 function closeDos(){
 if(!dosS.open) return;

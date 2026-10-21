@@ -2,8 +2,8 @@
 title: Curriculum Vitae
 period: DOWNLOAD
 tags: CV, PDF
-link: resume.pdf
-linkLabel: OPEN RESUME ↗
+link: cv.pdf
+linkLabel: OPEN CV ↗
 plain: Curriculum Vitae (PDF)
 order: 30
 ---

@@ -70,7 +70,7 @@ border-radius:4px;line-height:1;
 }
 .card-x:hover{color:var(--card-ink);background:rgba(255,255,255,.06)}
 .card-x:focus-visible{outline:2px solid var(--phos);outline-offset:1px}
-/* card footer: VIEW MORE bottom-left; on the right OPEN RESUME + REPO side by
+/* card footer: VIEW MORE bottom-left; on the right OPEN CV + REPO side by
 side on ONE line (identical mono type), thin divider, no second line ever.
 P8: pinned at the bottom (margin-top:auto), never scrolled away */
 .card-actions{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto;padding-top:4px;flex-wrap:nowrap}

@@ -69,22 +69,22 @@ if(it.tags&&it.tags.length){
 h+='<div class="card-tags">'+it.tags.map(function(t){return "<span>"+t+"</span>";}).join("")+'</div>';
 }
 h+='<p class="card-d">'+it.desc+'</p>';
-var isResume = it.link && (it.link==="resume.pdf" || /^open resume/i.test(it.linkLabel||""));
+var isCV = it.link && (it.link==="cv.pdf" || /^open cv/i.test(it.linkLabel||""));
 /* v6 card button rules — derived from the item's data, not per item
 (documented in CONTENT-GUIDE.md):
 contact-style link item (its own link, no detail)  -> its link ONLY
-resume-only item (the CV)                          -> OPEN RESUME ONLY
+CV-only item (the CV)                          -> OPEN CV ONLY
 everything else (about / work / project)           -> VIEW MORE (if it
 has detail) +
-OPEN RESUME, plus
+OPEN CV, plus
 REPO/OPEN when the
-item has a non-resume link */
-var isContact = it.link && !isResume && !it.detail;
+item has a non-CV link */
+var isContact = it.link && !isCV && !it.detail;
 h+='<div class="card-actions">';
 h+= it.detail ? '<button class="card-more" type="button">VIEW MORE</button>' : '<span aria-hidden="true"></span>';
 h+='<span class="card-right">';
-if(!isContact) h+='<a class="card-l" href="resume.pdf" target="_blank" rel="noopener">OPEN RESUME ↗</a>';
-if(it.link && !isResume){
+if(!isContact) h+='<a class="card-l" href="cv.pdf" target="_blank" rel="noopener">OPEN CV ↗</a>';
+if(it.link && !isCV){
 if(!isContact) h+='<i class="card-sep" aria-hidden="true"></i>';
 h+='<a class="card-l" href="'+it.link+'" target="_blank" rel="noopener">'+linkText(it)+'</a>';
 }

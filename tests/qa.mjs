@@ -647,23 +647,23 @@ async function runViewport(vp) {
   }
   record(vp.name, 'c16 PLAIN same tree', plainFails.length === 0, plainFails.slice(0, 5).join(' | '));
 
-  // 27/28. VIEW MORE detail view + resume link attrs
+  // 27/28. VIEW MORE detail view + CV link attrs
   {
     let vm = true, vmD = '', rl = true, rlD = '';
     try {
       await openCat(page, 'WORK');
       await openCard(page, 'deloitte');
       const cl = await page.evaluate(() => {
-        const a = document.querySelector('.card a[href="resume.pdf"]');
+        const a = document.querySelector('.card a[href="cv.pdf"]');
         return a ? { t: a.textContent.trim(), target: a.target, rel: a.getAttribute('rel') || '' } : null;
       });
-      if (!cl || cl.target !== '_blank' || !cl.rel.includes('noopener') || !cl.t.startsWith('OPEN RESUME')) {
+      if (!cl || cl.target !== '_blank' || !cl.rel.includes('noopener') || !cl.t.startsWith('OPEN CV')) {
         rl = false; rlD = 'card: ' + JSON.stringify(cl);
       }
       await dclick(page, '.card-more');
       await page.waitForFunction(() => document.getElementById('detailView').classList.contains('live'), null, { timeout: 4000 });
       const dt = await page.evaluate(() => {
-        const a = document.querySelector('#detailView a[href="resume.pdf"]');
+        const a = document.querySelector('#detailView a[href="cv.pdf"]');
         return {
           lines: document.querySelectorAll('#detailView .dt-line').length,
           resume: a ? { t: a.textContent.trim(), target: a.target, rel: a.getAttribute('rel') || '' } : null
@@ -678,7 +678,7 @@ async function runViewport(vp) {
       await dclick(page, '#ejectBtn'); await backTo(page, null);
     } catch (e) { vm = false; vmD = String(e).slice(0, 80); }
     record(vp.name, 'c27 VIEW MORE opens/closes', vm, vmD);
-    record(vp.name, 'c28 resume link attrs', rl, rlD);
+    record(vp.name, 'c28 CV link attrs', rl, rlD);
   }
 
   // 29. insert animation completes before the section opens
@@ -1072,7 +1072,7 @@ async function runViewport(vp) {
     record(vp.name, 'c43 30×Tab: screen stays on, power never focused', ok, d);
   }
 
-  // 44. card footer: VIEW MORE left; RESUME (+ repo) on ONE line right, same mono type, no second line
+  // 44. card footer: VIEW MORE left; CV (+ repo) on ONE line right, same mono type, no second line
   {
     let ok = true, d = '';
     try {
@@ -1116,7 +1116,7 @@ async function runViewport(vp) {
       if (!f) { ok = false; d = 'footer missing'; }
       else if (!(f.n === 2 && f.sameFont && f.sameLine && f.order && f.repoFont && f.repoLine && f.repoAfter && f.oneLine)) { ok = false; d += 'themis=' + JSON.stringify(f); }
       await page.keyboard.press('Escape');
-      /* CV: its only link IS the resume — no duplicate on the right */
+      /* CV: its only link IS the CV — no duplicate on the right */
       await goCrumb(page, 0); await backTo(page, null);
       await openCat(page, 'CONTACT');
       await dclick(page, '.obj-item[data-item="cv"]');
@@ -1137,7 +1137,7 @@ async function runViewport(vp) {
       if (!segs.length) { ok = false; d += ' no meta'; }
       else if (new Set(segs).size !== segs.length) { ok = false; d += ' meta repeats: "' + meta + '"'; }
     } catch (e) { ok = false; d = String(e).slice(0, 90); }
-    record(vp.name, 'c44 card footer: MORE left, RESUME+repo one line right, meta clean', ok, d);
+    record(vp.name, 'c44 card footer: MORE left, CV+repo one line right, meta clean', ok, d);
     await goCrumb(page, 0); await backTo(page, null);
   }
 
@@ -2198,9 +2198,9 @@ async function v6fixes() {
             const ownOnly = !!CONTACT[id];
             const okMore = st.more === wantMore;
             let okLinks;
-            if (resumeOnly) okLinks = st.links.length === 1 && st.links[0] === 'resume.pdf';
-            else if (ownOnly) okLinks = st.links.length === 1 && st.links[0] !== 'resume.pdf';
-            else okLinks = st.links.includes('resume.pdf') && st.links.length === (REPO[id] ? 2 : 1);
+            if (resumeOnly) okLinks = st.links.length === 1 && st.links[0] === 'cv.pdf';
+            else if (ownOnly) okLinks = st.links.length === 1 && st.links[0] !== 'cv.pdf';
+            else okLinks = st.links.includes('cv.pdf') && st.links.length === (REPO[id] ? 2 : 1);
             if (!(okMore && okLinks)) bad.push(`${id}: more=${st.more} links=[${st.links.join(',')}]`);
             await escClose(page);
           }
@@ -2459,13 +2459,13 @@ async function v6fixes() {
           links: [...document.querySelectorAll('.card .card-actions .card-l')].map(a => a.getAttribute('href'))
         }));
         const wantMore = !!item.detail;
-        const wantLinks = item.link && item.link !== 'resume.pdf' ? [item.link]
-          : (card.more ? card.links : ['resume.pdf']);
+        const wantLinks = item.link && item.link !== 'cv.pdf' ? [item.link]
+          : (card.more ? card.links : ['cv.pdf']);
         if (card.more !== wantMore) bad.push(cat + ': VIEW MORE=' + card.more + ' (want ' + wantMore + ')');
-        if (item.link && item.link !== 'resume.pdf') {
-          if (!card.links.includes(item.link) || card.links.includes('resume.pdf'))
+        if (item.link && item.link !== 'cv.pdf') {
+          if (!card.links.includes(item.link) || card.links.includes('cv.pdf'))
             bad.push(cat + ': links ' + JSON.stringify(card.links));
-        } else if (!card.links.includes('resume.pdf')) bad.push(cat + ': no resume link');
+        } else if (!card.links.includes('cv.pdf')) bad.push(cat + ': no CV link');
         await escClose(page);
       }
       record('1280x800', 'c02 dummy entries render with defaults (scene/colour/buttons, no errors)',
@@ -3118,7 +3118,7 @@ async function g3Fixes() {
   }
   /* g3e — (item 12 + review #9) <noscript> shelf, INLINE in the document:
      all sections/items as plain text, real https links for GitHub/LinkedIn,
-     a direct resume.pdf link, no iframe (it was dead without JS) */
+     a direct cv.pdf link, no iframe (it was dead without JS) */
   {
     let ok=true, d='';
     try {
@@ -3144,7 +3144,7 @@ async function g3Fixes() {
         && m.sections===5
         && has('https://github.com/Tu7uru')
         && has('https://www.linkedin.com/in/haralambos-varsamis')
-        && m.hrefs&&m.hrefs.filter(h=>h==='resume.pdf').length>=2
+        && m.hrefs&&m.hrefs.filter(h=>h==='cv.pdf').length>=2
         && ['ABOUT.ME','DELOITTE','INTERMEDIA','H. ARMY','BSC C.S.','MB-500',
             'COMPILER','THEMIS','FRAUD-ML','ICU-ON-CALL','GREEK-IR',
             'ARCHIVE.SYS'].every(hasT);
@@ -3719,17 +3719,23 @@ async function phaseIFixes() {
       await run('cd ..'); s = await st(); if (s.crumb !== 'root') failI('cd.. ' + s.crumb);
       await run('cd work'); await run('cd..'); s = await st(); if (s.crumb !== 'root') failI('cd-nospace ' + s.crumb);
       await run('cd work'); await run('cd\\'); s = await st(); if (s.crumb !== 'root') failI('cd-backslash ' + s.crumb);
-      // the help text — all three triggers, identical, exactly the six commands
-      const helpOf = async c => { await run(c); const t = await st(); return t.out.slice(-7); };
+      // the help text — all three triggers, identical, exactly the seven commands
+      const helpOf = async c => { await run(c); const t = await st(); return t.out.slice(-8); };
       const H1 = await helpOf('help');
       const H2 = await helpOf('--help');
       const H3 = await helpOf('/?');
       const joined = H1.join('\n');
-      for (const L of ['DIR', 'CD <name>', 'CD ..', 'CD..', 'CD \\ ', 'HELP']) if (joined.indexOf(L) < 0) failI('help-missing:' + L);
+      for (const L of ['DIR', 'LS', 'CD <name>', 'CD ..', 'CD..', 'CD \\ ', 'HELP']) if (joined.indexOf(L) < 0) failI('help-missing:' + L);
       if (/VER|CLS/.test(joined)) failI('help-lists-removed');
       if (JSON.stringify(H2) !== JSON.stringify(H1) || JSON.stringify(H3) !== JSON.stringify(H1)) failI('help-triggers-differ');
       // the unsupported message — bash, DOS and slash-paths alike
-      for (const c of ['ls', 'pwd', 'rm', 'sudo', 'echo', 'clear', 'mkdir', 'exit']) {
+      // LS lists the items with titles
+      await run('ls'); s = await st();
+      for (const L of ['ABOUT.ME\\', 'WORK\\', 'CONTACT\\']) if (!s.out.some(l => l.indexOf(L) === 0 && / item\(s\)$/.test(l))) failI('ls ' + L);
+      await run('cd work'); await run('LS'); s = await st();
+      if (!s.out.some(l => /^DELOITTE\s/.test(l))) failI('ls-in-work ' + last(s).slice(0, 40));
+      await run('cd ..');
+      for (const c of ['pwd', 'rm', 'sudo', 'echo', 'clear', 'mkdir', 'exit']) {
         await run(c); s = await st();
         if (last(s) !== `\'${c}\' is not supported. Only path navigation is available — type HELP or --help.`) failI('unsup:' + c + ':' + last(s).slice(0, 40));
       }
@@ -3740,11 +3746,15 @@ async function phaseIFixes() {
       // CD to a FILE keeps the classic error
       await run('cd deloitte'); s = await st();
       if (!/^Bad command/.test(last(s))) failI('cd-file ' + last(s));
-      if (ok) d = 'all commands + help + 10 unsupported forms';
+      // VIEW MORE hides the prompt (2026-10-21)
+      await run('cd work'); await page.click('[data-item="deloitte"]'); await page.waitForTimeout(400);
+      await page.click('text=VIEW MORE'); await page.waitForTimeout(500);
+      if (await page.evaluate(() => window.__dos.state().open) || !(await page.evaluate(() => document.getElementById('dos').hidden))) failI('dos-not-hidden-on-detail');
+      if (ok) d = 'all commands (DIR, LS, CD) + help + unsupported forms + prompt hides on VIEW MORE';
       await ctx.close();
     } catch (e) { ok = false; d = String(e).slice(0, 120); }
     await browser.close();
-    record(D, 'i02 DOS path-nav only: commands, help (3 triggers), unsupported message', ok, d);
+    record(D, 'i02 DOS path-nav only: commands, help (3 triggers), unsupported message, hides on VIEW MORE', ok, d);
   }
   /* i03 — (I2) TAB completion: single / multi (prefix then list) / no-match /
      empty line / DIR / "cd ..", and focus never leaves the prompt */
