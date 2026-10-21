@@ -1499,7 +1499,8 @@ async function sceneScenes() {
   try {
     await page.waitForSelector('body.phase-archive', { timeout: 15000 });
     await page.waitForTimeout(500);
-    /* s01 — every disk has a scene svg, and all 22 scenes are unique */
+    /* s01 — every disk has a scene svg, and all 28 scenes are unique
+       (22 until 21 Oct 2026: +4 personal projects, +2 NVIDIA certificates) */
     {
       let ok = false, d = '';
       try {
@@ -1518,10 +1519,10 @@ async function sceneScenes() {
         await page.keyboard.press('Escape'); // PROJECTS -> root (for the hover checks)
         await crumbRoot();
         const v = Object.values(all);
-        ok = v.length === 22 && new Set(v).size === 22 && !v.includes('MISSING');
+        ok = v.length === 28 && new Set(v).size === 28 && !v.includes('MISSING');
         d = `disks=${v.length} unique=${new Set(v).size} missing=${v.filter(x => x === 'MISSING').length}`;
       } catch (e) { ok = false; d = String(e).slice(0, 90); }
-      record(name, 's01 all 22 disks have a unique data-scene', ok, d);
+      record(name, 's01 all 28 disks have a unique data-scene', ok, d);
     }
     /* s02 — scene animates on hover, resets (none) on leave */
     {
@@ -1620,9 +1621,10 @@ async function sceneScenes() {
         const a = html.indexOf('var FK={');
         const b = html.indexOf('function rootIcon(cat){');
         const licSVG = new Function(html.slice(a, b) + '; return licSVG;')();
-        const kinds = ["about","me","work","deloitte","intermedia","army","edu","univ","mb500","gears","atom","rocket","alpha","themis","fraud","icu","greek","archivesys","github","linkedin","cv","env"];
+        const kinds = ["about","me","work","deloitte","intermedia","army","edu","univ","mb500","gears","atom","rocket","alpha","themis","fraud","icu","greek","archivesys","github","linkedin","cv","env",
+          "ai-d365","agent-memory","llm-eval","infra-tools","rapids","deeplearning"];
         /* v7 L: army is prop-only now (access pictogram, no figure) */
-        const human = ["about","me","work","deloitte","intermedia","edu","univ","themis","fraud","icu","linkedin"];
+        const human = ["about","me","work","deloitte","intermedia","edu","univ","themis","fraud","icu","linkedin","ai-d365"];
         const headR = new Set(), strokes = new Set();
         let totalHeads = 0, missing = [];
         for (const k of kinds) {
@@ -1634,11 +1636,11 @@ async function sceneScenes() {
           const figs = (svg.match(/class="fig"/g)||[]).length;
           if (human.includes(k) && (figs < 1 || heads.length < 1)) missing.push(k);
         }
-        ok = kinds.length === 22
+        ok = kinds.length === 28
           && headR.size === 1 && [...headR][0] === '2.3'   // one shared head circle
           && strokes.size === 1 && [...strokes][0] === '1.6' // one limb stroke width
           && missing.length === 0                            // every human scene has a figure
-          && totalHeads >= 13;                               // v7 L: 11 figures (army prop-only), icu+linkedin have 2
+          && totalHeads >= 14;                               // 12 figures (army prop-only), icu+linkedin have 2
         d = `scenes=${kinds.length} headR=[${[...headR]}] stroke=[${[...strokes]}] heads=${totalHeads} missing=${missing.join(',')||'-'}`;
       } catch (e) { ok = false; d = String(e).slice(0, 90); }
       record(name, 's08 P9 figure kit: shared head radius + one stroke width', ok, d);
@@ -1651,11 +1653,15 @@ async function sceneScenes() {
   }
   await ctx.close();
   await browser.close();
-  /* s07 — index.html stays reasonably small */
+  /* s07 — index.html stays reasonably small. Budget raised from 200 KB to
+     220 KB on 21 Oct 2026: the 6 new disk scenes added ~5 KB raw (+1.4 KB
+     gzip) and the old budget had ~190 bytes left. About 45 KB of the file is
+     source comments carried into the inlined CSS/JS; stripping them at build
+     time is the way to win the room back if the page grows again. */
   {
     const fs = await import('node:fs');
     const size = fs.statSync(path.join(SITE, 'index.html')).size;
-    record(name, 's07 index.html size reasonable (<200KB)', size < 200 * 1024, (size / 1024).toFixed(1) + ' KB');
+    record(name, 's07 index.html size reasonable (<220KB)', size < 220 * 1024, (size / 1024).toFixed(1) + ' KB');
   }
 }
 

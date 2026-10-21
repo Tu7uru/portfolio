@@ -969,6 +969,22 @@ hovered/focused; on leave the animation drops and the ✕ reverts. The old
 .obj:hover .li-sheetC,.obj:focus-visible .li-sheetC{animation:liSheetC 1.4s ease-in-out infinite}
 .obj:hover .li-flap,.obj:focus-visible .li-flap{animation:liFlap 1.5s ease-in-out infinite}
 .obj:hover .li-letter,.obj:focus-visible .li-letter{animation:liLetter 1.5s ease-in-out infinite}
+/* personal projects + NVIDIA certificates (21 Oct 2026) */
+.obj:hover .li-spark,.obj:focus-visible .li-spark{animation:liSpark 1.4s ease-in-out infinite}
+.obj:hover .li-rec,.obj:focus-visible .li-rec{animation:liRec 1.4s ease-in-out infinite}
+.obj:hover .li-tilt,.obj:focus-visible .li-tilt{animation:liTilt 1.6s ease-in-out infinite}
+.obj:hover .li-led1,.obj:focus-visible .li-led1{animation:liBlink 1.2s steps(1) infinite}
+.obj:hover .li-led2,.obj:focus-visible .li-led2{animation:liBlink 1.2s steps(1) infinite;animation-delay:.4s}
+.obj:hover .li-led3,.obj:focus-visible .li-led3{animation:liBlink 1.2s steps(1) infinite;animation-delay:.8s}
+.obj:hover .li-bolt,.obj:focus-visible .li-bolt{animation:liBolt 1.2s ease-in-out infinite}
+.obj:hover .li-n1,.obj:focus-visible .li-n1{animation:liNode 1.5s ease-in-out infinite}
+.obj:hover .li-n2,.obj:focus-visible .li-n2{animation:liNode 1.5s ease-in-out infinite;animation-delay:.3s}
+.obj:hover .li-n3,.obj:focus-visible .li-n3{animation:liNode 1.5s ease-in-out infinite;animation-delay:.6s}
+@keyframes liSpark{0%,100%{transform:scale(1) rotate(0)}45%{transform:scale(.45) rotate(45deg)}70%{transform:scale(1.25) rotate(90deg)}}
+@keyframes liRec{0%,8%{transform:translateY(0);opacity:1}55%{transform:translateY(4.6px);opacity:1}70%{transform:translateY(5.2px);opacity:0}86%{transform:translateY(0);opacity:0}100%{transform:translateY(0);opacity:1}}
+@keyframes liTilt{0%,100%{transform:rotate(0)}25%{transform:rotate(-12deg)}75%{transform:rotate(12deg)}}
+@keyframes liBolt{0%,100%{opacity:1;transform:scale(1)}25%{opacity:.15;transform:scale(.8)}50%{opacity:1;transform:scale(1.25)}}
+@keyframes liNode{0%,100%{opacity:1}35%,65%{opacity:.1}}
 /* a disk being dragged: its scene pauses (frozen mid-frame) */
 .obj-wrap.dragging .lic *{animation-play-state:paused!important}
 @media (prefers-reduced-motion:reduce){
@@ -2276,6 +2292,50 @@ return S
 +'<g class="li-pump"><line x1="11" y1="14.5" x2="12" y2="10.5"/><line x1="13" y1="14.5" x2="12" y2="10.5"/><circle cx="12" cy="10.5" r="1.3" fill="currentColor" stroke="none"/></g></svg>';}
 /* cv — a sheet comes out of the printer */
 if(kind==="cv") return S+'<g class="li-sheetC"><rect x="7.2" y="11.2" width="9.6" height="7.2" fill="currentColor" fill-opacity=".16"/><line x1="9" y1="14" x2="15" y2="14"/><line x1="9" y1="16.4" x2="13.2" y2="16.4"/></g><rect x="4.8" y="9" width="14.4" height="6.2" rx="1"/><line x1="4.8" y1="12" x2="19.2" y2="12"/></svg>';
+/* ai-d365 — developer at a screen of code; an AI sparkle twinkles on it */
+if(kind==="ai-d365"){var hx=6.8,hy=6.4,sh=hy+FK.r+FK.sh,hip=hy+FK.r+FK.torso;
+return S+'<g class="fig">'+_head(hx,hy)+_torso(hx,hy)
++_limb(hx,hip,135,FK.leg)+_limb(hx,hip,45,FK.leg)
++_limb(hx,sh,0,FK.arm)+_hand(hx+FK.arm,sh)
++_limb(hx,sh,135,FK.arm)+_hand(hx-2.83,sh+2.83)+'</g>'
++'<rect x="12" y="4.8" width="9" height="8.4" rx=".6"/>'
++'<path class="li-spark" style="transform-origin:16.5px 8px" d="M16.5 5.9l.6 1.5 1.5.6-1.5.6-.6 1.5-.6-1.5-1.5-.6 1.5-.6z" fill="currentColor" stroke-width="1"/>'
++'<line x1="13.6" y1="11.4" x2="19.4" y2="11.4" stroke-width="1.2"/>'
++'<line x1="16.5" y1="13.2" x2="16.5" y2="15"/><line x1="14.5" y1="15.2" x2="18.5" y2="15.2"/></svg>';}
+/* agent-memory — a record drops into a database cylinder */
+if(kind==="agent-memory") return S
++'<rect class="li-rec" x="10" y="1.6" width="4" height="2.6" rx=".4" fill="currentColor" stroke="none"/>'
++'<ellipse cx="12" cy="7.6" rx="6.2" ry="2.2"/>'
++'<path d="M5.8 7.6v11.2a6.2 2.2 0 0 0 12.4 0V7.6"/>'
++'<path d="M5.8 11.4a6.2 2.2 0 0 0 12.4 0M5.8 15.1a6.2 2.2 0 0 0 12.4 0"/></svg>';
+/* llm-eval — A/B balance: the beam tips one way, then the other */
+if(kind==="llm-eval") return S
++'<line x1="12" y1="6" x2="12" y2="19.4"/><line x1="8" y1="19.6" x2="16" y2="19.6"/>'
++'<g class="li-tilt" style="transform-origin:12px 6px">'
++'<line x1="3.6" y1="6" x2="20.4" y2="6"/>'
++'<path d="M5 6l-2.2 5.4M5 6l2.2 5.4M19 6l-2.2 5.4M19 6l2.2 5.4" stroke-width="1"/>'
++'<path d="M2.4 11.4h5.2a2.6 2.6 0 0 1-5.2 0zM16.4 11.4h5.2a2.6 2.6 0 0 1-5.2 0z"/></g>'
++'<circle cx="12" cy="6" r="1" fill="currentColor" stroke="none"/></svg>';
+/* infra-tools — server rack, the three status lights blink in turn */
+if(kind==="infra-tools") return S
++'<rect x="5.5" y="3.4" width="13" height="16" rx="1"/>'
++'<line x1="5.5" y1="8.7" x2="18.5" y2="8.7"/><line x1="5.5" y1="14.1" x2="18.5" y2="14.1"/>'
++'<line x1="11.4" y1="6" x2="16.2" y2="6"/><line x1="11.4" y1="11.4" x2="16.2" y2="11.4"/><line x1="11.4" y1="16.8" x2="16.2" y2="16.8"/>'
++'<circle class="li-led1" cx="8.3" cy="6" r=".9" fill="currentColor" stroke="none"/>'
++'<circle class="li-led2" cx="8.3" cy="11.4" r=".9" fill="currentColor" stroke="none"/>'
++'<circle class="li-led3" cx="8.3" cy="16.8" r=".9" fill="currentColor" stroke="none"/>'
++'<line x1="7.4" y1="19.4" x2="7.4" y2="21"/><line x1="16.6" y1="19.4" x2="16.6" y2="21"/></svg>';
+/* rapids — accelerated computing: a GPU chip, its lightning bolt flashes */
+if(kind==="rapids") return S
++'<rect x="6.5" y="6.5" width="11" height="11" rx="1"/>'
++'<path d="M4.2 9.5h2.3M4.2 12h2.3M4.2 14.5h2.3M17.5 9.5h2.3M17.5 12h2.3M17.5 14.5h2.3M9.5 4.2v2.3M12 4.2v2.3M14.5 4.2v2.3M9.5 17.5v2.3M12 17.5v2.3M14.5 17.5v2.3"/>'
++'<polygon class="li-bolt" style="transform-origin:12px 12px" points="13,8.4 9.6,12.6 11.9,12.6 11,15.6 14.4,11.4 12.1,11.4" fill="currentColor" stroke-width="1"/></svg>';
+/* deeplearning — 3-2-1 neural net, a signal lights each layer in turn */
+if(kind==="deeplearning"){var L=[[[5,6.5],[5,12],[5,17.5]],[[12,9],[12,15]],[[19,12]]],o='';
+for(var a=0;a<2;a++)L[a].forEach(function(p){L[a+1].forEach(function(q){var dx=q[0]-p[0],dy=q[1]-p[1],n=Math.sqrt(dx*dx+dy*dy),k=1.8/n;
+o+='<line x1="'+(p[0]+dx*k).toFixed(2)+'" y1="'+(p[1]+dy*k).toFixed(2)+'" x2="'+(q[0]-dx*k).toFixed(2)+'" y2="'+(q[1]-dy*k).toFixed(2)+'" stroke-width="1"/>';});});
+L.forEach(function(l,i){l.forEach(function(p){o+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="1.8"/><circle class="li-n'+(i+1)+'" cx="'+p[0]+'" cy="'+p[1]+'" r=".9" fill="currentColor" stroke="none"/>';});});
+return S+o+'</svg>';}
 /* disk — plain 3.5" silhouette: the default scene for unknown ids */
 if(kind==="disk") return S+'<rect x="4.5" y="4.5" width="15" height="15" rx="1.2"/><rect x="8.2" y="4.5" width="7.6" height="5"/><path d="M13.2 4.5v5"/><rect x="7.5" y="12.5" width="9" height="5" rx=".5"/></svg>';
 /* env — envelope, flap lifts to reveal a letter */
@@ -2287,7 +2347,8 @@ return {"ABOUT.ME":"about",WORK:"work",EDUCATION:"edu",PROJECTS:"gears",CONTACT:
 /* every id licSVG can draw — used to decide the scene fallback (v6 item 1) */
 var SCENES={about:1,me:1,work:1,deloitte:1,intermedia:1,army:1,edu:1,univ:1,mb500:1,
 gears:1,atom:1,rocket:1,alpha:1,themis:1,fraud:1,icu:1,greek:1,archivesys:1,
-github:1,linkedin:1,cv:1,env:1,disk:1};
+github:1,linkedin:1,cv:1,env:1,disk:1,"ai-d365":1,"agent-memory":1,"llm-eval":1,
+"infra-tools":1,rapids:1,deeplearning:1};
 function iconFor(parent,item){
 if(item&&item.folder){
 if(item.id==="academic") return "atom";   /* v4 special, kept */

@@ -131,6 +131,22 @@ hovered/focused; on leave the animation drops and the ✕ reverts. The old
 .obj:hover .li-sheetC,.obj:focus-visible .li-sheetC{animation:liSheetC 1.4s ease-in-out infinite}
 .obj:hover .li-flap,.obj:focus-visible .li-flap{animation:liFlap 1.5s ease-in-out infinite}
 .obj:hover .li-letter,.obj:focus-visible .li-letter{animation:liLetter 1.5s ease-in-out infinite}
+/* personal projects + NVIDIA certificates (21 Oct 2026) */
+.obj:hover .li-spark,.obj:focus-visible .li-spark{animation:liSpark 1.4s ease-in-out infinite}
+.obj:hover .li-rec,.obj:focus-visible .li-rec{animation:liRec 1.4s ease-in-out infinite}
+.obj:hover .li-tilt,.obj:focus-visible .li-tilt{animation:liTilt 1.6s ease-in-out infinite}
+.obj:hover .li-led1,.obj:focus-visible .li-led1{animation:liBlink 1.2s steps(1) infinite}
+.obj:hover .li-led2,.obj:focus-visible .li-led2{animation:liBlink 1.2s steps(1) infinite;animation-delay:.4s}
+.obj:hover .li-led3,.obj:focus-visible .li-led3{animation:liBlink 1.2s steps(1) infinite;animation-delay:.8s}
+.obj:hover .li-bolt,.obj:focus-visible .li-bolt{animation:liBolt 1.2s ease-in-out infinite}
+.obj:hover .li-n1,.obj:focus-visible .li-n1{animation:liNode 1.5s ease-in-out infinite}
+.obj:hover .li-n2,.obj:focus-visible .li-n2{animation:liNode 1.5s ease-in-out infinite;animation-delay:.3s}
+.obj:hover .li-n3,.obj:focus-visible .li-n3{animation:liNode 1.5s ease-in-out infinite;animation-delay:.6s}
+@keyframes liSpark{0%,100%{transform:scale(1) rotate(0)}45%{transform:scale(.45) rotate(45deg)}70%{transform:scale(1.25) rotate(90deg)}}
+@keyframes liRec{0%,8%{transform:translateY(0);opacity:1}55%{transform:translateY(4.6px);opacity:1}70%{transform:translateY(5.2px);opacity:0}86%{transform:translateY(0);opacity:0}100%{transform:translateY(0);opacity:1}}
+@keyframes liTilt{0%,100%{transform:rotate(0)}25%{transform:rotate(-12deg)}75%{transform:rotate(12deg)}}
+@keyframes liBolt{0%,100%{opacity:1;transform:scale(1)}25%{opacity:.15;transform:scale(.8)}50%{opacity:1;transform:scale(1.25)}}
+@keyframes liNode{0%,100%{opacity:1}35%,65%{opacity:.1}}
 /* a disk being dragged: its scene pauses (frozen mid-frame) */
 .obj-wrap.dragging .lic *{animation-play-state:paused!important}
 @media (prefers-reduced-motion:reduce){
