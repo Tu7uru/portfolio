@@ -2,7 +2,7 @@
 title: Curriculum Vitae
 period: DOWNLOAD
 tags: CV, PDF
-link: cv.pdf
+link: HaralambosVarsamis_CV.pdf
 linkLabel: OPEN CV ↗
 plain: Curriculum Vitae (PDF)
 order: 30

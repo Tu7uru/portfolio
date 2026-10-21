@@ -6,6 +6,12 @@ All notable changes to this site are listed here. The format follows
 sections or features, PATCH for content updates and fixes. Each release is an
 annotated git tag `vX.Y.Z`; the visitor-facing label shows `V<MAJOR>.<MINOR>`.
 
+## [1.0.2] - 2026-10-21
+
+### Changed
+- The CV is published as `HaralambosVarsamis_CV.pdf` (was `cv.pdf`). Published file names
+  carry no version; the CV's own version is noted in the commit that updates it.
+
 ## [1.0.1] - 2026-10-21
 
 ### Fixed
@@ -30,5 +36,6 @@ First public release of ARCHIVE.SYS.
 - No-JavaScript fallback listing the whole archive.
 - Build pipeline (`src/` + `content/` -> `docs/index.html`), Playwright QA suite, Prettier formatting.
 
+[1.0.2]: https://github.com/Tu7uru/portfolio/releases/tag/v1.0.2
 [1.0.1]: https://github.com/Tu7uru/portfolio/releases/tag/v1.0.1
 [1.0.0]: https://github.com/Tu7uru/portfolio/releases/tag/v1.0.0

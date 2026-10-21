@@ -96,7 +96,7 @@ function cardHTML(it) {
       "</div>";
   }
   h += '<p class="card-d">' + it.desc + "</p>";
-  var isCV = it.link && (it.link === "cv.pdf" || /^open cv/i.test(it.linkLabel || ""));
+  var isCV = it.link && (it.link === "HaralambosVarsamis_CV.pdf" || /^open cv/i.test(it.linkLabel || ""));
   /* v6 card button rules — derived from the item's data, not per item
 (documented in CONTENT-GUIDE.md):
 contact-style link item (its own link, no detail)  -> its link ONLY
@@ -112,7 +112,8 @@ item has a non-CV link */
     ? '<button class="card-more" type="button">VIEW MORE</button>'
     : '<span aria-hidden="true"></span>';
   h += '<span class="card-right">';
-  if (!isContact) h += '<a class="card-l" href="cv.pdf" target="_blank" rel="noopener">OPEN CV ↗</a>';
+  if (!isContact)
+    h += '<a class="card-l" href="HaralambosVarsamis_CV.pdf" target="_blank" rel="noopener">OPEN CV ↗</a>';
   if (it.link && !isCV) {
     if (!isContact) h += '<i class="card-sep" aria-hidden="true"></i>';
     h += '<a class="card-l" href="' + it.link + '" target="_blank" rel="noopener">' + linkText(it) + "</a>";

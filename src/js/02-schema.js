@@ -28,7 +28,7 @@ var SCHEMA = {
     detail: { req: false, note: "lines[]; its presence enables VIEW MORE + detail view" },
     link: {
       req: false,
-      note: 'URL or file; "cv.pdf" = the CV. This IS the repo URL for projects — there is no REPOS map'
+      note: 'URL or file; "HaralambosVarsamis_CV.pdf" = the CV. This IS the repo URL for projects — there is no REPOS map'
     },
     linkLabel: {
       req: false,

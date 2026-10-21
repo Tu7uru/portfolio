@@ -3441,7 +3441,7 @@ height: 40px;
 <!-- v7 G3 (item 12): no JavaScript — the screen stays dark, but the whole
 shelf is here as a plain list with its routes and the CV. -->
 <noscript>
-<!-- v7 G3 item 12 + review #9: no JS — the shelf inline (the iframe's #open links were dead); real links: GitHub / LinkedIn / cv.pdf -->
+<!-- v7 G3 item 12 + review #9: no JS — the shelf inline (the iframe's #open links were dead); real links: GitHub / LinkedIn / HaralambosVarsamis_CV.pdf -->
 <style>
 .ns-cover {
 position: fixed;
@@ -3543,9 +3543,9 @@ shelf as a plain list.</p
 <h2>Drive E · CONTACT</h2>
 <ul><li><a href="https://github.com/Tu7uru">GITHUB</a> — github.com/Tu7uru</li>
 <li><a href="https://www.linkedin.com/in/haralambos-varsamis">LINKEDIN</a> — linkedin.com/in/haralambos-varsamis</li>
-<li><a href="cv.pdf">CV</a> — Curriculum Vitae (PDF)</li></ul>
+<li><a href="HaralambosVarsamis_CV.pdf">CV</a> — Curriculum Vitae (PDF)</li></ul>
 <!--@NOSCRIPT-END-->
-<p class="ns-cv"><a href="cv.pdf">cv.pdf — OPEN CV ↗</a></p>
+<p class="ns-cv"><a href="HaralambosVarsamis_CV.pdf">HaralambosVarsamis_CV.pdf — OPEN CV ↗</a></p>
 </div>
 </div>
 </noscript>
@@ -3759,7 +3759,7 @@ var DATA = {
 "CONTACT":{ drive:"E", items:[
 {"id":"github","label":"GITHUB","title":"GitHub","period":"CODE","tags":["Repositories"],"desc":"github.com/Tu7uru","link":"https://github.com/Tu7uru","linkLabel":"— open ↗"},
 {"id":"linkedin","label":"LINKEDIN","title":"LinkedIn","period":"PROFILE","tags":["Professional"],"desc":"linkedin.com/in/haralambos-varsamis","link":"https://www.linkedin.com/in/haralambos-varsamis","linkLabel":"— open ↗"},
-{"id":"cv","label":"CV","title":"Curriculum Vitae","period":"DOWNLOAD","tags":["CV","PDF"],"desc":"Full CV as a PDF.","link":"cv.pdf","linkLabel":"OPEN CV ↗"}
+{"id":"cv","label":"CV","title":"Curriculum Vitae","period":"DOWNLOAD","tags":["CV","PDF"],"desc":"Full CV as a PDF.","link":"HaralambosVarsamis_CV.pdf","linkLabel":"OPEN CV ↗"}
 ]}
 };
 var CATS = ["ABOUT.ME","WORK","EDUCATION","PROJECTS","CONTACT"];
@@ -3794,7 +3794,7 @@ desc: { req: false, note: "card text; clamped to 2 lines (VIEW MORE shows all)" 
 detail: { req: false, note: "lines[]; its presence enables VIEW MORE + detail view" },
 link: {
 req: false,
-note: 'URL or file; "cv.pdf" = the CV. This IS the repo URL for projects — there is no REPOS map'
+note: 'URL or file; "HaralambosVarsamis_CV.pdf" = the CV. This IS the repo URL for projects — there is no REPOS map'
 },
 linkLabel: {
 req: false,
@@ -6442,7 +6442,7 @@ return "<span>" + t + "</span>";
 "</div>";
 }
 h += '<p class="card-d">' + it.desc + "</p>";
-var isCV = it.link && (it.link === "cv.pdf" || /^open cv/i.test(it.linkLabel || ""));
+var isCV = it.link && (it.link === "HaralambosVarsamis_CV.pdf" || /^open cv/i.test(it.linkLabel || ""));
 /* v6 card button rules — derived from the item's data, not per item
 (documented in CONTENT-GUIDE.md):
 contact-style link item (its own link, no detail)  -> its link ONLY
@@ -6458,7 +6458,8 @@ h += it.detail
 ? '<button class="card-more" type="button">VIEW MORE</button>'
 : '<span aria-hidden="true"></span>';
 h += '<span class="card-right">';
-if (!isContact) h += '<a class="card-l" href="cv.pdf" target="_blank" rel="noopener">OPEN CV ↗</a>';
+if (!isContact)
+h += '<a class="card-l" href="HaralambosVarsamis_CV.pdf" target="_blank" rel="noopener">OPEN CV ↗</a>';
 if (it.link && !isCV) {
 if (!isContact) h += '<i class="card-sep" aria-hidden="true"></i>';
 h += '<a class="card-l" href="' + it.link + '" target="_blank" rel="noopener">' + linkText(it) + "</a>";
@@ -6587,7 +6588,7 @@ return '<span class="mps">' + (i ? "\u00b7\u00a0" : "") + String(t).toUpperCase(
 .join(" ") +
 "</span>";
 h += '<span class="dt-linkrow">';
-h += '<a class="card-l" href="cv.pdf" target="_blank" rel="noopener">OPEN CV ↗</a>';
+h += '<a class="card-l" href="HaralambosVarsamis_CV.pdf" target="_blank" rel="noopener">OPEN CV ↗</a>';
 if (it.link)
 h += '<a class="card-l" href="' + it.link + '" target="_blank" rel="noopener">' + linkText(it) + "</a>";
 h += "</span></div>";

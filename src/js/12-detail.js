@@ -87,7 +87,7 @@ with desc) restates it — drop it */
         .join(" ") +
       "</span>";
   h += '<span class="dt-linkrow">';
-  h += '<a class="card-l" href="cv.pdf" target="_blank" rel="noopener">OPEN CV ↗</a>';
+  h += '<a class="card-l" href="HaralambosVarsamis_CV.pdf" target="_blank" rel="noopener">OPEN CV ↗</a>';
   if (it.link)
     h += '<a class="card-l" href="' + it.link + '" target="_blank" rel="noopener">' + linkText(it) + "</a>";
   h += "</span></div>";

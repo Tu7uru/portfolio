@@ -27,7 +27,7 @@ label: DELOITTE                      # text on the disk (default: file name in C
 period: OCT 2023 — PRESENT
 role: Software Engineer · D365 F&O (X++)
 tags: X++, Dynamics 365 F&O, Data Migration      # comma-separated
-link: https://github.com/Tu7uru/x    # or cv.pdf; projects show REPO ↗
+link: https://github.com/Tu7uru/x    # or HaralambosVarsamis_CV.pdf; projects show REPO ↗
 linkLabel: OPEN                      # contacts: OPEN ↗; "OPEN CV ↗" marks the CV
 plain: Software Engineer · Oct 2023 — present    # one-liner for the no-JavaScript list (optional)
 order: 10                            # position among its siblings (10, 20, 30 … leaves room)
@@ -42,4 +42,4 @@ One-paragraph summary (shown on the card and as the big line on the detail page)
 ```
 Only `title` is needed. Without bullets there is no VIEW MORE page.
 Icons: known ids (deloitte, army, alpha, …) have their own drawing. A new disk gets its folder's default icon (work = desk figure, projects = gears, education = cap, otherwise a plain disk).
-Attachments: put PDFs and other files in `docs/` (next to cv.pdf) and use `link: file.pdf`.
+Attachments: put PDFs and other files in `docs/` (next to HaralambosVarsamis_CV.pdf) and use `link: file.pdf`.

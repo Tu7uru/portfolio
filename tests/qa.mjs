@@ -941,7 +941,7 @@ async function runViewport(vp) {
       await openCat(page, "WORK");
       await openCard(page, "deloitte");
       const cl = await page.evaluate(() => {
-        const a = document.querySelector('.card a[href="cv.pdf"]');
+        const a = document.querySelector('.card a[href="HaralambosVarsamis_CV.pdf"]');
         return a ? { t: a.textContent.trim(), target: a.target, rel: a.getAttribute("rel") || "" } : null;
       });
       if (!cl || cl.target !== "_blank" || !cl.rel.includes("noopener") || !cl.t.startsWith("OPEN CV")) {
@@ -955,7 +955,7 @@ async function runViewport(vp) {
         { timeout: 4000 }
       );
       const dt = await page.evaluate(() => {
-        const a = document.querySelector('#detailView a[href="cv.pdf"]');
+        const a = document.querySelector('#detailView a[href="HaralambosVarsamis_CV.pdf"]');
         return {
           lines: document.querySelectorAll("#detailView .dt-line").length,
           resume: a ? { t: a.textContent.trim(), target: a.target, rel: a.getAttribute("rel") || "" } : null
@@ -3539,9 +3539,11 @@ async function v6fixes() {
             const ownOnly = !!CONTACT[id];
             const okMore = st.more === wantMore;
             let okLinks;
-            if (resumeOnly) okLinks = st.links.length === 1 && st.links[0] === "cv.pdf";
-            else if (ownOnly) okLinks = st.links.length === 1 && st.links[0] !== "cv.pdf";
-            else okLinks = st.links.includes("cv.pdf") && st.links.length === (REPO[id] ? 2 : 1);
+            if (resumeOnly) okLinks = st.links.length === 1 && st.links[0] === "HaralambosVarsamis_CV.pdf";
+            else if (ownOnly) okLinks = st.links.length === 1 && st.links[0] !== "HaralambosVarsamis_CV.pdf";
+            else
+              okLinks =
+                st.links.includes("HaralambosVarsamis_CV.pdf") && st.links.length === (REPO[id] ? 2 : 1);
             if (!(okMore && okLinks)) bad.push(`${id}: more=${st.more} links=[${st.links.join(",")}]`);
             await escClose(page);
           }
@@ -3932,12 +3934,16 @@ async function v6fixes() {
         }));
         const wantMore = !!item.detail;
         const wantLinks =
-          item.link && item.link !== "cv.pdf" ? [item.link] : card.more ? card.links : ["cv.pdf"];
+          item.link && item.link !== "HaralambosVarsamis_CV.pdf"
+            ? [item.link]
+            : card.more
+              ? card.links
+              : ["HaralambosVarsamis_CV.pdf"];
         if (card.more !== wantMore) bad.push(cat + ": VIEW MORE=" + card.more + " (want " + wantMore + ")");
-        if (item.link && item.link !== "cv.pdf") {
-          if (!card.links.includes(item.link) || card.links.includes("cv.pdf"))
+        if (item.link && item.link !== "HaralambosVarsamis_CV.pdf") {
+          if (!card.links.includes(item.link) || card.links.includes("HaralambosVarsamis_CV.pdf"))
             bad.push(cat + ": links " + JSON.stringify(card.links));
-        } else if (!card.links.includes("cv.pdf")) bad.push(cat + ": no CV link");
+        } else if (!card.links.includes("HaralambosVarsamis_CV.pdf")) bad.push(cat + ": no CV link");
         await escClose(page);
       }
       record(
@@ -4986,7 +4992,7 @@ async function g3Fixes() {
   }
   /* g3e — (item 12 + review #9) <noscript> shelf, INLINE in the document:
      all sections/items as plain text, real https links for GitHub/LinkedIn,
-     a direct cv.pdf link, no iframe (it was dead without JS) */
+     a direct HaralambosVarsamis_CV.pdf link, no iframe (it was dead without JS) */
   {
     let ok = true,
       d = "";
@@ -5028,7 +5034,7 @@ async function g3Fixes() {
         has("https://github.com/Tu7uru") &&
         has("https://www.linkedin.com/in/haralambos-varsamis") &&
         m.hrefs &&
-        m.hrefs.filter((h) => h === "cv.pdf").length >= 2 &&
+        m.hrefs.filter((h) => h === "HaralambosVarsamis_CV.pdf").length >= 2 &&
         [
           "ABOUT.ME",
           "DELOITTE",
