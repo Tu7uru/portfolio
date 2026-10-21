@@ -69,6 +69,7 @@ const REPOS = {
   fraud: 'Fraud-Detection-System',
   icu: 'Files-And-Databases---ICU-on-Call',
   greek: 'IR-and-mistype-corrections-on-Greek-documents',
+  archivesys: 'portfolio',
 };
 const TOL = 2; // px tolerance for scrollWidth/clientWidth rounding
 
@@ -1965,10 +1966,10 @@ async function p5fixes() {
 /* ---------------- P7 polish checks ---------------- */
 const P7_VIEWS = [
   ['PROJECTS/ACADEMIC', ['alpha','themis','fraud','icu','greek']],
-  ['PROJECTS/PERSONAL', ['archivesys']],
+  ['PROJECTS/PERSONAL', ['ai-d365','agent-memory','llm-eval','infra-tools','archivesys']],
   ['ABOUT.ME', ['me']],
   ['WORK', ['deloitte','intermedia','army']],
-  ['EDUCATION', ['univ','mb500']],
+  ['EDUCATION', ['univ','mb500','rapids','deeplearning']],
   ['CONTACT', ['github','linkedin','cv']],
 ];
 async function p7fixes() {
@@ -2185,8 +2186,9 @@ async function v6fixes() {
               return { more: !!card.querySelector('.card-more'),
                        links: [...card.querySelectorAll('.card-actions .card-l')].map(a => a.getAttribute('href')) };
             });
-            const wantMore = !CONTACT[id] && id !== 'cv' && id !== 'me';   // detail items only
-            const resumeOnly = id === 'cv' || id === 'me';
+            const NO_DETAIL = { cv: 1, mb500: 1, rapids: 1, deeplearning: 1 }; // items without bullets
+            const wantMore = !CONTACT[id] && !NO_DETAIL[id];   // detail items only (ABOUT.ME has one)
+            const resumeOnly = id === 'cv';
             const ownOnly = !!CONTACT[id];
             const okMore = st.more === wantMore;
             let okLinks;
