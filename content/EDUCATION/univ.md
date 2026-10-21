@@ -1,13 +1,13 @@
 ---
 title: University of Crete
 label: BSC C.S.
-period: 2016 — 2022
-role: BSc Computer Science
-tags: Computer Science
-plain: University of Crete · 2016 — 2022
+period: SEP 2016 — SEP 2022
+role: BSc Computer Science · Heraklion, Greece
+tags: Computer Science, Information Retrieval
+plain: BSc Computer Science, University of Crete · Sep 2016 — Sep 2022
 order: 10
 ---
-Bachelor of Science in Computer Science, University of Crete.
+Bachelor of Science in Computer Science. Grade: 7.41/10 (Very Good).
 
-- 2016 – 2022.
-- University project during the degree: Alpha-Language-Compiler (see PROJECTS → ACADEMIC).
+- Thesis on IR Systems: Elasticsearch, Solr, and Algolia indexing with typo-tolerant correction algorithm (see PROJECTS → ACADEMIC → GREEK-IR).
+- University projects during the degree, including the Alpha-Language-Compiler (see PROJECTS → ACADEMIC).

@@ -2,9 +2,9 @@
 title: HARALAMBOS VARSAMIS
 label: ABOUT.ME
 period: SOFTWARE ENGINEER
-role: C#/.NET + SQL Server · Dynamics 365 F&O (X++)
-tags: C#/.NET, SQL Server, Dynamics 365 F&O, Dublin · Oct 2026
-plain: Software Engineer · C#/.NET + SQL Server · Dynamics 365 F&O (X++)
+role: Dynamics 365 F&O (X++) · C#, .NET, SQL Server
+tags: Dynamics 365 F&O, X++, C#, .NET, SQL Server, Dublin
+plain: Software Engineer · Dynamics 365 F&O (X++) · C#, .NET, SQL Server
 order: 10
 ---
-Back-end software engineer focused on C#/.NET and SQL Server, with hands-on Microsoft Dynamics 365 Finance & Operations (X++) delivery. Relocating to Dublin, Ireland in October 2026.
+Microsoft-certified (MB-500) Dynamics 365 Finance and Operations developer with 5 years of back-end experience in C#, .NET, and SQL Server.

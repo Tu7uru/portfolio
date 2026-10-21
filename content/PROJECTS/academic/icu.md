@@ -1,5 +1,5 @@
 ---
-title: Files & Databases — ICU on Call
+title: ICU on Call (Files & Databases)
 label: ICU-ON-CALL
 period: SYSTEMS PROJECT
 tags: Java, Databases

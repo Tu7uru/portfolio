@@ -7,4 +7,4 @@ linkLabel: OPEN RESUME ↗
 plain: Curriculum Vitae (PDF)
 order: 30
 ---
-Full CV — placeholder, to be attached.
+Full CV as a PDF.

@@ -1,14 +1,14 @@
 ---
-title: Archive.SYS
+title: ARCHIVE.SYS
 label: ARCHIVE.SYS
-period: 2026 · IN PROGRESS
-role: In Progress
-tags: Portfolio, Web, In progress
-plain: this portfolio · in progress
-order: 10
+period: 2026 · THIS SITE
+tags: HTML, CSS, Playwright, GitHub Pages
+link: https://github.com/Tu7uru/portfolio
+plain: this portfolio · github.com/Tu7uru/portfolio
+order: 50
 ---
-This portfolio — a working archive behind a working screen. Private for now.
+This portfolio: a working archive behind a working screen.
 
-- This portfolio — a working archive behind a working screen.
-- Single-file HTML/CSS/JS: CRT case, BIOS boot, disk tray, plain list, detail views.
-- In progress (2026). Private for now.
+- One self-contained HTML page with a CRT case, BIOS boot, disk tray, plain list, and detail views.
+- Built from Markdown content files by a small build script.
+- Checked by a Playwright QA suite of 400+ checks.

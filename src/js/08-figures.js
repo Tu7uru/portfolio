@@ -269,7 +269,7 @@ function renderItems(){
 var node=curNode();
 if(!node) return "";
 var last=S.path[S.path.length-1];
-var WIP={mb500:1,archivesys:1};
+var WIP={}; /* item ids that get a hand-written "WIP" sticker (none: MB-500 passed, ARCHIVE.SYS is live) */
 var cells=node.items.map(function(it){
 var cls="";
 if(WIP[it.id]) cls="sp-wip";

@@ -57,10 +57,10 @@ const CATS = ['ABOUT.ME', 'WORK', 'EDUCATION', 'PROJECTS', 'CONTACT'];
 const TREE = {
   ABOUT: { items: ['me'] },
   WORK: { items: ['deloitte', 'intermedia', 'army'] },
-  EDU: { items: ['univ', 'mb500'] },
+  EDU: { items: ['univ', 'mb500', 'rapids', 'deeplearning'] },
   PROJ: { folders: ['academic', 'personal'] },
   ACAD: { items: ['alpha', 'themis', 'fraud', 'icu', 'greek'] },
-  PERS: { items: ['archivesys'] },
+  PERS: { items: ['ai-d365', 'agent-memory', 'llm-eval', 'infra-tools', 'archivesys'] },
   CONTACT: { items: ['github', 'linkedin', 'cv'] },
 };
 const REPOS = {
@@ -932,7 +932,7 @@ async function runViewport(vp) {
       await dclick(page, '.obj[data-cat="EDUCATION"]');
       await page.waitForSelector('#arcBody .obj-item[data-item="mb500"]', { timeout: 4000 });
       const mb = await page.evaluate(() => document.querySelector('[data-item="mb500"]').className);
-      if (!mb.includes('sp-wip')) { ok = false; d += ' MB-500 wip missing'; }
+      if (mb.includes('sp-wip')) { ok = false; d += ' MB-500 still marked WIP (it is passed)'; }
       await dclick(page, '#ejectBtn');
       await page.waitForSelector('.obj[data-cat="ABOUT.ME"]', { timeout: 4000 });
       if (ok) d = '5 distinct shells, inheritance + specials ok';

@@ -1,16 +1,15 @@
 ---
-title: Intermedia
+title: INTERMEDIA
 period: JUL 2021 — AUG 2023
-role: Software Engineer
-tags: C#, .NET 6, LiteDB, PowerShell
-plain: Software Engineer · C#/.NET 6, LiteDB · Jul 2021 — Aug 2023
+role: Software Engineer · Heraklion, Greece
+tags: C#, .NET, SQL Server, EF Core, PowerShell
+plain: Software Engineer · C#, .NET, SQL Server · Jul 2021 — Aug 2023
 order: 20
 ---
-Security monitoring system scoring IP reputation against threat-intelligence feeds, built on C#/.NET 6 with LiteDB and PowerShell automation.
+Software company serving Greek municipalities and private-sector clients: public-facing platforms for up to 500 users, applied NLP research, new service products, and R&D on system interoperability, migration, technologies, and automation.
 
-- Software Engineer, Heraklion. Jul 2021 – Aug 2023.
-- Led the design and build of a security monitoring system that scores IP reputation against threat-intelligence services.
-- Stack: C#, .NET 6, LiteDB, PowerShell automation.
-- Migrated legacy databases with EF Core code-first — reverse engineering and transformation from SQL Server and REST APIs.
-- Refactored the code base ≈30% smaller.
-- Fixed MS Access → SQL Server migration issues with custom trigger logic.
+- Led the end-to-end design and implementation of a security monitoring system that scored IP reputation via integrated threat-intelligence services, built with C# (.NET 6), LiteDB, and PowerShell.
+- Redesigned and migrated legacy databases using EF Core code-first models, reverse engineering, and data transformation to SQL Server from MS Access and REST API sources; resolved cascade-action migration issues with custom trigger logic.
+- Refactored and optimised the codebase for performance and maintainability, reducing its size by 30%.
+- Automated publishing workflows, including HTML generation for Diavgeia, the Greek government transparency platform, and WordPress data uploads via TablePress, cutting publishing time.
+- Performed testing and code-coverage analysis with Selenium and Pester.
