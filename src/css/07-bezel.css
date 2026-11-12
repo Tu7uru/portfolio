@@ -826,6 +826,102 @@ hovered/focused; on leave the animation drops and the ✕ reverts. The old
     opacity: 0.1;
   }
 }
+/* theme-folder disks (12 Nov 2026): meteo day-rain-night, learnviz book-to-graph */
+.obj:hover .li-sun,
+.obj:focus-visible .li-sun {
+  animation: liSky 1.6s ease-in-out infinite;
+}
+.obj:hover .li-moon,
+.obj:focus-visible .li-moon {
+  animation: liMoonIn 1.6s ease-in-out infinite;
+}
+.obj:hover .li-drop1,
+.obj:focus-visible .li-drop1 {
+  animation: liDrop 1.6s ease-in-out infinite;
+}
+.obj:hover .li-drop2,
+.obj:focus-visible .li-drop2 {
+  animation: liDrop 1.6s ease-in-out infinite;
+  animation-delay: 0.14s;
+}
+.obj:hover .li-drop3,
+.obj:focus-visible .li-drop3 {
+  animation: liDrop 1.6s ease-in-out infinite;
+  animation-delay: 0.28s;
+}
+.obj:hover .li-fly,
+.obj:focus-visible .li-fly {
+  animation: liFly 1.5s ease-in-out infinite;
+}
+@keyframes liSky {
+  0%,
+  30% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  42%,
+  76% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  90%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes liMoonIn {
+  0%,
+  36% {
+    opacity: 0;
+  }
+  48%,
+  78% {
+    opacity: 1;
+  }
+  90%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes liDrop {
+  0%,
+  26% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  36% {
+    opacity: 1;
+  }
+  58% {
+    opacity: 1;
+    transform: translateY(2.4px);
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+}
+@keyframes liFly {
+  0%,
+  10% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  20% {
+    opacity: 1;
+  }
+  56% {
+    opacity: 1;
+    transform: translate(4.8px, -6.8px);
+  }
+  68%,
+  100% {
+    opacity: 0;
+    transform: translate(4.8px, -6.8px);
+  }
+}
 /* a disk being dragged: its scene pauses (frozen mid-frame) */
 .obj-wrap.dragging .lic * {
   animation-play-state: paused !important;

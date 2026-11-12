@@ -13,7 +13,15 @@ import fs from "node:fs";
 import path from "node:path";
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
-const { chromium } = require("playwright"); // npm i -D playwright, or NODE_PATH=<global node_modules>
+/* local npm install first; boxes where Playwright is installed only globally
+   resolve it through the npm global root (next to the node binary) */
+let pw;
+try {
+  pw = require("playwright");
+} catch {
+  pw = require(path.join(path.dirname(process.execPath), "..", "lib", "node_modules", "playwright"));
+}
+const { chromium } = pw; // npm i -D playwright, or NODE_PATH=<global node_modules>
 
 const ORIGIN = (process.env.QA_ORIGIN || "http://127.0.0.1:8739").replace(/\/$/, "");
 const SITE = path.resolve(process.env.QA_SITE || new URL("../docs", import.meta.url).pathname);
@@ -59,9 +67,12 @@ const TREE = {
   ABOUT: { items: ["me"] },
   WORK: { items: ["deloitte", "intermedia", "army"] },
   EDU: { items: ["univ", "mb500", "rapids", "deeplearning"] },
-  PROJ: { folders: ["academic", "personal"] },
+  PROJ: { folders: ["agents", "evaluation", "tools", "apps", "academic"] },
   ACAD: { items: ["alpha", "themis", "fraud", "icu", "greek"] },
-  PERS: { items: ["ai-d365", "agent-memory", "llm-eval", "infra-tools", "archivesys"] },
+  AGENTS: { items: ["agent-memory", "long-mem", "rule-driven"] },
+  EVALS: { items: ["llm-eval", "stress-judge"] },
+  TOOLS: { items: ["ai-d365", "infra-tools"] },
+  APPS: { items: ["learnviz", "archivesys", "meteo"] },
   CONTACT: { items: ["github", "linkedin", "cv"] }
 };
 const REPOS = {
@@ -826,7 +837,7 @@ async function runViewport(vp) {
       }
       record(vp.name, "c08 Backspace back", ok, ok ? "" : "stuck");
     }
-    // PROJECTS -> ACADEMIC / PERSONAL + breadcrumb
+    // PROJECTS -> theme folders (AI AGENTS, LLM EVALS, DEV TOOLS, APPS, ACADEMIC) + breadcrumb
     await openCat(page, "PROJECTS");
     {
       const ids = await objIds(page);
@@ -858,11 +869,19 @@ async function runViewport(vp) {
       record(vp.name, "c10 breadcrumb back", ok, ok ? "" : "segment click failed");
     }
     await openCat(page, "PROJECTS");
-    await openFolder(page, "personal", "PERSONAL");
-    {
+    for (const [fid, flabel, fitems] of [
+      ["agents", "AI AGENTS", TREE.AGENTS.items],
+      ["evaluation", "LLM EVALS", TREE.EVALS.items],
+      ["tools", "DEV TOOLS", TREE.TOOLS.items],
+      ["apps", "APPS", TREE.APPS.items]
+    ]) {
+      await openFolder(page, fid, fid.toUpperCase());
       const ids = await objIds(page);
-      if (!expectIds(ids, TREE.PERS.items)) treeFails.push(`PERSONAL=[${ids}]`);
-      for (const i of TREE.PERS.items) await card(i);
+      if (!expectIds(ids, fitems)) treeFails.push(`${flabel}=[${ids}]`);
+      for (const i of fitems) await card(i);
+      await goCrumb(page, 0);
+      await backTo(page, null);
+      await openCat(page, "PROJECTS");
     }
     // CONTACT
     await goCrumb(page, 0);
@@ -881,7 +900,7 @@ async function runViewport(vp) {
     vp.name,
     "c07 cards in glass, no overlap, Esc closes",
     cardFails.length === 0,
-    cardFails.length === 0 ? `(15 cards)` : cardFails.slice(0, 6).join(" | ")
+    cardFails.length === 0 ? `(23 cards)` : cardFails.slice(0, 6).join(" | ")
   );
   record(vp.name, "c14 repo hrefs target rel", repoFails.length === 0, repoFails.slice(0, 6).join(" | "));
   record(
@@ -917,7 +936,8 @@ async function runViewport(vp) {
       { timeout: 3000 }
     );
     n = await plainNames();
-    if (!n.includes("ACADEMIC") || !n.includes("PERSONAL")) plainFails.push(`PROJECTS=${JSON.stringify(n)}`);
+    if (!["AI AGENTS", "LLM EVALS", "DEV TOOLS", "APPS", "ACADEMIC"].every((f) => n.includes(f)))
+      plainFails.push(`PROJECTS=${JSON.stringify(n)}`);
     await dclick(page, '#arcBody .plain-row[data-folder="academic"]');
     await page.waitForFunction(() => document.querySelectorAll("#arcBody .plain-row").length === 5, {
       timeout: 3000
@@ -1371,16 +1391,27 @@ async function runViewport(vp) {
       await page.waitForSelector("#arcBody .obj-item", { timeout: 4000 });
       const pc = await page.evaluate(() => {
         const a = document.querySelector('[data-folder="academic"]'),
-          pe = document.querySelector('[data-folder="personal"]');
-        return { a: a ? a.className : "", pe: pe ? pe.className : "" };
+          ag = document.querySelector('[data-folder="agents"]');
+        const th = ["agents", "evaluation", "tools", "apps"].map((f) =>
+          document.querySelector('[data-folder="' + f + '"]')
+        );
+        return {
+          a: a ? a.className : "",
+          agShell: ag ? getComputedStyle(ag).getPropertyValue("--shell-1").trim() : "",
+          th: th.map((e) => (e ? e.className || "plain" : "MISSING"))
+        };
       });
       if (!pc.a.includes("sp-disc") || !pc.a.includes("wp-open")) {
         ok = false;
         d += " ACADEMIC " + pc.a;
       }
-      if (!pc.pe.includes("sp-holo")) {
+      if (pc.th.some((c) => c === "MISSING" || /sp-|wp-/.test(c))) {
         ok = false;
-        d += " PERSONAL " + pc.pe;
+        d += " theme folders not default disks: " + pc.th.join(",");
+      }
+      if (pc.agShell !== vals.PROJECTS) {
+        ok = false;
+        d += " PROJECTS child shell " + pc.agShell + " != " + vals.PROJECTS;
       }
       await dclick(page, "#ejectBtn");
       await page.waitForSelector('.obj[data-cat="EDUCATION"]', { timeout: 4000 });
@@ -1712,18 +1743,16 @@ async function runViewport(vp) {
       if (!f) {
         ok = false;
         d = "footer missing";
-      } else if (
-        !(
-          f.n === 2 &&
-          f.sameFont &&
-          f.sameLine &&
-          f.order &&
-          f.repoFont &&
-          f.repoLine &&
-          f.repoAfter &&
-          f.oneLine
-        )
-      ) {
+      } else if (!(
+        f.n === 2 &&
+        f.sameFont &&
+        f.sameLine &&
+        f.order &&
+        f.repoFont &&
+        f.repoLine &&
+        f.repoAfter &&
+        f.oneLine
+      )) {
         ok = false;
         d += "themis=" + JSON.stringify(f);
       }
@@ -1747,11 +1776,11 @@ async function runViewport(vp) {
       await backTo(page, null);
       /* meta has no repeated segment */
       await openCat(page, "PROJECTS");
-      await dclick(page, '.obj[data-folder="personal"]');
+      await dclick(page, '.obj[data-folder="apps"]');
       await page.waitForFunction(
         () => {
           const h = document.querySelector("#crumb .here");
-          return h && h.textContent === "PERSONAL";
+          return h && h.textContent === "APPS";
         },
         { timeout: 4000 }
       );
@@ -2298,8 +2327,12 @@ async function sceneScenes() {
   try {
     await page.waitForSelector("body.phase-archive", { timeout: 15000 });
     await page.waitForTimeout(500);
-    /* s01 — every disk has a scene svg, and all 28 scenes are unique
-       (22 until 21 Oct 2026: +4 personal projects, +2 NVIDIA certificates) */
+    /* s01 — every disk has a scene svg; scenes are unique, except the shared
+       PROJECTS gears kit: the PROJECTS root disk, the four theme folders and the
+       items whose id has no own drawing (8 disks since 12 Nov 2026: the
+       theme-folder restructure, then meteo and learnviz got their own
+       animated scenes; the old 28-disk unique rule covered the single
+       PERSONAL folder, whose special rocket scene is gone with it) */
     {
       let ok = false,
         d = "";
@@ -2316,26 +2349,31 @@ async function sceneScenes() {
         }
         await dclick(page, '.obj[data-cat="PROJECTS"]');
         await crumbIs("PROJECTS");
-        await dclick(page, '.obj[data-folder="academic"]');
-        await crumbIs("ACADEMIC");
-        await walk();
-        await page.keyboard.press("Escape");
-        await crumbIs("PROJECTS");
-        await dclick(page, '.obj[data-folder="personal"]');
-        await crumbIs("PERSONAL");
-        await walk();
-        await page.keyboard.press("Escape");
-        await crumbIs("PROJECTS"); // PERSONAL -> PROJECTS
+        for (const [fid, cseg] of [
+          ["agents", "AGENTS"],
+          ["evaluation", "EVALUATION"],
+          ["tools", "TOOLS"],
+          ["apps", "APPS"],
+          ["academic", "ACADEMIC"]
+        ]) {
+          await dclick(page, '.obj[data-folder="' + fid + '"]');
+          await crumbIs(cseg);
+          await walk();
+          await page.keyboard.press("Escape");
+          await crumbIs("PROJECTS");
+        }
         await page.keyboard.press("Escape"); // PROJECTS -> root (for the hover checks)
         await crumbRoot();
         const v = Object.values(all);
-        ok = v.length === 28 && new Set(v).size === 28 && !v.includes("MISSING");
-        d = `disks=${v.length} unique=${new Set(v).size} missing=${v.filter((x) => x === "MISSING").length}`;
+        const gears = v.filter((s) => s === "gears").length;
+        const uniqOthers = new Set(v.filter((s) => s !== "gears")).size;
+        ok = v.length === 36 && gears === 8 && uniqOthers === v.length - gears && !v.includes("MISSING");
+        d = `disks=${v.length} gears=${gears} unique-others=${uniqOthers} missing=${v.filter((x) => x === "MISSING").length}`;
       } catch (e) {
         ok = false;
         d = String(e).slice(0, 90);
       }
-      record(name, "s01 all 28 disks have a unique data-scene", ok, d);
+      record(name, "s01 all 36 disks have a data-scene; unique outside the shared gears kit", ok, d);
     }
     /* s02 — scene animates on hover, resets (none) on leave */
     {
@@ -2542,16 +2580,19 @@ async function sceneScenes() {
   await browser.close();
   /* s07 — index.html stays reasonably small. Budget raised from 200 KB to
      220 KB on 21 Oct 2026: the 6 new disk scenes added ~5 KB raw (+1.4 KB
-     gzip) and the old budget had ~190 bytes left. About 45 KB of the file is
-     source comments carried into the inlined CSS/JS; stripping them at build
-     time is the way to win the room back if the page grows again. */
+     gzip) and the old budget had ~190 bytes left. Raised again on 12 Nov 2026
+     to 240 KB: the CV rebrand and the five new project disks of the PROJECTS
+     theme-folder restructure took the built page to ~224 KB. About 45 KB of
+     the file is source comments carried into the inlined CSS/JS; stripping
+     them at build time is the way to win the room back if the page grows
+     again. */
   {
     const fs = await import("node:fs");
     const size = fs.statSync(path.join(SITE, "index.html")).size;
     record(
       name,
-      "s07 index.html size reasonable (<220KB)",
-      size < 220 * 1024,
+      "s07 index.html size reasonable (<240KB)",
+      size < 240 * 1024,
       (size / 1024).toFixed(1) + " KB"
     );
   }
@@ -3204,7 +3245,10 @@ async function p5fixes() {
 /* ---------------- P7 polish checks ---------------- */
 const P7_VIEWS = [
   ["PROJECTS/ACADEMIC", ["alpha", "themis", "fraud", "icu", "greek"]],
-  ["PROJECTS/PERSONAL", ["ai-d365", "agent-memory", "llm-eval", "infra-tools", "archivesys"]],
+  ["PROJECTS/AGENTS", ["agent-memory", "long-mem", "rule-driven"]],
+  ["PROJECTS/EVALUATION", ["llm-eval", "stress-judge"]],
+  ["PROJECTS/TOOLS", ["ai-d365", "infra-tools"]],
+  ["PROJECTS/APPS", ["learnviz", "archivesys", "meteo"]],
   ["ABOUT.ME", ["me"]],
   ["WORK", ["deloitte", "intermedia", "army"]],
   ["EDUCATION", ["univ", "mb500", "rapids", "deeplearning"]],
@@ -4134,7 +4178,8 @@ async function v6Efixes() {
   for (const [tag, path] of [
     ["root", ""],
     ["ACADEMIC", "PROJECTS/ACADEMIC"],
-    ["PERSONAL", "PROJECTS/PERSONAL"]
+    ["APPS", "PROJECTS/APPS"],
+    ["AGENTS", "PROJECTS/AGENTS"]
   ]) {
     const browser = await chromium.launch();
     let ok = true,
@@ -4313,7 +4358,10 @@ async function v6Efixes() {
     ["EDUCATION", "EDUCATION"],
     ["PROJECTS", "PROJECTS"],
     ["ACADEMIC", "PROJECTS/ACADEMIC"],
-    ["PERSONAL", "PROJECTS/PERSONAL"],
+    ["AGENTS", "PROJECTS/AGENTS"],
+    ["EVALUATION", "PROJECTS/EVALUATION"],
+    ["TOOLS", "PROJECTS/TOOLS"],
+    ["APPS", "PROJECTS/APPS"],
     ["CONTACT", "CONTACT"]
   ]) {
     const browser = await chromium.launch();
@@ -4514,7 +4562,10 @@ async function v6Ffixes() {
       } else if (/\u2026$/.test(m.text) || /[A-Za-z]…/.test(m.text)) {
         ok = false;
         d += "meta ends in an ellipsis: " + m.text;
-      } else if (!/\(X\+\+\)$/.test(m.text)) {
+      } else if (!/Software Engineer$/.test(m.text)) {
+        /* the role line is "Software Engineer" since the 12 Nov 2026 CV rebrand
+           (was "Software Engineer · D365 F&O (X++)"): the meta must still show
+           it whole, with no ellipsis */
         ok = false;
         d += "final segment truncated: " + m.text;
       } else d = "meta on " + m.lines + ' line(s), no ellipsis, ends "' + m.text.slice(-14) + '"';
@@ -7099,14 +7150,12 @@ async function phaseLfixes() {
           ok = false;
           d += tag + " archive-visible " + m.arcVis + " frames; ";
         }
-        if (
-          !(
-            m.firstRaster >= 0 &&
-            m.firstLine > m.firstRaster &&
-            m.firstDot > m.firstLine &&
-            m.offIdx > m.firstDot
-          )
-        ) {
+        if (!(
+          m.firstRaster >= 0 &&
+          m.firstLine > m.firstRaster &&
+          m.firstDot > m.firstLine &&
+          m.offIdx > m.firstDot
+        )) {
           ok = false;
           d +=
             tag +
@@ -8215,8 +8264,8 @@ async function phaseNfixes() {
       }
       await page.evaluate(() => document.getElementById("dtClose").click());
       await page.waitForTimeout(450);
-      /* ARCHIVE.SYS (PROJECTS/PERSONAL): bullet 1 (== summary) is gone, the technical one stays */
-      await openDet("PROJECTS/PERSONAL", "archivesys");
+      /* ARCHIVE.SYS (PROJECTS/APPS): bullet 1 (== summary) is gone, the technical one stays */
+      await openDet("PROJECTS/APPS", "archivesys");
       t = await page.evaluate(() => document.getElementById("dtBody").textContent);
       var dup1 = (t.match(/a working archive behind a working screen/gi) || []).length;
       if (dup1 > 1) {

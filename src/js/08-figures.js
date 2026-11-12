@@ -593,6 +593,38 @@ then hold); near-vertical forearms keep the elbow joints covered */
     });
     return S + o + "</svg>";
   }
+  /* meteo — weather cycle: sun behind a cloud; on hover rain falls and
+the sun gives way to a crescent moon, then the day returns */
+  if (kind === "meteo")
+    return (
+      S +
+      '<g class="li-sun" style="transform-origin:16.4px 6.8px">' +
+      '<circle cx="16.4" cy="6.8" r="2"/>' +
+      '<line x1="16.4" y1="2.9" x2="16.4" y2="3.9"/><line x1="20.3" y1="6.8" x2="19.3" y2="6.8"/>' +
+      '<line x1="19.2" y1="4" x2="18.5" y2="4.7"/><line x1="19.2" y1="9.6" x2="18.5" y2="8.9"/>' +
+      "</g>" +
+      '<path class="li-moon" opacity="0" d="M15.7 4.6a2.6 2.6 0 1 0 3.5 3.5 2.9 2.9 0 0 1-3.5-3.5z"/>' +
+      '<path d="M13.2 16.3H7.1a5 5 0 1 1 4.8-6.5h1.3a3.2 3.2 0 0 1 0 6.5z"/>' +
+      '<line class="li-drop1" opacity="0" x1="8.4" y1="17.4" x2="7.8" y2="19.2"/>' +
+      '<line class="li-drop2" opacity="0" x1="11.2" y1="17.4" x2="10.6" y2="19.2"/>' +
+      '<line class="li-drop3" opacity="0" x1="14" y1="17.4" x2="13.4" y2="19.2"/></svg>'
+    );
+  /* learnviz — an open book feeds a knowledge graph: a dot flies from the
+spine to the first node and the nodes light up in turn */
+  if (kind === "learnviz")
+    return (
+      S +
+      '<path d="M4.4 12.6c1.5-.9 3-.9 4.4 0v5.8c-1.4-.9-2.9-.9-4.4 0z"/>' +
+      '<path d="M13.2 12.6c-1.5-.9-3-.9-4.4 0v5.8c1.4-.9 2.9-.9 4.4 0z"/>' +
+      '<line x1="15.28" y1="5.69" x2="18.32" y2="7.31" stroke-width="1"/>' +
+      '<line x1="18.35" y1="9.15" x2="16.45" y2="10.25" stroke-width="1"/>' +
+      '<line x1="13.95" y1="6.67" x2="14.45" y2="9.33" stroke-width="1"/>' +
+      '<circle cx="13.6" cy="4.8" r="1.5"/><circle cx="20" cy="8.2" r="1.5"/><circle cx="14.8" cy="11.2" r="1.5"/>' +
+      '<circle class="li-n1" cx="13.6" cy="4.8" r=".8" fill="currentColor" stroke="none"/>' +
+      '<circle class="li-n2" cx="20" cy="8.2" r=".8" fill="currentColor" stroke="none"/>' +
+      '<circle class="li-n3" cx="14.8" cy="11.2" r=".8" fill="currentColor" stroke="none"/>' +
+      '<circle class="li-fly" opacity="0" cx="8.8" cy="11.6" r=".9" fill="currentColor" stroke="none"/></svg>'
+    );
   /* disk — plain 3.5" silhouette: the default scene for unknown ids */
   if (kind === "disk")
     return (
@@ -639,6 +671,8 @@ var SCENES = {
   "agent-memory": 1,
   "llm-eval": 1,
   "infra-tools": 1,
+  meteo: 1,
+  learnviz: 1,
   rapids: 1,
   deeplearning: 1
 };

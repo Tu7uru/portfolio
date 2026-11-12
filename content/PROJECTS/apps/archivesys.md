@@ -5,7 +5,7 @@ period: 2026 · THIS SITE
 tags: HTML, CSS, Playwright, GitHub Pages
 link: https://github.com/Tu7uru/portfolio
 plain: this portfolio · github.com/Tu7uru/portfolio
-order: 50
+order: 20
 ---
 This portfolio: a working archive behind a working screen.
 

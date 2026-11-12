@@ -2798,6 +2798,102 @@ opacity: 1;
 opacity: 0.1;
 }
 }
+/* theme-folder disks (12 Nov 2026): meteo day-rain-night, learnviz book-to-graph */
+.obj:hover .li-sun,
+.obj:focus-visible .li-sun {
+animation: liSky 1.6s ease-in-out infinite;
+}
+.obj:hover .li-moon,
+.obj:focus-visible .li-moon {
+animation: liMoonIn 1.6s ease-in-out infinite;
+}
+.obj:hover .li-drop1,
+.obj:focus-visible .li-drop1 {
+animation: liDrop 1.6s ease-in-out infinite;
+}
+.obj:hover .li-drop2,
+.obj:focus-visible .li-drop2 {
+animation: liDrop 1.6s ease-in-out infinite;
+animation-delay: 0.14s;
+}
+.obj:hover .li-drop3,
+.obj:focus-visible .li-drop3 {
+animation: liDrop 1.6s ease-in-out infinite;
+animation-delay: 0.28s;
+}
+.obj:hover .li-fly,
+.obj:focus-visible .li-fly {
+animation: liFly 1.5s ease-in-out infinite;
+}
+@keyframes liSky {
+0%,
+30% {
+opacity: 1;
+transform: scale(1);
+}
+42%,
+76% {
+opacity: 0;
+transform: scale(0.6);
+}
+90%,
+100% {
+opacity: 1;
+transform: scale(1);
+}
+}
+@keyframes liMoonIn {
+0%,
+36% {
+opacity: 0;
+}
+48%,
+78% {
+opacity: 1;
+}
+90%,
+100% {
+opacity: 0;
+}
+}
+@keyframes liDrop {
+0%,
+26% {
+opacity: 0;
+transform: translateY(0);
+}
+36% {
+opacity: 1;
+}
+58% {
+opacity: 1;
+transform: translateY(2.4px);
+}
+70%,
+100% {
+opacity: 0;
+transform: translateY(3px);
+}
+}
+@keyframes liFly {
+0%,
+10% {
+opacity: 0;
+transform: translate(0, 0);
+}
+20% {
+opacity: 1;
+}
+56% {
+opacity: 1;
+transform: translate(4.8px, -6.8px);
+}
+68%,
+100% {
+opacity: 0;
+transform: translate(4.8px, -6.8px);
+}
+}
 /* a disk being dragged: its scene pauses (frozen mid-frame) */
 .obj-wrap.dragging .lic * {
 animation-play-state: paused !important;
@@ -3515,7 +3611,7 @@ shelf as a plain list.</p
 >
 <!--@NOSCRIPT-START: generated from content/-->
 <h2>Drive A · ABOUT.ME</h2>
-<ul><li>ABOUT.ME — Software Engineer · Dynamics 365 F&amp;O (X++) · C#, .NET, SQL Server</li></ul>
+<ul><li>ABOUT.ME — Software Engineer · C#, .NET, SQL Server, X++ · LLM tooling</li></ul>
 <h2>Drive B · WORK</h2>
 <ul><li>DELOITTE — Software Engineer, Dynamics 365 F&amp;O · Oct 2023 — present</li>
 <li>INTERMEDIA — Software Engineer · C#, .NET, SQL Server · Jul 2021 — Aug 2023</li>
@@ -3526,19 +3622,30 @@ shelf as a plain list.</p
 <li>RAPIDS — NVIDIA: Fundamentals of Accelerated Data Science with RAPIDS · Jul 2022</li>
 <li>NVIDIA DL — NVIDIA: Fundamentals of Deep Learning · Jun 2022</li></ul>
 <h2>Drive D · PROJECTS</h2>
-<ul><li>ACADEMIC <span class="ns-dir">&lt;DIR&gt;</span>
+<ul><li>AI AGENTS <span class="ns-dir">&lt;DIR&gt;</span>
+<ul><li>AI-MEMORY — Agent memory platform · SQLite full-text search, MCP</li>
+<li>LONG-MEM — Long-session memory for coding agents · recover values lost to compaction</li>
+<li>AI RULES — Rule-driven AI development · deterministic checks over AI review</li></ul>
+</li>
+<li>LLM EVALS <span class="ns-dir">&lt;DIR&gt;</span>
+<ul><li>LLM-EVAL — LLM evaluation and optimisation harness · paired A/B tests</li>
+<li>JUDGE-CAL — LLM stress testing and judge calibration · what output to trust</li></ul>
+</li>
+<li>DEV TOOLS <span class="ns-dir">&lt;DIR&gt;</span>
+<ul><li>AI-D365 — AI-assisted D365 development · LLM tooling for X++</li>
+<li>INFRA-TOOLS — Infrastructure and developer tooling · Linux, Playwright</li></ul>
+</li>
+<li>APPS <span class="ns-dir">&lt;DIR&gt;</span>
+<ul><li>LEARNVIZ — LearnViz · text to validated interactive simulations</li>
+<li>ARCHIVE.SYS — this portfolio · github.com/Tu7uru/portfolio</li>
+<li>METEO — Forecast-accuracy scoring service · Python, FastAPI, SQLite</li></ul>
+</li>
+<li>ACADEMIC <span class="ns-dir">&lt;DIR&gt;</span>
 <ul><li>COMPILER — Alpha-Language-Compiler · C, Bison/Yacc, VM</li>
 <li>THEMIS — fair search engine · TREC 2020</li>
 <li>FRAUD-ML — fraud-detection, supervised vs unsupervised</li>
 <li>ICU-ON-CALL — patient-handling system · Java</li>
 <li>GREEK-IR — BSc thesis · IR on Greek documents, mistype correction</li></ul>
-</li>
-<li>PERSONAL <span class="ns-dir">&lt;DIR&gt;</span>
-<ul><li>AI-D365 — AI-assisted D365 development · LLM tooling for X++</li>
-<li>AI-MEMORY — Agent memory platform · SQLite full-text search, MCP</li>
-<li>LLM-EVAL — LLM evaluation and optimisation harness · paired A/B tests</li>
-<li>INFRA-TOOLS — Infrastructure and developer tooling · Linux, Playwright</li>
-<li>ARCHIVE.SYS — this portfolio · github.com/Tu7uru/portfolio</li></ul>
 </li></ul>
 <h2>Drive E · CONTACT</h2>
 <ul><li><a href="https://github.com/Tu7uru">GITHUB</a> — github.com/Tu7uru</li>
@@ -3739,11 +3846,11 @@ RM = e.matches;
 /*@CONTENT-START: generated from content/ by tools/build.mjs — edit the files in content/, not this block*/
 var DATA = {
 "ABOUT.ME":{ drive:"A", items:[
-{"id":"me","label":"ABOUT.ME","title":"HARALAMBOS VARSAMIS","period":"SOFTWARE ENGINEER","role":"Dynamics 365 F&O · C#, .NET","tags":["Dynamics 365 F&O","X++","C#",".NET","SQL Server"],"desc":"Microsoft-certified (MB-500) Dynamics 365 Finance and Operations developer with 5 years of back-end experience in C#, .NET, and SQL Server.","detail":["The last 3 years specialising in D365 F&O (X++) at Deloitte.","Delivering multi-million-euro ERP implementations for multinational clients in pharmaceuticals, retail, food & beverage, manufacturing, and publishing.","Self-directed work on AI infrastructure and agent tooling, built and run on a shared, multi-user Linux development server.","Dublin, Ireland. EU citizen; no visa sponsorship required."]}
+{"id":"me","label":"ABOUT.ME","title":"HARALAMBOS VARSAMIS","period":"SOFTWARE ENGINEER","role":"Software Engineer · Back-end","tags":["C#",".NET","SQL Server","X++","LLM Tooling"],"desc":"Software engineer with 5+ years of back-end development in C#, .NET, SQL Server and X++.","detail":["Currently 3+ years at Deloitte, delivering multi-million-euro Microsoft Dynamics 365 Finance and Operations implementations for multinational clients in pharmaceuticals, retail, food & beverage, manufacturing, and publishing.","Designing and evaluating LLM tooling for AI coding agents on self-hosted models: agent memory systems, controlled A/B evaluation, and deterministic validation of model output.","The personal projects here are designed and directed by me and implemented with AI coding agents on a shared, multi-user Linux development server.","Microsoft certified (MB-500). Dublin, Ireland. EU citizen; no visa sponsorship required."]}
 ]},
 "WORK":{ drive:"B", items:[
-{"id":"deloitte","label":"DELOITTE","title":"Deloitte","period":"OCT 2023 — PRESENT","role":"Software Engineer · D365 F&O (X++)","tags":["X++","Dynamics 365 F&O","SSRS","Docentric"],"desc":"Dynamics 365 F&O (X++) development on multi-million-euro ERP implementations for multinational clients in pharmaceuticals, retail, food & beverage, manufacturing, and publishing.","detail":["Owned end-to-end work items across 7 multinational, multi-year D365 F&O implementations (up to 3 concurrent), from requirements analysis and effort estimation through development and delivery.","Extended sales, warehousing, pricing, tax, workflow, and finance modules (AP/AR, ledger journals, bank statement imports) using X++ Chain of Command extensions; built security roles, privileges, and XDS policies.","Contributed development, bug fixes, and tester support through 5 go-lives across 4 implementations, including one solution that rolled out live in 2 countries separately.","Replaced third-party payment subscriptions in 3 countries for a pan-European medical diagnostics group with in-house QR/barcode generation, encoding payloads to each bank's specifications (LZMA/7z) with automated ISO-compliant SFTP exports, eliminating the recurring subscription fees.","Optimised X++ queries and calculations by ≈35% on average through targeted caching; in the largest case, cached quotation totals cut a 270-line sales-agreement print from 30 minutes to under 1 minute.","Delivered 30+ Docentric and SSRS reports (10+ new, 20+ core-logic extensions), including QR-referenced payment reports and batch-run payment reminders.","Built DMF data entities and Excel add-in imports/exports that migrated legacy data into redesigned table structures and automatically created the related child records during import.","Automated recurring processes such as one-click packing-slip posting for return orders, reducing minutes of manual steps to seconds, and introduced warehouse barcode scanning to eliminate manual data entry.","Handled CI/CD production releases through LCS and Azure DevOps, acting as release cover in the technical lead's absence.","Worked in Agile technical teams of 2-6 developers alongside up to 10 functional consultants; onboarded 4 new engineers and mentored 2 through their first projects via code reviews and pairing."]},
-{"id":"intermedia","label":"INTERMEDIA","title":"INTERMEDIA","period":"JUL 2021 — AUG 2023","role":"Software Engineer","tags":["C#",".NET","SQL Server","EF Core"],"desc":"Software company serving Greek municipalities and private-sector clients: public-facing platforms for up to 500 users, applied NLP research, new service products, and R&D on system interoperability, migration, technologies, and automation.","detail":["Led the end-to-end design and implementation of a security monitoring system that scored IP reputation via integrated threat-intelligence services, built with C# (.NET 6), LiteDB, and PowerShell.","Redesigned and migrated legacy databases using EF Core code-first models, reverse engineering, and data transformation to SQL Server from MS Access and REST API sources; resolved cascade-action migration issues with custom trigger logic.","Refactored and optimised the codebase for performance and maintainability, reducing its size by 30%.","Automated publishing workflows, including HTML generation for Diavgeia, the Greek government transparency platform, and WordPress data uploads via TablePress, cutting publishing time.","Performed testing and code-coverage analysis with Selenium and Pester."]},
+{"id":"deloitte","label":"DELOITTE","title":"Deloitte","period":"OCT 2023 — PRESENT","role":"Software Engineer","tags":["X++","Dynamics 365 F&O","SSRS","Docentric"],"desc":"Dynamics 365 F&O (X++) development on multi-million-euro ERP implementations for multinational clients in pharmaceuticals, retail, food & beverage, manufacturing, and publishing.","detail":["Owned end-to-end work items across 7 multinational, multi-year D365 F&O implementations (up to 3 concurrent), from requirements analysis and effort estimation through development and delivery.","Extended sales, warehousing, pricing, tax, workflow, and finance modules (AP/AR, ledger journals, bank statement imports) using X++ Chain of Command extensions; built security roles, privileges, and XDS policies.","Designed table structures and business flows for a tree-structured item attribute hierarchy, using a bottom-up depth-first traversal to classify items by type during quotation-to-agreement conversion.","Contributed development, bug fixes, and tester support through 5 go-lives across 4 implementations, including one solution that rolled out live in 2 countries separately.","Replaced third-party payment subscriptions in 3 countries with in-house QR/barcode generation, encoding payloads to each bank's specifications (LZMA/7z) with automated ISO-compliant SFTP exports, eliminating the recurring subscription fees.","Optimised X++ queries and calculations by ≈35% on average through targeted caching; in the largest case, cached quotation totals cut a 270-line sales-agreement print from 30 minutes to under 1 minute.","Delivered 30+ Docentric and SSRS reports (10+ new, 20+ core-logic extensions), including QR-referenced payment reports and batch-run payment reminders.","Built DMF data entities and Excel add-in imports/exports that migrated legacy data into redesigned table structures and automatically created the related child records during import.","Automated recurring processes such as one-click packing-slip posting for return orders, reducing minutes of manual steps to seconds, and introduced warehouse barcode scanning to eliminate manual data entry.","Handled CI/CD production releases through LCS and Azure DevOps, acting as release cover in the technical lead's absence.","Worked in Agile technical teams of 2-6 developers alongside up to 10 functional consultants (sole developer on one implementation); onboarded 4 new engineers and mentored 3 through their first projects via code reviews and pairing."]},
+{"id":"intermedia","label":"INTERMEDIA","title":"INTERMEDIA","period":"JUL 2021 — AUG 2023","role":"Software Engineer","tags":["C#",".NET","SQL Server","EF Core"],"desc":"Software company serving Greek municipalities and private-sector clients: public-facing platforms for up to 500 users, new service products, and R&D on system interoperability, migration, technologies, and automation.","detail":["Led the end-to-end design and implementation of a security monitoring system that scored IP reputation via integrated threat-intelligence services, built with C# (.NET 6), LiteDB, and PowerShell.","Redesigned and migrated legacy databases using EF Core code-first models, reverse engineering, and data transformation to SQL Server from MS Access and REST API sources; resolved cascade-action migration issues with custom trigger logic.","Refactored and optimised the codebase for performance and maintainability, reducing its size by 30%.","Automated publishing workflows, including HTML generation for Diavgeia, the Greek government transparency platform, and WordPress data uploads via TablePress, cutting publishing time.","Automated testing with Selenium and Pester, reaching 80% code coverage."]},
 {"id":"army","label":"H. ARMY","title":"Hellenic Army","period":"DEC 2022 — MAR 2023","role":"Software Developer · Military Service","tags":["MS Access","VBA","RBAC"],"desc":"Mandatory service; INTERMEDIA work continued remotely in off-duty hours.","detail":["Selected to build a confidential data management application in MS Access/VBA, implementing custom role-based access control (RBAC) with an authentication module that mapped each user to hierarchical permissions across military clearance levels.","Designed a dynamic interface that adapted menus, forms, and visible data to the signed-in user's profile, so restricted records never appeared for unauthorised users."]}
 ]},
 "EDUCATION":{ drive:"C", items:[
@@ -3753,8 +3860,11 @@ var DATA = {
 {"id":"deeplearning","label":"NVIDIA DL","title":"Fundamentals of Deep Learning","period":"JUN 2022","role":"NVIDIA","tags":["NVIDIA","Deep Learning","Certification"],"desc":"Certification issued by NVIDIA."}
 ]},
 "PROJECTS":{ drive:"D", items:[
-{"id":"academic","label":"ACADEMIC","folder":true,"items":[{"id":"alpha","label":"COMPILER","title":"Alpha-Language-Compiler","period":"UNIVERSITY PROJECT","tags":["C","Bison/Yacc","LR","Virtual Machine"],"desc":"Full compiler pipeline: lexer, parser, semantic analysis, intermediate code, target code generation and a virtual machine.","detail":["A complete compiler pipeline for a small ALU-style language, written in C.","Front end: lexer and a Bison/Yacc (LR) generated parser.","Semantic analysis, intermediate code and target code generation.","Target code executes on a companion virtual machine.","Built as a university project."],"link":"https://github.com/Tu7uru/Alpha-Language-Compiler"},{"id":"themis","label":"THEMIS","title":"Themis","period":"TREC 2020 · TEAM","tags":["Java","Search Engine","Fair Ranking"],"desc":"Fair search engine for scientific articles, built for the TREC 2020 Fair Ranking Track.","detail":["A fair search engine for scientific articles.","Built for the TREC 2020 Fair Ranking Track, as a team project.","Covers indexing, retrieval and fairness-aware ranking of scholarly content."],"link":"https://github.com/Tu7uru/Themis"},{"id":"fraud","label":"FRAUD-ML","title":"Fraud-Detection-System","period":"COMPARATIVE STUDY","tags":["Python","Jupyter","Supervised","Unsupervised"],"desc":"Comparison of supervised and unsupervised machine-learning algorithms for transaction fraud detection.","detail":["A comparative study of machine-learning algorithms for transaction fraud detection.","Supervised classifiers versus unsupervised detectors, in Jupyter notebooks.","Working with heavily imbalanced transaction data."],"link":"https://github.com/Tu7uru/Fraud-Detection-System"},{"id":"icu","label":"ICU-ON-CALL","title":"ICU on Call (Files & Databases)","period":"SYSTEMS PROJECT","tags":["Java","Databases"],"desc":"Patient-handling system for an ICU on call: files and databases working as one.","detail":["Patient-handling system for an ICU on call.","Files and databases working as one system (Java systems project).","Records patient flow across an on-call rotation."],"link":"https://github.com/Tu7uru/Files-And-Databases---ICU-on-Call"},{"id":"greek","label":"GREEK-IR","title":"IR on Greek Documents","period":"BSC THESIS · 2022","tags":["Java","Elasticsearch","Solr","Algolia"],"desc":"BSc thesis: Elasticsearch, Solr, and Algolia evaluated on Greek documents, with a typo-tolerant query correction algorithm.","detail":["Three search engines evaluated on a hand-built Greek dataset of 57 queries and 118 documents with human relevance judgments.","Measured with precision, recall, F-measure, and fall-out.","The correction algorithm models the Greek keyboard layout and repairs mistypes caused by accidental adjacent key presses.","It combines keyboard distance with edit distance."],"link":"https://github.com/Tu7uru/IR-and-mistype-corrections-on-Greek-documents"}]},
-{"id":"personal","label":"PERSONAL","folder":true,"items":[{"id":"ai-d365","label":"AI-D365","title":"AI-assisted D365 development","period":"PERSONAL PROJECT","tags":["X++","LLMs","Developer Tooling"],"desc":"Tooling that integrates LLMs into the daily X++ workflow.","detail":["Combines automated linting with curated X++ pattern knowledge bases.","Verification logic keeps generated code to documented platform APIs."]},{"id":"agent-memory","label":"AI-MEMORY","title":"Agent memory platform","period":"PERSONAL PROJECT","tags":["SQLite","Full-Text Search","MCP"],"desc":"Persistent, searchable memory for AI coding agents.","detail":["Built on SQLite full-text search and exposed to the agents as tools (MCP).","Typed records with explicit update and retention policies.","Automated consistency linting.","In daily use by multiple agents across devices."]},{"id":"llm-eval","label":"LLM-EVAL","title":"LLM evaluation and optimisation harness","period":"PERSONAL PROJECT","tags":["LLM Evaluation","Statistics","Open-Weight Models"],"desc":"A/B evaluation of agent context-management strategies on self-hosted open-weight models.","detail":["Paired statistical comparison with LLM-judge scoring.","Latency and accuracy profiling.","Unattended overnight runs exceeding 15,000 model calls.","A measured 2x latency reduction on routine coding tasks."]},{"id":"infra-tools","label":"INFRA-TOOLS","title":"Infrastructure and developer tooling","period":"PERSONAL PROJECT","tags":["Linux","Playwright","Automation"],"desc":"Built and run on a shared, multi-user Linux development server.","detail":["Process supervision with automatic crash recovery.","Scheduled snapshot and backup tooling.","A headless screenshot and preview service.","A static-site build pipeline verified by a Playwright QA suite of 400+ checks."]},{"id":"archivesys","label":"ARCHIVE.SYS","title":"ARCHIVE.SYS","period":"2026 · THIS SITE","tags":["HTML","CSS","Playwright","GitHub Pages"],"desc":"This portfolio: a working archive behind a working screen.","detail":["One self-contained HTML page with a CRT case, BIOS boot, disk tray, plain list, and detail views.","Built from Markdown content files by a small build script.","Checked by a Playwright QA suite of 400+ checks."],"link":"https://github.com/Tu7uru/portfolio"}]}
+{"id":"agents","label":"AI AGENTS","folder":true,"items":[{"id":"agent-memory","label":"AI-MEMORY","title":"Agent memory platform","period":"PERSONAL PROJECT","tags":["SQLite","Full-Text Search","MCP"],"desc":"Persistent, searchable memory for AI coding agents.","detail":["Built on SQLite full-text search and exposed to the agents as tools (MCP).","Typed records with explicit update and retention policies.","A 15-check consistency linter that blocks unsafe updates.","In daily use by multiple agents across devices.","Specified and reference-implemented a server extension for audit history, schema versioning and recall logging, adopted by the platform team; its test suite caught 25 of 26 deliberately broken server variants in mutation testing."]},{"id":"long-mem","label":"LONG-MEM","title":"Long-session memory for coding agents","period":"PERSONAL PROJECT","tags":["Context Management","Search","LLM Agents"],"desc":"A search tool that lets an agent recover the exact values lost when its context is compacted in long sessions.","detail":["Keeps 99% of the dropped values against 12% without the tool.","Total input tokens stay within 6% of the plain agent.","A one-line change that stops re-indexing earlier search results was adopted into daily use after it met an adoption rule set before the test.","Earlier context compaction was tested and rejected: no detectable quality gain for 48% more tokens."]},{"id":"rule-driven","label":"AI RULES","title":"Rule-driven AI development","period":"IN PROGRESS","tags":["AI Agents","Methodology","Deterministic Validation"],"desc":"Global, technology-neutral design rules, enforced by deterministic checks so AI agents build within one consistent system design.","detail":["Rules reach from architecture and methodology down to code.","Rule books and workflows define the expected output, and the agent refines its work until deterministic scripts confirm it meets them.","Deterministic validation is preferred over AI review because AI review does not give reproducible verdicts."]}]},
+{"id":"evaluation","label":"LLM EVALS","folder":true,"items":[{"id":"llm-eval","label":"LLM-EVAL","title":"LLM evaluation and optimisation harness","period":"PERSONAL PROJECT","tags":["LLM Evaluation","Statistics","Open-Weight Models"],"desc":"A/B evaluation of agent context-management strategies on self-hosted open-weight models.","detail":["Paired statistical comparison with LLM-judge scoring.","Latency and accuracy profiling.","Unattended overnight runs exceeding 15,000 model calls.","A measured 2x latency reduction on routine coding tasks.","A fresh-bug benchmark of 1,129 validated tasks with sandboxed trials and leak audits.","An A/B-evaluated Agent Skill raised fully passing X++ answers from 3.3% to 16.7%."]},{"id":"stress-judge","label":"JUDGE-CAL","title":"LLM stress testing and judge calibration","period":"PERSONAL PROJECT","tags":["LLM Evaluation","LLM-as-Judge","QA"],"desc":"Systematic stress tests of self-hosted models and of the judges that score them.","detail":["About 30% of model-generated interactive pages were found broken despite passing both a static validator and an LLM critic.","The same model, classifying knowledge notes, showed a 23% error rate on its high-confidence answers.","A headless-browser render gate flags broken generated pages without needing a model judge."]}]},
+{"id":"tools","label":"DEV TOOLS","folder":true,"items":[{"id":"ai-d365","label":"AI-D365","title":"AI-assisted D365 development","period":"PERSONAL PROJECT","tags":["X++","LLMs","Developer Tooling"],"desc":"Tooling that integrates LLMs into the daily X++ workflow.","detail":["Combines automated linting with curated X++ pattern knowledge bases.","Verification logic keeps generated code to documented platform APIs.","Checks are kept only when a known-answer run shows recall of at least 0.90 with zero false alarms."]},{"id":"infra-tools","label":"INFRA-TOOLS","title":"Infrastructure and developer tooling","period":"PERSONAL PROJECT","tags":["Linux","Playwright","Automation"],"desc":"Built and run on a shared, multi-user Linux development server.","detail":["Process supervision with automatic crash recovery.","Scheduled snapshot and backup tooling.","A headless screenshot and preview service.","A static-site build pipeline verified by a Playwright QA suite of 400+ checks.","A resumable night runner: a restarted run continues its queue with deadlines fixed to the night date.","A run-tracing tool with failure detectors, tested against 236 listed failure modes."]}]},
+{"id":"apps","label":"APPS","folder":true,"items":[{"id":"learnviz","label":"LEARNVIZ","title":"LearnViz","period":"PERSONAL PROJECT","tags":["LLMs","Simulation","Validation"],"desc":"Turns a concept described in text into an interactive visual simulation.","detail":["The LLM writes only a data spec for each simulation, which a validator checks and a trusted engine renders.","A 4-hour stress test found an engine integration bug; after the fixes, all 69 physics simulations ran without failure.","A 3-round validate-and-repair loop raised valid generated specs from 2 of 7 to 6 of 7."]},{"id":"archivesys","label":"ARCHIVE.SYS","title":"ARCHIVE.SYS","period":"2026 · THIS SITE","tags":["HTML","CSS","Playwright","GitHub Pages"],"desc":"This portfolio: a working archive behind a working screen.","detail":["One self-contained HTML page with a CRT case, BIOS boot, disk tray, plain list, and detail views.","Built from Markdown content files by a small build script.","Checked by a Playwright QA suite of 400+ checks."],"link":"https://github.com/Tu7uru/portfolio"},{"id":"meteo","label":"METEO","title":"Forecast-accuracy scoring service","period":"PERSONAL PROJECT","tags":["Python","FastAPI","SQLite"],"desc":"A forecast-accuracy service that scores weather forecast providers against observations.","detail":["The backtest's provider picks were validated with forward-looking daily scoring runs.","The most accurate provider changes by season."]}]},
+{"id":"academic","label":"ACADEMIC","folder":true,"items":[{"id":"alpha","label":"COMPILER","title":"Alpha-Language-Compiler","period":"UNIVERSITY PROJECT","tags":["C","Bison/Yacc","LR","Virtual Machine"],"desc":"Full compiler pipeline: lexer, parser, semantic analysis, intermediate code, target code generation and a virtual machine.","detail":["A complete compiler pipeline for a small ALU-style language, written in C.","Front end: lexer and a Bison/Yacc (LR) generated parser.","Semantic analysis, intermediate code and target code generation.","Target code executes on a companion virtual machine.","Built as a university project."],"link":"https://github.com/Tu7uru/Alpha-Language-Compiler"},{"id":"themis","label":"THEMIS","title":"Themis","period":"TREC 2020 · TEAM","tags":["Java","Search Engine","Fair Ranking"],"desc":"Fair search engine for scientific articles, built for the TREC 2020 Fair Ranking Track.","detail":["A fair search engine for scientific articles.","Built for the TREC 2020 Fair Ranking Track, as a team project.","Covers indexing, retrieval and fairness-aware ranking of scholarly content."],"link":"https://github.com/Tu7uru/Themis"},{"id":"fraud","label":"FRAUD-ML","title":"Fraud-Detection-System","period":"COMPARATIVE STUDY","tags":["Python","Jupyter","Supervised","Unsupervised"],"desc":"Comparison of supervised and unsupervised machine-learning algorithms for transaction fraud detection.","detail":["A comparative study of machine-learning algorithms for transaction fraud detection.","Supervised classifiers versus unsupervised detectors, in Jupyter notebooks.","Working with heavily imbalanced transaction data."],"link":"https://github.com/Tu7uru/Fraud-Detection-System"},{"id":"icu","label":"ICU-ON-CALL","title":"ICU on Call (Files & Databases)","period":"SYSTEMS PROJECT","tags":["Java","Databases"],"desc":"Patient-handling system for an ICU on call: files and databases working as one.","detail":["Patient-handling system for an ICU on call.","Files and databases working as one system (Java systems project).","Records patient flow across an on-call rotation."],"link":"https://github.com/Tu7uru/Files-And-Databases---ICU-on-Call"},{"id":"greek","label":"GREEK-IR","title":"IR on Greek Documents","period":"BSC THESIS · 2022","tags":["Java","Elasticsearch","Solr","Algolia"],"desc":"BSc thesis: Elasticsearch, Solr, and Algolia evaluated on Greek documents, with a typo-tolerant query correction algorithm.","detail":["Three search engines evaluated on a hand-built Greek dataset of 57 queries and 118 documents with human relevance judgments.","Measured with precision, recall, F-measure, and fall-out.","The correction algorithm models the Greek keyboard layout and repairs mistypes caused by accidental adjacent key presses.","It combines keyboard distance with edit distance."],"link":"https://github.com/Tu7uru/IR-and-mistype-corrections-on-Greek-documents"}]}
 ]},
 "CONTACT":{ drive:"E", items:[
 {"id":"github","label":"GITHUB","title":"GitHub","period":"CODE","tags":["Repositories"],"desc":"github.com/Tu7uru","link":"https://github.com/Tu7uru","linkLabel":"— open ↗"},
@@ -5407,6 +5517,38 @@ p[1] +
 });
 return S + o + "</svg>";
 }
+/* meteo — weather cycle: sun behind a cloud; on hover rain falls and
+the sun gives way to a crescent moon, then the day returns */
+if (kind === "meteo")
+return (
+S +
+'<g class="li-sun" style="transform-origin:16.4px 6.8px">' +
+'<circle cx="16.4" cy="6.8" r="2"/>' +
+'<line x1="16.4" y1="2.9" x2="16.4" y2="3.9"/><line x1="20.3" y1="6.8" x2="19.3" y2="6.8"/>' +
+'<line x1="19.2" y1="4" x2="18.5" y2="4.7"/><line x1="19.2" y1="9.6" x2="18.5" y2="8.9"/>' +
+"</g>" +
+'<path class="li-moon" opacity="0" d="M15.7 4.6a2.6 2.6 0 1 0 3.5 3.5 2.9 2.9 0 0 1-3.5-3.5z"/>' +
+'<path d="M13.2 16.3H7.1a5 5 0 1 1 4.8-6.5h1.3a3.2 3.2 0 0 1 0 6.5z"/>' +
+'<line class="li-drop1" opacity="0" x1="8.4" y1="17.4" x2="7.8" y2="19.2"/>' +
+'<line class="li-drop2" opacity="0" x1="11.2" y1="17.4" x2="10.6" y2="19.2"/>' +
+'<line class="li-drop3" opacity="0" x1="14" y1="17.4" x2="13.4" y2="19.2"/></svg>'
+);
+/* learnviz — an open book feeds a knowledge graph: a dot flies from the
+spine to the first node and the nodes light up in turn */
+if (kind === "learnviz")
+return (
+S +
+'<path d="M4.4 12.6c1.5-.9 3-.9 4.4 0v5.8c-1.4-.9-2.9-.9-4.4 0z"/>' +
+'<path d="M13.2 12.6c-1.5-.9-3-.9-4.4 0v5.8c1.4-.9 2.9-.9 4.4 0z"/>' +
+'<line x1="15.28" y1="5.69" x2="18.32" y2="7.31" stroke-width="1"/>' +
+'<line x1="18.35" y1="9.15" x2="16.45" y2="10.25" stroke-width="1"/>' +
+'<line x1="13.95" y1="6.67" x2="14.45" y2="9.33" stroke-width="1"/>' +
+'<circle cx="13.6" cy="4.8" r="1.5"/><circle cx="20" cy="8.2" r="1.5"/><circle cx="14.8" cy="11.2" r="1.5"/>' +
+'<circle class="li-n1" cx="13.6" cy="4.8" r=".8" fill="currentColor" stroke="none"/>' +
+'<circle class="li-n2" cx="20" cy="8.2" r=".8" fill="currentColor" stroke="none"/>' +
+'<circle class="li-n3" cx="14.8" cy="11.2" r=".8" fill="currentColor" stroke="none"/>' +
+'<circle class="li-fly" opacity="0" cx="8.8" cy="11.6" r=".9" fill="currentColor" stroke="none"/></svg>'
+);
 /* disk — plain 3.5" silhouette: the default scene for unknown ids */
 if (kind === "disk")
 return (
@@ -5453,6 +5595,8 @@ disk: 1,
 "agent-memory": 1,
 "llm-eval": 1,
 "infra-tools": 1,
+meteo: 1,
+learnviz: 1,
 rapids: 1,
 deeplearning: 1
 };

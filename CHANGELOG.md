@@ -6,6 +6,24 @@ All notable changes to this site are listed here. The format follows
 sections or features, PATCH for content updates and fixes. Each release is an
 annotated git tag `vX.Y.Z`; the visitor-facing label shows `V<MAJOR>.<MINOR>`.
 
+## [Unreleased]
+
+### Changed
+- Content synced to the Software Engineer CV rebrand: ABOUT.ME now leads with back-end C#, .NET,
+  SQL Server and X++ and LLM tooling for AI coding agents; the Deloitte and INTERMEDIA disks are
+  updated to match the new CV (role line, mentoring count, team-shape note, tree-structured item
+  attribute hierarchy, INTERMEDIA coverage figure).
+- PROJECTS split from one PERSONAL folder into theme folders: AI AGENTS, LLM EVALS, DEV TOOLS and
+  APPS, with ACADEMIC kept unchanged and moved last.
+
+### Added
+- Animated label scenes for the LEARNVIZ disk (an open book feeding a knowledge graph) and the
+  METEO disk (sun and cloud turning to rain, then a crescent moon, then day again).
+- Five new project disks: LONG-MEM and RULE-DRIVEN (AI AGENTS), JUDGE-CAL (LLM EVALS), LEARNVIZ
+  and METEO-SCORE (APPS); existing project disks gained their measured results (linter and server
+  extension for AI-MEMORY, fresh-bug benchmark and Agent Skill for LLM-EVAL, recall threshold for
+  AI-D365, resumable night runner and run tracing for INFRA-TOOLS).
+
 ## [1.0.2] - 2026-10-21
 
 ### Changed

@@ -1,4 +1,4 @@
 ---
-label: PERSONAL
+label: LLM EVALS
 order: 20
 ---
